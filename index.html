@@ -112,7 +112,10 @@
 
     @media (max-width: 640px) {
       .terminal-cursor {
-        display: none;
+        display: none !important;
+      }
+      .custom-cursor-point {
+        display: none !important;
       }
     }
 
@@ -736,14 +739,13 @@
 
       const isMobile = window.innerWidth <= 640;
 
-      if (isAtBottom) {
-        if (isMobile) {
-          // Esquina inferior izquierda en móvil
-          targetX = 120 + floatX;
-        } else {
-          // Esquina inferior derecha en escritorio
-          targetX = window.innerWidth - 120 + floatX;
-        }
+      if (isMobile) {
+        // En móvil, siempre en esquina inferior izquierda
+        targetX = 120 + floatX;
+        targetY = window.innerHeight - 100 + floatY;
+      } else if (isAtBottom) {
+        // En escritorio, esquina inferior derecha al llegar al final
+        targetX = window.innerWidth - 120 + floatX;
         targetY = window.innerHeight - 100 + floatY;
       } else if (anchoredElement) {
         const rect = anchoredElement.getBoundingClientRect();
