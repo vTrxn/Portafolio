@@ -110,6 +110,12 @@
       animation: blink 1s step-end infinite;
     }
 
+    @media (max-width: 640px) {
+      .terminal-cursor {
+        display: none;
+      }
+    }
+
     /* ESTILOS DEL CURSOR Y BUBBLE */
     .custom-cursor-point {
       width: 8px;
@@ -728,9 +734,16 @@
       let targetX = mouseX + offsetX + floatX;
       let targetY = mouseY + offsetY + floatY;
 
+      const isMobile = window.innerWidth <= 640;
+
       if (isAtBottom) {
-        // Se va a la esquina inferior derecha
-        targetX = window.innerWidth - 120 + floatX;
+        if (isMobile) {
+          // Esquina inferior izquierda en móvil
+          targetX = 120 + floatX;
+        } else {
+          // Esquina inferior derecha en escritorio
+          targetX = window.innerWidth - 120 + floatX;
+        }
         targetY = window.innerHeight - 100 + floatY;
       } else if (anchoredElement) {
         const rect = anchoredElement.getBoundingClientRect();
