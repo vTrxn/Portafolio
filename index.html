@@ -114,6 +114,7 @@
       .terminal-cursor {
         display: none !important;
       }
+
       .custom-cursor-point {
         display: none !important;
       }
@@ -679,20 +680,7 @@
     let isAtBottom = false;
 
     function resetIdleTimer() {
-      clearTimeout(idleTimer);
-      if (isYawning) {
-        isYawning = false;
-        updateExpression();
-      }
-      idleTimer = setTimeout(() => {
-        if (!isExploded && !isHappy) {
-          isYawning = true;
-          updateExpression();
-          if (typeof showSpeech === 'function') {
-            showSpeech("qué aburrimiento...<br>hace mucho que<br>no te mueves");
-          }
-        }
-      }, 7000);
+      // Temporizador de inactividad desactivado
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -707,20 +695,17 @@
     resetIdleTimer();
 
     function updateExpression() {
-      bubbleNormal.style.display = 'none';
       bubbleHappy.style.display = 'none';
       if (bubbleYawn) bubbleYawn.style.display = 'none';
+      bubbleNormal.style.display = 'block'; // Siempre con la cara normal
 
       if (isHappy) {
-        bubbleHappy.style.display = 'block';
         cursorPoint.style.transform = 'translate(-50%, -50%) scale(2.5)';
         cursorPoint.style.backgroundColor = '#ff4757';
       } else if (isYawning) {
-        if (bubbleYawn) bubbleYawn.style.display = 'block';
         cursorPoint.style.transform = 'translate(-50%, -50%) scale(1)';
         cursorPoint.style.backgroundColor = '#94a3b8';
       } else {
-        bubbleNormal.style.display = 'block';
         cursorPoint.style.transform = 'translate(-50%, -50%) scale(1)';
         cursorPoint.style.backgroundColor = '#22d3ee';
       }
