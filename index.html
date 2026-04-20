@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robinson Aranda | Software & AI Engineer - Grid & Bubble Edition</title>
+  <title>Robinson Aranda | Software & AI Engineer - Neon Grid Edition</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
@@ -38,7 +38,7 @@
 
     body {
       background-color: #050505;
-      background: linear-gradient(-45deg, #050505, #111111, #0c1c2b, #0a0a0a);
+      background: linear-gradient(-45deg, #050505, #0a0f14, #08121a, #050505);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       color: #e2e8f0;
@@ -47,49 +47,63 @@
       min-height: 100vh;
     }
 
-    /* CAPA DE CUADRÍCULA INTERACTIVA */
+    /* CAPA 1: EFECTO DE RESPLANDOR (SPOTLIGHT) */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(
+        circle 400px at var(--mouse-x) var(--mouse-y), 
+        rgba(34, 211, 238, 0.15), 
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    /* CAPA 2: CUADRÍCULA INTERACTIVA NEÓN */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       z-index: 0;
-      /* Fondo de cuadrícula fina */
+      /* Cuadrícula mucho más visible e intensa */
       background-image: 
-        linear-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 211, 238, 0.08) 1px, transparent 1px);
+        linear-gradient(rgba(34, 211, 238, 0.30) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.30) 1px, transparent 1px);
       background-size: 50px 50px;
       background-position: center;
       
-      /* EFECTO DE LUZ RADIAL QUE SIGUE AL RATÓN */
+      /* Máscara más amplia para revelar más cuadrícula */
       mask-image: radial-gradient(
-        circle 300px at var(--mouse-x) var(--mouse-y), 
+        circle 450px at var(--mouse-x) var(--mouse-y), 
         black 0%, 
-        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.8) 40%, 
         transparent 100%
       );
       -webkit-mask-image: radial-gradient(
-        circle 300px at var(--mouse-x) var(--mouse-y), 
+        circle 450px at var(--mouse-x) var(--mouse-y), 
         black 0%, 
-        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.8) 40%, 
         transparent 100%
       );
       
       pointer-events: none;
-      /* No interfiere con los clics */
     }
 
-    /* Glassmorphism Classes */
+    /* Glassmorphism Classes - Oscurecidos para contrastar con la luz */
     .glass-panel {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.4); /* Fondo más oscuro para proteger el texto de la luz */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 
     .glass-panel:hover {
-      border-color: rgba(34, 211, 238, 0.2);
-      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(34, 211, 238, 0.4);
+      background: rgba(10, 10, 10, 0.5);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
     }
 
     /* Custom Scrollbar */
@@ -111,33 +125,18 @@
     }
 
     .text-glow-cyan {
-      text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      text-shadow: 0 0 20px rgba(34, 211, 238, 0.7);
     }
 
     @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .terminal-cursor {
@@ -145,20 +144,15 @@
     }
 
     @media (max-width: 640px) {
-      .terminal-cursor {
-        display: none !important;
-      }
-
-      .custom-cursor-point {
-        display: none !important;
-      }
+      .terminal-cursor { display: none !important; }
+      .custom-cursor-point { display: none !important; }
       
-      /* Desactivar máscara de cuadrícula en móvil */
       body::before {
         mask-image: none;
         -webkit-mask-image: none;
-        opacity: 0.3;
+        opacity: 0.15; /* Cuadrícula estática y tenue en móvil */
       }
+      body::after { display: none; }
     }
 
     /* ESTILOS DEL CURSOR Y BUBBLE */
@@ -171,7 +165,7 @@
       z-index: 9999;
       pointer-events: none;
       transform: translate(-50%, -50%);
-      box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 1);
       transition: background-color 0.2s, transform 0.2s;
     }
 
@@ -246,7 +240,6 @@
   <div class="custom-cursor-point" id="cursor-point"></div>
 
   <div class="bubble-pet-container" id="bubble-pet">
-
     <div id="bubble-speech" class="bubble-speech-box">
       <div class="bubble-terminal-header">
         <div class="bubble-terminal-dot bg-red-500/80"></div>
@@ -343,7 +336,7 @@
         <div id="ai-panel"
           class="glass-panel rounded-3xl p-8 relative overflow-hidden group border border-emerald-500/30 bg-gradient-to-r from-emerald-900/40 to-transparent">
           <div class="absolute -right-20 -top-20 w-64 h-64 bg-emerald-500/20 blur-3xl rounded-full"></div>
-          <h4 class="font-display text-2xl text-emerald-400 mb-6 flex items-center gap-3">
+          <h4 class="font-display text-2xl text-emerald-400 mb-6 flex items-center gap-3 relative z-10">
             Inteligencia Artificial & Prompt Engineering
             <span
               class="text-xs px-3 py-1 bg-emerald-500/20 rounded-full font-mono text-emerald-300 border border-emerald-500/50">Fortaleza
@@ -354,23 +347,23 @@
               <p class="text-slate-300 font-medium mb-3 border-b border-emerald-500/20 pb-2">Ecosistema de Modelos</p>
               <div class="flex flex-wrap gap-2">
                 <a href="https://www.perplexity.ai/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-yellow-400 hover:text-yellow-300 transition-colors cursor-pointer">Perplexity</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-yellow-400 hover:text-yellow-300 transition-colors cursor-pointer">Perplexity</a>
                 <a href="https://www.anthropic.com/claude" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer">Claude</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer">Claude</a>
                 <a href="https://groq.com/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer">Groq</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer">Groq</a>
                 <a href="https://gemini.google.com/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-blue-400 hover:text-blue-300 transition-colors cursor-pointer">Gemini</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-blue-400 hover:text-blue-300 transition-colors cursor-pointer">Gemini</a>
                 <a href="https://grok.com/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-white hover:text-white transition-colors cursor-pointer">Grok</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-white hover:text-white transition-colors cursor-pointer">Grok</a>
                 <a href="https://chatgpt.com/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-green-400 hover:text-green-300 transition-colors cursor-pointer">ChatGPT</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-green-400 hover:text-green-300 transition-colors cursor-pointer">ChatGPT</a>
                 <a href="https://github.com/features/copilot" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-sky-400 hover:text-sky-300 transition-colors cursor-pointer">Copilot</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-sky-400 hover:text-sky-300 transition-colors cursor-pointer">Copilot</a>
                 <a href="https://mistral.ai/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-violet-400 hover:text-violet-300 transition-colors cursor-pointer">Mistral</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-violet-400 hover:text-violet-300 transition-colors cursor-pointer">Mistral</a>
                 <a href="https://www.deepseek.com/" target="_blank"
-                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/40 border border-slate-700 text-slate-300 hover:border-rose-400 hover:text-rose-300 transition-colors cursor-pointer">DeepSeek</a>
+                  class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-rose-400 hover:text-rose-300 transition-colors cursor-pointer">DeepSeek</a>
               </div>
             </div>
             <div>
@@ -388,35 +381,35 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-br from-cyan-900/20 to-transparent">
+          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-br from-cyan-900/10 to-transparent">
             <h4 class="font-display text-xl text-cyan-400 mb-6">Desarrollo Frontend & Backend</h4>
             <div class="space-y-6">
               <div>
                 <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Frontend</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-orange-950/40 border border-orange-700/50 text-orange-300">HTML / CSS</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-cyan-950/40 border border-cyan-800/50 text-cyan-200">React</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-blue-950/40 border border-blue-800/50 text-blue-200">TypeScript</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-sky-950/40 border border-sky-800/50 text-sky-200">Tailwind CSS</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-orange-950/60 border border-orange-700/50 text-orange-300">HTML / CSS</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-cyan-950/60 border border-cyan-800/50 text-cyan-200">React</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-blue-950/60 border border-blue-800/50 text-blue-200">TypeScript</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-sky-950/60 border border-sky-800/50 text-sky-200">Tailwind CSS</span>
                 </div>
               </div>
               <div>
                 <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Backend & Bases de Datos</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-teal-950/40 border border-teal-800/50 text-teal-200">FastAPI</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-green-950/40 border border-green-800/50 text-green-200">Node.js</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-yellow-950/40 border border-yellow-800/50 text-yellow-200">Python</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-red-950/40 border border-red-800/50 text-red-300">Java</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-violet-950/40 border border-violet-800/50 text-violet-300">C#</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-700/40 border border-slate-600/50 text-slate-200">C++</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-indigo-950/40 border border-indigo-800/50 text-indigo-400">PostgreSQL</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-800 border border-slate-700 text-slate-300">SQLite</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-teal-950/60 border border-teal-800/50 text-teal-200">FastAPI</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-green-950/60 border border-green-800/50 text-green-200">Node.js</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-yellow-950/60 border border-yellow-800/50 text-yellow-200">Python</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-red-950/60 border border-red-800/50 text-red-300">Java</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-violet-950/60 border border-violet-800/50 text-violet-300">C#</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-800/60 border border-slate-600/50 text-slate-200">C++</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-indigo-950/60 border border-indigo-800/50 text-indigo-400">PostgreSQL</span>
+                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-900 border border-slate-700 text-slate-300">SQLite</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-orange-900/20 to-transparent">
+          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-orange-900/10 to-transparent">
             <h4 class="font-display text-xl text-orange-400 mb-6">Entornos & Hardware</h4>
             <div class="space-y-6">
               <div>
@@ -437,7 +430,7 @@
             </div>
           </div>
 
-          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-bl from-purple-900/20 to-transparent">
+          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-bl from-purple-900/10 to-transparent">
             <h4 class="font-display text-xl text-purple-400 mb-6">Workflow & Perfil</h4>
             <div class="space-y-6">
               <div>
@@ -453,11 +446,11 @@
               <div class="pt-4 border-t border-white/5">
                 <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Idiomas</p>
                 <div class="flex gap-4">
-                  <div class="flex-1 bg-black/20 p-3 rounded-lg border border-white/5">
+                  <div class="flex-1 bg-black/40 p-3 rounded-lg border border-white/5">
                     <p class="text-white font-medium text-sm">Español</p>
                     <p class="text-slate-400 text-xs mt-1 font-mono">Nativo</p>
                   </div>
-                  <div class="flex-1 bg-black/20 p-3 rounded-lg border border-white/5">
+                  <div class="flex-1 bg-black/40 p-3 rounded-lg border border-white/5">
                     <p class="text-white font-medium text-sm">Inglés (B2-C1)</p>
                     <p class="text-slate-400 text-xs mt-1 font-mono hover:text-slate-300">Lectura / Modismos</p>
                   </div>
@@ -485,27 +478,27 @@
               <p class="text-cyan-400 font-mono text-sm mb-4">Proyecto Principal Uniempresarial</p>
               <div class="flex flex-wrap gap-2 mb-6">
                 <span
-                  class="px-2 py-1 text-xs font-mono rounded bg-white/5 border border-white/10 text-slate-300">React</span>
+                  class="px-2 py-1 text-xs font-mono rounded bg-black/40 border border-white/10 text-slate-300">React</span>
                 <span
-                  class="px-2 py-1 text-xs font-mono rounded bg-white/5 border border-white/10 text-slate-300">FastAPI</span>
+                  class="px-2 py-1 text-xs font-mono rounded bg-black/40 border border-white/10 text-slate-300">FastAPI</span>
                 <span
-                  class="px-2 py-1 text-xs font-mono rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">Multi-Agent
+                  class="px-2 py-1 text-xs font-mono rounded bg-cyan-900/40 border border-cyan-500/30 text-cyan-300">Multi-Agent
                   Sys</span>
               </div>
             </div>
             <div class="lg:col-span-2">
               <h5 class="text-white font-medium mb-2 flex items-center gap-2"><span
                   class="w-1 h-4 bg-cyan-400 rounded"></span> Acerca de</h5>
-              <p class="text-slate-400 text-sm leading-relaxed mb-3">Plataforma web con inteligencia artificial diseñada
+              <p class="text-slate-300 text-sm leading-relaxed mb-3">Plataforma web con inteligencia artificial diseñada
                 para optimizar la cadena de suministro de PYMES en Bogotá. Actualmente en fase avanzada de desarrollo.
               </p>
-              <ul class="text-slate-400 text-sm leading-relaxed space-y-2 list-disc list-inside mb-4">
+              <ul class="text-slate-300 text-sm leading-relaxed space-y-2 list-disc list-inside mb-4">
                 <li>Predicción de demanda y gestión de inventarios en tiempo real.</li>
                 <li>Optimización de rutas logísticas.</li>
                 <li>Alertas predictivas orquestadas por un chatbot multi-agente.</li>
               </ul>
               <div
-                class="inline-block px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-mono">
+                class="inline-block px-3 py-1.5 rounded-lg bg-emerald-900/40 border border-emerald-500/20 text-emerald-300 text-xs font-mono">
                 > Impacto proyectado: Reducción del 40% en tiempos de diagnóstico.
               </div>
             </div>
@@ -519,12 +512,12 @@
               <p class="text-slate-400 font-mono text-sm mb-4">Motor de Diagnóstico</p>
               <div class="flex flex-wrap gap-2 mb-6">
                 <span
-                  class="px-2 py-1 text-xs font-mono rounded bg-purple-500/10 border border-purple-500/30 text-purple-300">Prompt
+                  class="px-2 py-1 text-xs font-mono rounded bg-purple-900/40 border border-purple-500/30 text-purple-300">Prompt
                   Eng.</span>
               </div>
             </div>
             <div class="lg:col-span-2">
-              <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">
                 Herramienta que integra múltiples inteligencias artificiales para realizar diagnósticos corporativos.
                 Genera planes de mejora estratégicos automatizados para las empresas sin requerir intervención humana
                 prolongada.
@@ -536,21 +529,21 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 projects-grid">
           <div class="glass-panel rounded-2xl p-6 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
             <h4 class="text-lg font-display font-bold text-white mb-2">PetCare App</h4>
-            <p class="text-slate-400 text-sm mb-4 leading-relaxed flex-grow">Aplicación web desarrollada en equipo para
+            <p class="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">Aplicación web desarrollada en equipo para
               la gestión integral de historias clínicas y seguimiento de mascotas.</p>
-            <p class="text-xs font-mono text-slate-500">TypeScript, SQLite</p>
+            <p class="text-xs font-mono text-slate-400">TypeScript, SQLite</p>
           </div>
           <div class="glass-panel rounded-2xl p-6 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
             <h4 class="text-lg font-display font-bold text-white mb-2">ATS</h4>
-            <p class="text-slate-400 text-sm mb-4 leading-relaxed flex-grow">Sistema de seguimiento de candidatos para
+            <p class="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">Sistema de seguimiento de candidatos para
               optimizar los procesos de selección y reclutamiento de personal.</p>
-            <p class="text-xs font-mono text-slate-500">React, Node.js</p>
+            <p class="text-xs font-mono text-slate-400">React, Node.js</p>
           </div>
           <div class="glass-panel rounded-2xl p-6 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
             <h4 class="text-lg font-display font-bold text-white mb-2">Colaboraciones fUSoft</h4>
-            <p class="text-slate-400 text-sm mb-4 leading-relaxed flex-grow">Participación en diversos proyectos y
+            <p class="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">Participación en diversos proyectos y
               herramientas internas de la Fábrica de Soluciones en conjunto con otros estudiantes.</p>
-            <p class="text-xs font-mono text-slate-500">Full-Stack</p>
+            <p class="text-xs font-mono text-slate-400">Full-Stack</p>
           </div>
         </div>
       </div>
@@ -561,14 +554,14 @@
         <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
           <span class="text-cyan-400">_</span> Experiencia
         </h3>
-        <div class="relative border-l border-slate-800 pl-6 pb-2 timeline-item transition-all duration-300">
+        <div class="relative border-l border-slate-700 pl-6 pb-2 timeline-item transition-all duration-300">
           <div
             class="absolute w-3 h-3 bg-cyan-400 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_rgba(34,211,238,0.6)]">
           </div>
           <h4 class="text-xl font-semibold text-white">Practicante Desarrollador Full-Stack</h4>
           <p class="text-cyan-400 text-sm font-mono mb-3">fUSoft - Fábrica de Soluciones (Uniempresarial) | Bogotá, Col.
           </p>
-          <p class="text-slate-400 text-sm leading-relaxed">Desarrollo y mantenimiento de aplicaciones web para PYMES.
+          <p class="text-slate-300 text-sm leading-relaxed">Desarrollo y mantenimiento de aplicaciones web para PYMES.
             Participación activa en múltiples proyectos internos y creación de herramientas en equipo enfocadas en
             problemáticas reales de la industria local.</p>
         </div>
@@ -578,15 +571,15 @@
         <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
           <span class="text-cyan-400">_</span> Educación
         </h3>
-        <div class="relative border-l border-slate-800 pl-6 timeline-item transition-all duration-300">
-          <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[6.5px] top-1.5"></div>
+        <div class="relative border-l border-slate-700 pl-6 timeline-item transition-all duration-300">
+          <div class="absolute w-3 h-3 bg-slate-500 rounded-full -left-[6.5px] top-1.5"></div>
           <h4 class="text-xl font-semibold text-white">Ingeniería de Software</h4>
           <p class="text-slate-400 text-sm font-mono mb-3">Uniempresarial | 3er Semestre (2026)</p>
-          <p class="text-slate-400 text-sm leading-relaxed mb-4">Enfoque práctico orientado a proyectos empresariales
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">Enfoque práctico orientado a proyectos empresariales
             desde etapas tempranas de formación.</p>
           <div class="flex gap-2">
             <span
-              class="text-xs font-mono px-2 py-1 rounded bg-slate-800/50 text-slate-300 border border-slate-700">Inglés
+              class="text-xs font-mono px-2 py-1 rounded bg-black/40 text-slate-300 border border-slate-700">Inglés
               B2-C1</span>
           </div>
         </div>
@@ -598,7 +591,7 @@
         class="glass-panel p-10 rounded-3xl border border-cyan-500/30 bg-gradient-to-t from-cyan-900/20 to-transparent relative overflow-hidden group">
         <div class="absolute inset-0 bg-cyan-400/5 group-hover:bg-cyan-400/10 transition-colors duration-500"></div>
         <h3 class="font-display text-3xl font-bold text-white mb-4 relative z-10">¿Tienes un proyecto en mente?</h3>
-        <p class="text-slate-400 mb-8 relative z-10">Vamos a optimizarlo reduciendo tiempos y costos al máximo usando
+        <p class="text-slate-300 mb-8 relative z-10">Vamos a optimizarlo reduciendo tiempos y costos al máximo usando
           desarrollo inteligente.</p>
         <a href="mailto:robinsonaranda29@gmail.com"
           class="relative z-10 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)]">
