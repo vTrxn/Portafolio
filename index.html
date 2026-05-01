@@ -83,33 +83,66 @@
 
 <body class="selection:bg-zinc-800 selection:text-white">
 
-  <!-- SELECTOR DE IDIOMA FIJO ARRIBA -->
-  <div class="absolute top-6 right-6 z-50">
-    <div class="flex bg-[#18181b] p-1 rounded-lg border border-[#27272a]">
-      <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-4 py-1.5 text-xs font-semibold rounded-md text-white">ES</button>
-      <button id="btn-en" onclick="setLanguage('en')" class="lang-toggle px-4 py-1.5 text-xs font-semibold rounded-md text-zinc-400 hover:text-white">EN</button>
+  <!-- MODAL DE CONTACTO (Oculto por defecto) -->
+  <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 backdrop-blur-sm flex items-center justify-center px-4">
+    <div class="premium-card p-8 w-full max-w-lg relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      
+      <h3 class="text-2xl font-bold text-white mb-2" data-i18n="modal_title">Iniciar Conversación</h3>
+      <p class="text-zinc-400 mb-6 text-sm" data-i18n="modal_desc">Elige cómo prefieres enviar tu mensaje. Puedes usar la plantilla o tu propio formato.</p>
+      
+      <div class="space-y-6">
+        <!-- Opcion 1: Formulario predeterminado -->
+        <div>
+          <label class="block text-sm font-medium text-zinc-300 mb-2" data-i18n="modal_template_label">Mensaje Rápido (Puedes editarlo)</label>
+          <textarea id="modal-msg" rows="4" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu perfil enfocado en datos y automatización IA. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
+          <button onclick="sendTemplateMail()" class="mt-4 w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-colors" data-i18n="modal_send_btn">Generar Correo con este Mensaje</button>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="h-px bg-[#27272a] flex-1"></div>
+          <span class="text-xs font-mono text-zinc-500 uppercase">O</span>
+          <div class="h-px bg-[#27272a] flex-1"></div>
+        </div>
+
+        <!-- Opcion 2: Mailto directo -->
+        <a href="mailto:robinsonaranda29@gmail.com" class="flex justify-center items-center gap-2 w-full py-3 bg-[#18181b] border border-[#27272a] text-white font-bold rounded-lg hover:border-zinc-500 transition-colors" data-i18n="modal_direct_btn">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          Abrir mi cliente de correo en blanco
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="max-w-4xl mx-auto px-6 py-20 md:py-32">
+  <div class="max-w-4xl mx-auto px-6 pb-20">
+
+    <!-- SELECTOR DE IDIOMA CENTRADO -->
+    <div class="flex justify-center pt-10 pb-8">
+      <div class="flex bg-[#18181b] p-1 rounded-lg border border-[#27272a]">
+        <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-5 py-1.5 text-xs font-semibold rounded-md text-white">ES</button>
+        <button id="btn-en" onclick="setLanguage('en')" class="lang-toggle px-5 py-1.5 text-xs font-semibold rounded-md text-zinc-400 hover:text-white">EN</button>
+      </div>
+    </div>
 
     <!-- HEADER -->
-    <header class="mb-24 mt-8">
-      <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6">
+    <header class="mb-24">
+      <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 text-center md:text-left">
         Robinson Aranda
       </h1>
-      <h2 class="text-xl md:text-2xl text-zinc-300 font-medium mb-8" data-i18n="role">
+      <h2 class="text-xl md:text-2xl text-zinc-300 font-medium mb-8 text-center md:text-left" data-i18n="role">
         Ingeniero de Datos & Especialista en Automatización con IA
       </h2>
       
-      <p class="text-lg text-zinc-400 leading-relaxed mb-10 max-w-3xl" data-i18n="bio">
+      <p class="text-lg text-zinc-400 leading-relaxed mb-10 max-w-3xl text-center md:text-left mx-auto md:mx-0" data-i18n="bio">
         Construyo infraestructura de datos y arquitecturas automatizadas. Me especializo en integrar el ecosistema de Inteligencia Artificial con flujos de datos mediante <strong class="text-white font-medium">Python, Docker y n8n</strong>. Mi enfoque técnico busca eliminar procesos manuales, optimizar la extracción de información y crear sistemas de alto rendimiento para la toma de decisiones corporativas.
       </p>
 
-      <div class="flex flex-wrap gap-4 items-center">
-        <a href="mailto:robinsonaranda29@gmail.com" class="px-6 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="contact_btn">
+      <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start">
+        <button onclick="openModal()" class="px-6 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="contact_btn">
           Iniciar Conversación
-        </a>
+        </button>
         <a href="https://github.com/vTrxn" target="_blank" class="p-3 text-zinc-400 hover:text-white transition-colors border border-[#27272a] rounded-lg bg-[#121214] hover:bg-[#18181b]">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         </a>
@@ -123,7 +156,7 @@
 
     <!-- COMPETENCIAS PRINCIPALES -->
     <section class="mb-24">
-      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10" data-i18n="section_expertise">Competencias Principales</h3>
+      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10 text-center md:text-left" data-i18n="section_expertise">Competencias Principales</h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
@@ -175,7 +208,7 @@
 
     <!-- ARQUITECTURA & PROYECTOS -->
     <section class="mb-24">
-      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10" data-i18n="section_projects">Arquitectura & Proyectos Clave</h3>
+      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10 text-center md:text-left" data-i18n="section_projects">Arquitectura & Proyectos Clave</h3>
 
       <div class="space-y-6">
         
@@ -245,7 +278,7 @@
 
     <!-- EXPERIENCIA APLICADA -->
     <section class="mb-24">
-      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10" data-i18n="section_exp">Experiencia Aplicada</h3>
+      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10 text-center md:text-left" data-i18n="section_exp">Experiencia Aplicada</h3>
       
       <div class="space-y-12">
         
@@ -281,7 +314,7 @@
 
     <!-- EDUCACIÓN -->
     <section class="mb-24">
-      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10" data-i18n="section_edu">Formación Académica</h3>
+      <h3 class="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-10 text-center md:text-left" data-i18n="section_edu">Formación Académica</h3>
       <div class="premium-card p-8">
         <h4 class="text-xl font-bold text-white mb-2" data-i18n="edu_title">Ingeniería de Software</h4>
         <p class="text-sm font-mono text-zinc-500 mb-6" data-i18n="edu_sub">Uniempresarial | 3er Semestre (Actual)</p>
@@ -301,15 +334,55 @@
         <p class="text-white font-bold text-lg mb-1">Robinson Aranda</p>
         <p class="text-sm font-mono text-zinc-500" data-i18n="footer_tag">Impulsado por Datos. Automatizado por IA.</p>
       </div>
-      <a href="mailto:robinsonaranda29@gmail.com" class="px-8 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="footer_btn">
+      <button onclick="openModal()" class="px-8 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="footer_btn">
         Escríbeme un Correo
-      </a>
+      </button>
     </footer>
 
   </div>
 
-  <!-- MOTOR DE TRADUCCIÓN (ES / EN) -->
+  <!-- SCRIPT LÓGICO (Traducción + Modal) -->
   <script>
+    // ----- LÓGICA DEL MODAL -----
+    function openModal() {
+      const modal = document.getElementById('contact-modal');
+      const content = document.getElementById('contact-modal-content');
+      modal.classList.remove('hidden');
+      
+      // Delay de animación
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        content.classList.remove('scale-95');
+      }, 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('contact-modal');
+      const content = document.getElementById('contact-modal-content');
+      modal.classList.add('opacity-0');
+      content.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    // Cierra modal al dar clic por fuera de la tarjeta
+    document.getElementById('contact-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    function sendTemplateMail() {
+      const text = document.getElementById('modal-msg').value;
+      const subject = encodeURIComponent("Oportunidad de Colaboración - Visto en Portafolio");
+      const body = encodeURIComponent(text);
+      window.location.href = `mailto:robinsonaranda29@gmail.com?subject=${subject}&body=${body}`;
+      closeModal();
+    }
+
+    // ----- LÓGICA DE TRADUCCIÓN -----
     const translations = {
       es: {
         role: "Ingeniero de Datos & Especialista en Automatización con IA",
@@ -352,25 +425,30 @@
         edu_tag1: "Inglés Técnico (Nivel B2-C1)",
         edu_tag2: "Fundamentos de Diseño de Sistemas",
         footer_tag: "Impulsado por Datos. Automatizado por IA.",
-        footer_btn: "Escríbeme un Correo"
+        footer_btn: "Escríbeme un Correo",
+        modal_title: "Iniciar Conversación",
+        modal_desc: "Elige cómo prefieres enviar tu mensaje. Puedes usar la plantilla o tu propio formato.",
+        modal_template_label: "Mensaje Rápido (Puedes editarlo)",
+        modal_send_btn: "Generar Correo con este Mensaje",
+        modal_direct_btn: "Abrir mi cliente de correo en blanco"
       },
       en: {
         role: "Data Engineer & AI Automation Specialist",
-        contact_btn: "Contact Me",
-        bio: "I build data infrastructure and automated architectures. I specialize in integrating the Artificial Intelligence ecosystem (LLMs) with data pipelines using <strong class='text-white font-medium'>Python, Docker, and n8n</strong>. My technical focus aims to eliminate manual processes, optimize data flow (ETL), and build high-performance systems for corporate decision-making.",
+        contact_btn: "Start Conversation",
+        bio: "I build data infrastructure and automated architectures. I specialize in integrating the Artificial Intelligence ecosystem with data pipelines using <strong class='text-white font-medium'>Python, Docker, and n8n</strong>. My technical focus aims to eliminate manual processes, optimize data extraction, and build high-performance systems for corporate decision-making.",
         section_expertise: "Core Expertise",
         ai_title: "AI Orchestration & Prompt Engineering",
         ai_desc: "Advanced integration of language models via APIs and design of autonomous multi-agent systems.",
-        ai_point1: "Design of RAG (Retrieval-Augmented Generation) architectures for corporate data ingestion.",
+        ai_point1: "Design of RAG (Retrieval-Augmented Generation) architectures for massive corporate data ingestion.",
         ai_point2: "Structured prompting (Chain-of-Thought) to execute complex tasks without human intervention.",
         data_title: "Data Engineering",
         data_desc: "Design of data flow and large-scale relational data persistence (ETL pipelines).",
         auto_title: "Workflow Automation",
-        auto_desc: "Decoupled systems for continuous integration of enterprise APIs and business processes.",
+        auto_desc: "Decoupled systems for continuous integration of enterprise applications and processes.",
         section_projects: "Architecture & Key Projects",
         proj1_title: "OmniAgent System",
         proj1_sub: "Proof of Concept (PoC)",
-        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates multiple models (Claude, Kimi) via n8n to perform web scraping, data cleaning, information synthesis, and code generation, operating as an asynchronous pipeline with zero manual intervention.",
+        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates multiple AI models (Claude, Kimi) via n8n to perform web scraping, data cleaning, information synthesis, and code generation, operating as an asynchronous pipeline with zero manual intervention.",
         proj1_impact: "→ Impact: Technical demonstration of extreme operational automation.",
         proj2_title: "SupplyAI Pipeline",
         proj2_sub: "Cloud SaaS Architecture",
@@ -395,7 +473,12 @@
         edu_tag1: "Technical English (B2-C1)",
         edu_tag2: "System Design Fundamentals",
         footer_tag: "Data-Driven. AI Automated.",
-        footer_btn: "Send me an Email"
+        footer_btn: "Send me an Email",
+        modal_title: "Start a Conversation",
+        modal_desc: "Choose how you prefer to send your message. You can use the template or your own format.",
+        modal_template_label: "Quick Message (Editable)",
+        modal_send_btn: "Generate Email with this Message",
+        modal_direct_btn: "Open my blank email client"
       }
     };
 
@@ -419,6 +502,14 @@
           el.innerHTML = translations[lang][key];
         }
       });
+
+      // Update textarea placeholder text directly
+      const msgArea = document.getElementById('modal-msg');
+      if(lang === 'en') {
+        msgArea.value = "Hi Robinson, I reviewed your portfolio and found your profile focused on data and AI automation very interesting. I would like to chat with you about a potential opportunity or collaboration.";
+      } else {
+        msgArea.value = "Hola Robinson, revisé tu portafolio y me pareció muy interesante tu perfil enfocado en datos y automatización IA. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
+      }
       
       document.documentElement.lang = lang;
     }
