@@ -4,10 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robinson Aranda | Ingeniero de Software, Datos e IA</title>
+  <title>Robinson Aranda | Arquitecto de Datos y Automatización IA</title>
   
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
+  <!-- Fuentes Premium: Plus Jakarta Sans (Títulos), Inter (Cuerpo), JetBrains Mono (Código) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -29,6 +31,7 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    /* Tarjetas elegantes y minimalistas */
     .premium-card {
       background-color: #121214;
       border: 1px solid #27272a;
@@ -41,6 +44,7 @@
       transform: translateY(-2px);
     }
 
+    /* Píldoras de tecnología (Tags) */
     .tech-tag {
       display: inline-flex;
       align-items: center;
@@ -60,17 +64,26 @@
       color: #ffffff;
     }
 
+    /* Scrollbar minimalista */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #0a0a0a; }
     ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #52525b; }
 
+    /* Estilos corregidos del botón de idiomas */
     .lang-toggle {
       transition: all 0.2s;
+      color: #a1a1aa; /* Color base (zinc-400) */
+    }
+    .lang-toggle:hover {
+      color: #ffffff; /* Blanco al pasar el mouse cuando está inactivo */
     }
     .lang-toggle.active {
       background-color: #ffffff;
       color: #000000;
+    }
+    .lang-toggle.active:hover {
+      color: #000000; /* Mantiene el texto negro al pasar el mouse si está activo */
     }
   </style>
 </head>
@@ -101,11 +114,11 @@
 
   <div class="max-w-4xl mx-auto px-6 pb-20">
 
-    <!-- SELECTOR DE IDIOMA CENTRADO -->
+    <!-- SELECTOR DE IDIOMA CENTRADO Y LIMPIO -->
     <div class="flex justify-center pt-10 pb-8">
       <div class="flex bg-[#18181b] p-1 rounded-lg border border-[#27272a]">
-        <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-5 py-1.5 text-xs font-semibold rounded-md text-white">ES</button>
-        <button id="btn-en" onclick="setLanguage('en')" class="lang-toggle px-5 py-1.5 text-xs font-semibold rounded-md text-zinc-400 hover:text-white">EN</button>
+        <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-5 py-1.5 text-xs font-semibold rounded-md">ES</button>
+        <button id="btn-en" onclick="setLanguage('en')" class="lang-toggle px-5 py-1.5 text-xs font-semibold rounded-md">EN</button>
       </div>
     </div>
 
@@ -459,15 +472,11 @@
     };
 
     function setLanguage(lang) {
-      document.getElementById('btn-es').classList.remove('active', 'bg-white', 'text-black');
-      document.getElementById('btn-en').classList.remove('active', 'bg-white', 'text-black');
-      
-      document.getElementById('btn-es').classList.add('text-zinc-400');
-      document.getElementById('btn-en').classList.add('text-zinc-400');
+      // Toggle button classes manually based on the CSS rules defined
+      document.getElementById('btn-es').classList.remove('active');
+      document.getElementById('btn-en').classList.remove('active');
 
-      const activeBtn = document.getElementById(`btn-${lang}`);
-      activeBtn.classList.remove('text-zinc-400');
-      activeBtn.classList.add('active', 'bg-white', 'text-black');
+      document.getElementById(`btn-${lang}`).classList.add('active');
 
       const elements = document.querySelectorAll('[data-i18n]');
       elements.forEach(el => {
