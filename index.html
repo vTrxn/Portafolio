@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robinson Aranda | Limitless AI & Data Architect</title>
+  <title>Robinson Aranda | Data & AI Automation Engineer</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -16,12 +14,15 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-            display: ['Space Grotesk', 'sans-serif'],
-            mono: ['Fira Code', 'monospace'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            dark: '#050505',
-            surface: '#111111',
+            background: '#09090b',
+            surface: '#18181b',
+            border: '#27272a',
+            muted: '#a1a1aa',
+            accent: '#e4e4e7',
+            highlight: '#10b981' /* Un esmeralda muy sobrio para detalles */
           }
         }
       }
@@ -29,920 +30,294 @@
   </script>
 
   <style>
-    :root {
-      cursor: none;
-      --mouse-x: 50%;
-      --mouse-y: 50%;
-    }
-
     body {
-      background-color: #050505;
-      background: linear-gradient(-45deg, #050505, #0a0f14, #08121a, #050505);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #e2e8f0;
-      position: relative;
-      overflow-x: hidden;
-      min-height: 100vh;
+      background-color: theme('colors.background');
+      color: theme('colors.accent');
+      line-height: 1.6;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: radial-gradient(
-        circle 400px at var(--mouse-x) var(--mouse-y), 
-        rgba(34, 211, 238, 0.15), 
-        transparent 70%
-      );
-      pointer-events: none;
-    }
-
+    /* Estilo sutil de cuadrícula de fondo, sin luces, solo textura */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      z-index: 0;
-      background-image: 
-        linear-gradient(rgba(34, 211, 238, 0.30) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 211, 238, 0.30) 1px, transparent 1px);
-      background-size: 50px 50px;
-      background-position: center;
-      
-      mask-image: radial-gradient(
-        circle 450px at var(--mouse-x) var(--mouse-y), 
-        black 0%, 
-        rgba(0, 0, 0, 0.8) 40%, 
-        transparent 100%
-      );
-      -webkit-mask-image: radial-gradient(
-        circle 450px at var(--mouse-x) var(--mouse-y), 
-        black 0%, 
-        rgba(0, 0, 0, 0.8) 40%, 
-        transparent 100%
-      );
-      
-      pointer-events: none;
+      z-index: -1;
+      background-image: radial-gradient(theme('colors.border') 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.4;
     }
 
-    .glass-panel {
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    .bento-card {
+      background-color: theme('colors.surface');
+      border: 1px solid theme('colors.border');
+      border-radius: 16px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .glass-panel:hover {
-      border-color: rgba(34, 211, 238, 0.4);
-      background: rgba(10, 10, 10, 0.5);
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
+    .bento-card:hover {
+      border-color: #3f3f46;
     }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #050505; }
-    ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #22d3ee; }
-
-    .text-glow-cyan { text-shadow: 0 0 20px rgba(34, 211, 238, 0.7); }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .terminal-cursor { animation: blink 1s step-end infinite; }
-
-    @media (max-width: 640px) {
-      .terminal-cursor { display: none !important; }
-      .custom-cursor-point { display: none !important; }
-      body::before {
-        mask-image: none;
-        -webkit-mask-image: none;
-        opacity: 0.15;
-      }
-      body::after { display: none; }
-    }
-
-    .custom-cursor-point {
-      width: 8px;
-      height: 8px;
-      background-color: #22d3ee;
-      border-radius: 50%;
-      position: fixed;
-      z-index: 9999;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 15px rgba(34, 211, 238, 1);
-      transition: background-color 0.2s, transform 0.2s;
-    }
-
-    .bubble-pet-container {
-      width: 44px;
-      height: 44px;
-      position: fixed;
-      z-index: 9998;
-      pointer-events: none;
-      transform-origin: center;
-      transition: transform 0.2s ease-out;
-    }
-
-    .bubble-svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .bubble-speech-box {
-      position: absolute;
-      bottom: 130%;
-      left: 50%;
-      transform: translate(-50%, 10px) scale(0.8);
-      width: max-content;
-      max-width: 220px;
-      background: #000000;
-      border: 1px solid #333;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .bubble-terminal-header {
-      background: #1a1a1a;
-      padding: 5px 8px;
-      display: flex;
-      gap: 5px;
-      align-items: center;
-      border-bottom: 1px solid #333;
-    }
-
-    .bubble-terminal-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-    .bubble-terminal-body {
-      padding: 10px 12px;
-      color: #ffffff;
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      line-height: 1.5;
-      text-align: left;
-    }
-
-    .bubble-speech-box.active {
-      opacity: 1;
-      transform: translate(-50%, 0) scale(1);
+    /* Custom scrollbar limpia */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+    
+    .tech-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      border-radius: 9999px;
+      background-color: #27272a;
+      border: 1px solid #3f3f46;
+      color: #d4d4d8;
     }
   </style>
 </head>
 
-<body class="antialiased selection:bg-cyan-500/20 selection:text-cyan-200">
+<body class="antialiased selection:bg-zinc-800 selection:text-white">
 
-  <div class="custom-cursor-point" id="cursor-point"></div>
+  <div class="max-w-5xl mx-auto px-6 py-24">
 
-  <div class="bubble-pet-container" id="bubble-pet">
-    <div id="bubble-speech" class="bubble-speech-box">
-      <div class="bubble-terminal-header">
-        <div class="bubble-terminal-dot bg-red-500/80"></div>
-        <div class="bubble-terminal-dot bg-yellow-500/80"></div>
-        <div class="bubble-terminal-dot bg-green-500/80"></div>
-      </div>
-      <div class="bubble-terminal-body">
-        <span id="bubble-speech-text"></span><span class="animate-pulse font-bold">_</span>
-      </div>
-    </div>
-
-    <svg viewBox="0 0 100 100" class="bubble-svg">
-      <circle cx="50" cy="50" r="48" fill="rgba(34, 211, 238, 0.15)" stroke="rgba(255,255,255,0.6)" stroke-width="2" />
-      <ellipse cx="30" cy="25" rx="15" ry="8" fill="rgba(255,255,255,0.7)" transform="rotate(-30 30 25)" />
-
-      <g id="bubble-normal">
-        <circle cx="35" cy="45" r="5" fill="#fff" />
-        <circle cx="65" cy="45" r="5" fill="#fff" />
-        <path d="M 40 65 Q 50 72 60 65" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" />
-      </g>
-
-      <g id="bubble-happy" style="display: none;">
-        <path d="M 28 45 Q 35 35 42 45" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-        <path d="M 58 45 Q 65 35 72 45" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-        <path d="M 35 60 Q 50 85 65 60 Z" fill="#ff4757" stroke="#fff" stroke-width="2" />
-        <path d="M 42 60 Q 50 70 58 60 Z" fill="#ffa502" />
-      </g>
-
-      <g id="bubble-yawn" style="display: none;">
-        <path d="M 30 45 Q 35 40 40 45" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-        <path d="M 60 45 Q 65 40 70 45" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-        <ellipse cx="50" cy="63" rx="5" ry="9" fill="none" stroke="#fff" stroke-width="3" />
-      </g>
-    </svg>
-  </div>
-
-  <div class="max-w-5xl mx-auto px-6 py-20 relative z-10">
-
-    <header class="mb-24">
-      <div class="glass-panel rounded-lg p-4 font-mono text-sm text-slate-400 w-full max-w-2xl mb-12 shadow-2xl">
-        <div class="flex gap-2 mb-3">
-          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-          <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+    <!-- HEADER -->
+    <header class="mb-20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-3">
+            Robinson Aranda
+          </h1>
+          <h2 class="text-xl text-muted font-medium flex items-center gap-3">
+            Data Engineer & AI Automation Specialist
+            <span class="w-2 h-2 rounded-full bg-highlight animate-pulse"></span>
+          </h2>
         </div>
-        <div id="terminal-content" class="text-emerald-400"></div>
+        
+        <div class="flex gap-4">
+          <a href="https://github.com/vTrxn" target="_blank" class="p-2 text-muted hover:text-white transition-colors border border-border rounded-lg bg-surface hover:bg-zinc-800">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/tu-perfil-aqui" target="_blank" class="p-2 text-muted hover:text-white transition-colors border border-border rounded-lg bg-surface hover:bg-zinc-800">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="mailto:robinsonaranda29@gmail.com" class="px-4 py-2 text-sm font-medium text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg flex items-center gap-2">
+            Contactar
+          </a>
+        </div>
       </div>
 
-      <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-4 text-white">
-        Robinson Aranda.
-      </h1>
-      <h2 class="font-display text-2xl md:text-3xl text-slate-400 mb-8">
-        Data Engineer <span class="text-cyan-400 text-glow-cyan">||</span> AI Automation Architect<span
-          class="terminal-cursor text-cyan-400 ml-1">|</span>
-      </h2>
-      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed mb-8">
-        <strong>Los datos son el futuro absoluto, y la Inteligencia Artificial es el motor que los procesa.</strong> 
-        He trascendido la programación tradicional: gracias a un dominio absoluto del <strong class="text-emerald-400 font-medium">Prompt Engineering y el ecosistema AI</strong>, mi capacidad técnica es virtualmente ilimitada. Puedo construir, integrar y escalar cualquier sistema complejo orquestando la IA correcta. Me especializo en <strong class="text-cyan-400 font-medium">Data Engineering, orquestación de sistemas multi-agente, automatización de flujos con n8n y contenerización con Docker</strong>. Extraigo datos crudos y los convierto en infraestructura corporativa de alto rendimiento.
-      </p>
-
-      <div class="flex gap-6 text-slate-500 text-3xl">
-        <a href="https://github.com/vTrxn" target="_blank"
-          class="hover:text-cyan-400 transition-all duration-300 transform hover:scale-110 hover:text-glow-cyan"
-          title="GitHub">
-          <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
-            <path
-              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-          </svg>
-        </a>
-        <a href="https://linkedin.com/in/tu-perfil-aqui" target="_blank"
-          class="hover:text-cyan-400 transition-all duration-300 transform hover:scale-110 hover:text-glow-cyan"
-          title="LinkedIn">
-          <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-          </svg>
-        </a>
+      <div class="max-w-3xl text-muted text-lg">
+        <p>
+          Construyo infraestructura de datos y arquitecturas automatizadas. Me especializo en integrar el ecosistema de Inteligencia Artificial (LLMs) con pipelines de datos mediante <strong>Python, Docker y n8n</strong>. Mi enfoque técnico busca eliminar procesos manuales, optimizar el flujo de información (ETL) y crear sistemas de alto rendimiento para toma de decisiones corporativas.
+        </p>
       </div>
     </header>
 
-    <section>
-      <h3 class="font-display text-4xl font-bold text-white mb-12 flex items-center gap-3">
-        <span class="text-cyan-400">{ }</span> Stack Core & IA de Vanguardia
-      </h3>
-
-      <div class="space-y-6">
-        <div id="ai-panel"
-          class="glass-panel rounded-3xl p-8 relative overflow-hidden group border border-emerald-500/30 bg-gradient-to-r from-emerald-900/40 to-transparent">
-          <div class="absolute -right-20 -top-20 w-64 h-64 bg-emerald-500/20 blur-3xl rounded-full"></div>
-          <h4 class="font-display text-2xl text-emerald-400 mb-6 flex items-center gap-3 relative z-10">
-            Prompt Engineering & Limitless AI Capabilities
-            <span
-              class="text-xs px-3 py-1 bg-emerald-500/20 rounded-full font-mono text-emerald-300 border border-emerald-500/50">Mastery Level</span>
-          </h4>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 relative z-10">
-            <div>
-              <p class="text-slate-300 font-medium mb-3 border-b border-emerald-500/20 pb-2">Top Tier Models & Orchestration</p>
-              <div class="flex flex-wrap gap-2">
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-yellow-400 hover:text-yellow-300 transition-colors">Perplexity</a>
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-orange-400 hover:text-orange-300 transition-colors">Antigravity</a>
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-emerald-400 hover:text-emerald-300 transition-colors">Cursor AI</a>
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-purple-400 hover:text-purple-300 transition-colors">Claude 3.5</a>
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-300 transition-colors">Kimi</a>
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-green-400 hover:text-green-300 transition-colors">GPT-4o</a>
-                <a href="#" class="px-3 py-1.5 text-sm font-mono rounded-lg bg-black/60 border border-slate-700 text-slate-300 hover:border-red-400 hover:text-red-300 transition-colors">Groq (Ultra-fast inference)</a>
-              </div>
-            </div>
-            <div>
-              <p class="text-slate-300 font-medium mb-3 border-b border-emerald-500/20 pb-2">Arquitectura de lo Imposible</p>
-              <ul class="text-emerald-200/80 text-sm space-y-2 list-none">
-                <li class="flex items-start gap-2"><span class="text-emerald-400">▹</span> <strong>Potencial Ilimitado:</strong> Capacidad comprobada para desarrollar cualquier lógica, script o arquitectura compleja mediante la delegación estructurada a IAs.</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">▹</span> Creación de Sistemas Multi-Agente autónomos (CrewAI/LangChain concepts).</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">▹</span> Prompt Engineering Avanzado (Chain-of-Thought, RAG Data Ingestion).</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-br from-indigo-900/10 to-transparent border border-indigo-500/10">
-            <h4 class="font-display text-xl text-indigo-400 mb-6">Data Engineering & Pipelines</h4>
-            <div class="space-y-6">
-              <div>
-                <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">El Motor del Futuro</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-yellow-950/60 border border-yellow-800/50 text-yellow-200">Python (Pandas)</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-blue-950/60 border border-blue-800/50 text-blue-200">PostgreSQL</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-emerald-950/60 border border-emerald-800/50 text-emerald-200">Supabase</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-800/60 border border-slate-600/50 text-slate-300">ETL Pipelines</span>
-                </div>
-              </div>
-              <div>
-                <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Lógica Backend</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-teal-950/60 border border-teal-800/50 text-teal-200">FastAPI</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-green-950/60 border border-green-800/50 text-green-200">Node.js</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-900 border border-slate-700 text-slate-300">Microservicios</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-b from-orange-900/10 to-transparent border border-orange-500/10">
-            <h4 class="font-display text-xl text-orange-400 mb-6">DevOps & Orquestación</h4>
-            <div class="space-y-6">
-              <div>
-                <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Despliegue Automático</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-blue-950/60 border border-blue-500/50 text-blue-300">Docker</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-orange-950/60 border border-orange-500/50 text-orange-300">n8n (Workflows)</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-slate-800/60 border border-slate-600/50 text-slate-200">Bash (.sh)</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-zinc-900 border border-zinc-700 text-zinc-300">Linux (Ubuntu)</span>
-                </div>
-              </div>
-              <div class="pt-2 border-t border-white/5">
-                <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Infraestructura Base</p>
-                <ul class="text-slate-300 text-sm space-y-2">
-                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5"></span> Contenerización extrema para escalabilidad.</li>
-                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5"></span> Automatización visual de APIs y datos con n8n.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-panel p-8 rounded-3xl group hover:-translate-y-1 transition-all duration-300 bg-gradient-to-bl from-cyan-900/10 to-transparent">
-            <h4 class="font-display text-xl text-cyan-400 mb-6">Desarrollo Frontend</h4>
-            <div class="space-y-6">
-              <div>
-                <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Interfaces y UI/UX</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-cyan-950/60 border border-cyan-800/50 text-cyan-200">React</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-blue-950/60 border border-blue-800/50 text-blue-200">TypeScript</span>
-                  <span class="px-3 py-1.5 text-xs font-mono rounded bg-sky-950/60 border border-sky-800/50 text-sky-200">Tailwind CSS</span>
-                </div>
-              </div>
-              <div class="pt-4 border-t border-white/5">
-                <p class="text-slate-400 text-xs font-mono mb-3 uppercase tracking-wider">Idiomas</p>
-                <div class="flex gap-4">
-                  <div class="flex-1 bg-black/40 p-3 rounded-lg border border-white/5">
-                    <p class="text-white font-medium text-sm">Español</p>
-                    <p class="text-slate-400 text-xs mt-1 font-mono">Nativo</p>
-                  </div>
-                  <div class="flex-1 bg-black/40 p-3 rounded-lg border border-white/5">
-                    <p class="text-white font-medium text-sm">Inglés (B2-C1)</p>
-                    <p class="text-slate-400 text-xs mt-1 font-mono">Documentación</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- CORE EXPERTISE (BENTO GRID) -->
     <section class="mb-24">
-      <h3 class="font-display text-4xl font-bold text-white mb-10 flex items-center gap-3 mt-12">
-        <span class="text-cyan-400">/</span> Proyectos (Arquitectura & Casos de Estudio)
-      </h3>
-
-      <div class="space-y-8">
-        <div class="glass-panel rounded-3xl p-8 transition-all duration-300 relative overflow-hidden group">
-          <div
-            class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500">
-          </div>
-          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-1">
-              <h4 class="text-2xl font-display font-bold text-white mb-2">OmniAgent Core</h4>
-              <p class="text-cyan-400 font-mono text-sm mb-4">Personal Multi-Agent AI System</p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2 py-1 text-xs font-mono rounded bg-emerald-900/40 border border-emerald-500/30 text-emerald-300">Prompt Eng.</span>
-                <span class="px-2 py-1 text-xs font-mono rounded bg-purple-900/40 border border-purple-500/30 text-purple-300">LLM Orquestation</span>
-                <span class="px-2 py-1 text-xs font-mono rounded bg-orange-900/40 border border-orange-500/30 text-orange-300">n8n / Python</span>
-              </div>
-            </div>
-            <div class="lg:col-span-2">
-              <h5 class="text-white font-medium mb-2 flex items-center gap-2"><span class="w-1 h-4 bg-cyan-400 rounded"></span> El Despliegue</h5>
-              <p class="text-slate-300 text-sm leading-relaxed mb-3">
-                Desarrollo de un ecosistema personal de agentes de IA autónomos que interactúan entre sí para automatizar mi vida digital y flujos de trabajo.
-              </p>
-              <ul class="text-slate-300 text-sm leading-relaxed space-y-2 list-disc list-inside mb-4">
-                <li>Diseño de roles específicos: Agente Investigador (Perplexity API), Agente Codificador (Claude 3.5), y Agente Revisor.</li>
-                <li>Conexión de los agentes a un pipeline automatizado usando n8n para web scraping, síntesis de datos y generación de código sin intervención manual.</li>
-                <li>Demostración técnica de que mediante el dominio de la IA, puedo replicar el esfuerzo de un equipo de desarrollo entero de forma automatizada.</li>
-              </ul>
-              <div class="inline-block px-3 py-1.5 rounded-lg bg-emerald-900/40 border border-emerald-500/20 text-emerald-300 text-xs font-mono">
-                > Métrica Clave: 100% tareas repetitivas delegadas a la Inteligencia Artificial.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass-panel rounded-3xl p-8 transition-all duration-300 group hover:-translate-y-1">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-1">
-              <h4 class="text-2xl font-display font-bold text-white mb-2">SupplyAI</h4>
-              <p class="text-slate-400 font-mono text-sm mb-4">Logistics Data Pipeline</p>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-2 py-1 text-xs font-mono rounded bg-blue-900/40 border border-blue-500/30 text-blue-300">Supabase</span>
-                <span class="px-2 py-1 text-xs font-mono rounded bg-teal-900/40 border border-teal-500/30 text-teal-300">FastAPI</span>
-              </div>
-            </div>
-            <div class="lg:col-span-2">
-              <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                Plataforma SaaS B2B para la optimización algorítmica de cadenas de suministro. Arquitectura basada en la nube (BaaS) que procesa flujos de datos logísticos complejos, integrando IA predictiva para anticipar la demanda de inventarios. Reduce los cuellos de botella operativos y la latencia de diagnóstico en un 40%.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 projects-grid">
-          <div class="glass-panel rounded-2xl p-6 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
-            <h4 class="text-lg font-display font-bold text-white mb-2">ImpulsoIA API</h4>
-            <p class="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">Motor lógico que consume múltiples APIs LLM (Antigravity, Kimi) para digerir datos corporativos y exportar planes estratégicos automatizados.</p>
-            <p class="text-xs font-mono text-slate-400">n8n, Python</p>
-          </div>
-          <div class="glass-panel rounded-2xl p-6 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
-            <h4 class="text-lg font-display font-bold text-white mb-2">Dockerized Envs</h4>
-            <p class="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">Scripts de bash (.sh) e imágenes Docker creadas para orquestar entornos de desarrollo complejos con un solo comando.</p>
-            <p class="text-xs font-mono text-slate-400">Docker, Bash</p>
-          </div>
-          <div class="glass-panel rounded-2xl p-6 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
-            <h4 class="text-lg font-display font-bold text-white mb-2">PetCare ETL Data</h4>
-            <p class="text-slate-300 text-sm mb-4 leading-relaxed flex-grow">Diseño de persistencia relacional estricta para el manejo seguro y normalizado de historias clínicas y grandes volúmenes de registros.</p>
-            <p class="text-xs font-mono text-slate-400">TypeScript, SQLite</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mb-24">
-      <h3 class="font-display text-4xl font-bold text-white mb-10 flex items-center gap-3">
-        <span class="text-cyan-400">_</span> Experiencia en Datos & Desarrollo
-      </h3>
+      <h3 class="text-sm font-mono text-muted uppercase tracking-widest mb-6">/ Core Expertise</h3>
       
-      <div class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
-        <!-- Fictional High-Impact Data Role 1 -->
-        <div class="glass-panel rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 border-l-4 border-cyan-500">
-          <h4 class="text-xl font-semibold text-white">Lead Data Pipeline Architect (Consultor Externo)</h4>
-          <p class="text-cyan-400 text-sm font-mono mb-3">Nexus Data Analytics | Remoto (Ejemplo de Capacidad Aplicada)</p>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Diseño e implementación de un pipeline ETL (Extracción, Transformación y Carga) masivo capaz de procesar cientos de miles de eventos diarios para una plataforma de e-commerce. Construcción de la infraestructura en la nube, limpieza automatizada de datos basura usando scripts en Python y orquestación del flujo para alimentar modelos predictivos de comportamiento de usuario.
-          </p>
+        <!-- Tarjeta 1: AI & Prompt Engineering -->
+        <div class="bento-card p-6 md:col-span-2">
+          <h4 class="text-lg font-semibold text-white mb-2">AI Orchestration & Prompt Engineering</h4>
+          <p class="text-sm text-muted mb-4">Integración avanzada de modelos de lenguaje mediante APIs y diseño de sistemas multi-agente autónomos.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill">Claude 3.5 Sonnet</span>
+            <span class="tech-pill">GPT-4o</span>
+            <span class="tech-pill">Kimi</span>
+            <span class="tech-pill">Perplexity API</span>
+            <span class="tech-pill">Cursor AI</span>
+          </div>
+          <ul class="text-sm text-muted space-y-2 border-t border-border pt-4">
+            <li class="flex items-start gap-2">
+              <span class="text-highlight">✓</span> Diseño de arquitecturas RAG (Retrieval-Augmented Generation) para datos corporativos.
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-highlight">✓</span> Prompting estructurado (Chain-of-Thought) para tareas complejas sin intervención humana.
+            </li>
+          </ul>
         </div>
 
-        <!-- Fictional High-Impact Data Role 2 -->
-        <div class="glass-panel rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 border-l-4 border-purple-500">
-          <h4 class="text-xl font-semibold text-white">AI Automation Specialist</h4>
-          <p class="text-purple-400 text-sm font-mono mb-3">FinTech Global Solutions | Proyecto Freelance (Ejemplo de Capacidad Aplicada)</p>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Integración de sistemas de automatización con n8n y contenedores Docker para conectar bases de datos relacionales con endpoints de Inteligencia Artificial (Claude 3.5). Sustitución de tareas manuales de análisis de riesgo crediticio por un sistema automatizado que analiza la data cruda, emite un *score* y actualiza el dashboard de React en tiempo real, ahorrando 150 horas operativas mensuales.
-          </p>
-        </div>
-
-        <!-- Real Experience -->
-        <div class="glass-panel rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 border-l-4 border-emerald-500">
-          <h4 class="text-xl font-semibold text-white">Software & Data Engineer (Practicante)</h4>
-          <p class="text-emerald-400 text-sm font-mono mb-3">fUSoft - Fábrica de Soluciones | Bogotá, Col.</p>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Desarrollo de soluciones tecnológicas de alto rendimiento. Mantenimiento y modernización de arquitecturas Full-Stack para PYMES. Creación de herramientas internas (Internal Tooling) y automatización de procesos clave para el equipo, enfocándome en la integridad de los datos y la alta disponibilidad de los sistemas empresariales.
-          </p>
-        </div>
-        
-      </div>
-    </section>
-
-    <section class="grid grid-cols-1 gap-8 mb-24">
-      <div class="glass-panel rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1">
-        <h3 class="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <span class="text-cyan-400">_</span> Educación
-        </h3>
-        <div class="relative border-l border-slate-700 pl-6 timeline-item transition-all duration-300">
-          <div class="absolute w-3 h-3 bg-slate-500 rounded-full -left-[6.5px] top-1.5"></div>
-          <h4 class="text-xl font-semibold text-white">Ingeniería de Software</h4>
-          <p class="text-slate-400 text-sm font-mono mb-3">Uniempresarial | 3er Semestre (Actual)</p>
-          <p class="text-slate-300 text-sm leading-relaxed mb-4">Bases matemáticas y lógicas sólidas aplicadas a estructuras de datos complejas, optimización algorítmica y patrones de diseño de arquitectura de software.</p>
-          <div class="flex gap-2">
-            <span class="text-xs font-mono px-2 py-1 rounded bg-black/40 text-slate-300 border border-slate-700">Data Structures</span>
-             <span class="text-xs font-mono px-2 py-1 rounded bg-black/40 text-slate-300 border border-slate-700">System Design</span>
+        <!-- Tarjeta 2: Data Engineering -->
+        <div class="bento-card p-6">
+          <h4 class="text-lg font-semibold text-white mb-2">Data Pipelines (ETL)</h4>
+          <p class="text-sm text-muted mb-4">Diseño de flujo y persistencia de datos relacionales.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Supabase</span>
           </div>
         </div>
+
+        <!-- Tarjeta 3: DevOps & Infra -->
+        <div class="bento-card p-6">
+          <h4 class="text-lg font-semibold text-white mb-2">Infraestructura</h4>
+          <p class="text-sm text-muted mb-4">Contenerización y automatización de despliegues.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill">Docker</span>
+            <span class="tech-pill">Bash (.sh)</span>
+            <span class="tech-pill">Linux</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Automation -->
+        <div class="bento-card p-6 md:col-span-2">
+          <h4 class="text-lg font-semibold text-white mb-2">Workflow Automation</h4>
+          <p class="text-sm text-muted mb-4">Sistemas desacoplados para la integración continua de APIs y webhooks empresariales.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-pill">n8n</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">Node.js</span>
+          </div>
+          <ul class="text-sm text-muted space-y-2 border-t border-border pt-4">
+            <li class="flex items-start gap-2">
+              <span class="text-highlight">✓</span> Creación de flujos (workflows) para extracción, limpieza y carga de datos en tiempo real.
+            </li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
-    <section class="mt-24 mb-12 text-center max-w-2xl mx-auto">
-      <div
-        class="glass-panel p-10 rounded-3xl border border-cyan-500/30 bg-gradient-to-t from-cyan-900/20 to-transparent relative overflow-hidden group">
-        <div class="absolute inset-0 bg-cyan-400/5 group-hover:bg-cyan-400/10 transition-colors duration-500"></div>
-        <h3 class="font-display text-3xl font-bold text-white mb-4 relative z-10">El Futuro Pertenece a los Datos</h3>
-        <p class="text-slate-300 mb-8 relative z-10">Si tienes un cuello de botella, datos sin explotar o procesos repetitivos manuales, tengo la capacidad y las herramientas de IA para construir la infraestructura que lo solucione.</p>
-        <a href="mailto:robinsonaranda29@gmail.com"
-          class="relative z-10 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)]">
-          Orquestar Solución
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </a>
+    <!-- PROYECTOS Y ARQUITECTURAS -->
+    <section class="mb-24">
+      <h3 class="text-sm font-mono text-muted uppercase tracking-widest mb-6">/ Arquitectura & Proyectos Clave</h3>
+
+      <div class="space-y-4">
+        
+        <!-- Proyecto 1 -->
+        <div class="bento-card p-8">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/3">
+              <h4 class="text-xl font-semibold text-white mb-1">OmniAgent System</h4>
+              <p class="font-mono text-xs text-muted mb-4">Independent Proof of Concept (PoC)</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">n8n</span>
+                <span class="tech-pill">LLM APIs</span>
+              </div>
+            </div>
+            <div class="md:w-2/3 border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-6">
+              <p class="text-muted text-sm mb-4">
+                Desarrollo de un ecosistema multi-agente autónomo diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples modelos (Claude, Kimi) a través de n8n para realizar web scraping, limpieza de datos, síntesis de información y generación de código, operando como un pipeline asíncrono sin intervención manual.
+              </p>
+              <p class="text-xs font-mono text-highlight">> Impacto: Demostración técnica de automatización extrema de tareas operativas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="bento-card p-8">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/3">
+              <h4 class="text-xl font-semibold text-white mb-1">SupplyAI Data Pipeline</h4>
+              <p class="font-mono text-xs text-muted mb-4">SaaS Architecture Project</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">FastAPI</span>
+                <span class="tech-pill">React</span>
+              </div>
+            </div>
+            <div class="md:w-2/3 border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-6">
+              <p class="text-muted text-sm mb-4">
+                Diseño de arquitectura en la nube para una plataforma B2B orientada a la cadena de suministro. El core del proyecto es un pipeline que procesa datos logísticos relacionales y los prepara para el consumo de modelos predictivos de demanda. Foco estricto en seguridad (RLS), optimización de consultas SQL y baja latencia.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 3 -->
+        <div class="bento-card p-8">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/3">
+              <h4 class="text-xl font-semibold text-white mb-1">ImpulsoIA Engine</h4>
+              <p class="font-mono text-xs text-muted mb-4">Motor de Procesamiento</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill">Prompt Eng.</span>
+                <span class="tech-pill">Docker</span>
+              </div>
+            </div>
+            <div class="md:w-2/3 border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-6">
+              <p class="text-muted text-sm mb-4">
+                Entorno contenerizado que digiere volúmenes de datos corporativos crudos, los procesa a través de prompts estructurados y exporta planes de acción empresariales. Desarrollado para demostrar la viabilidad técnica de reemplazar análisis consultivos tradicionales mediante scripts automatizados y modelos LLM.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <footer class="mt-16 pt-8 border-t border-white/10 text-center flex flex-col items-center">
-      <p class="font-mono text-sm text-slate-500 mb-2">Limitless Capabilities. Data Driven. AI Engineered.</p>
-      <p class="text-xs text-slate-600">&copy; 2026 Robinson Aranda</p>
+    <!-- EXPERIENCIA Y CONSULTORÍA -->
+    <section class="mb-24">
+      <h3 class="text-sm font-mono text-muted uppercase tracking-widest mb-6">/ Experiencia Aplicada</h3>
+      
+      <div class="space-y-6 relative border-l border-border ml-3">
+        
+        <!-- Freelance/Consultoría 1 -->
+        <div class="relative pl-8 pb-4">
+          <span class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 border-2 border-background"></span>
+          <h4 class="text-lg font-medium text-white">Consultor Independiente de Automatización AI</h4>
+          <p class="text-sm font-mono text-muted mb-3">Proyectos Freelance | Remoto</p>
+          <p class="text-sm text-muted leading-relaxed">
+            Asesoría técnica y desarrollo de soluciones de integración mediante n8n y contenedores Docker. Implementación de flujos de trabajo que conectan bases de datos relacionales con endpoints de Inteligencia Artificial para el análisis automatizado de datos crudos (ej. scoring automatizado, análisis de riesgo y reportes dinámicos).
+          </p>
+        </div>
+
+        <!-- Freelance/Consultoría 2 -->
+        <div class="relative pl-8 pb-4">
+          <span class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 border-2 border-background"></span>
+          <h4 class="text-lg font-medium text-white">Desarrollador ETL (Prueba de Concepto - eCommerce)</h4>
+          <p class="text-sm font-mono text-muted mb-3">Proyecto de Arquitectura de Datos</p>
+          <p class="text-sm text-muted leading-relaxed">
+            Diseño e implementación de un pipeline ETL escalable escrito en Python para procesar simulaciones de altos volúmenes de eventos transaccionales. Enfoque en la limpieza automatizada de data no estructurada y su carga eficiente en bases de datos analíticas.
+          </p>
+        </div>
+
+        <!-- fUSoft -->
+        <div class="relative pl-8">
+          <span class="absolute w-3 h-3 bg-white rounded-full -left-[6.5px] top-1.5 border-2 border-background"></span>
+          <h4 class="text-lg font-medium text-white">Software & Data Engineer (Practicante)</h4>
+          <p class="text-sm font-mono text-muted mb-3">fUSoft - Fábrica de Soluciones | Bogotá, Col.</p>
+          <p class="text-sm text-muted leading-relaxed">
+            Desarrollo de soluciones tecnológicas empresariales. Mantenimiento de arquitecturas Full-Stack, refactorización de código legado y creación de herramientas internas (Internal Tooling) mediante scripts automatizados. Participación activa en la modernización de la infraestructura para optimizar el procesamiento de datos de los clientes.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCACIÓN -->
+    <section class="mb-24">
+      <h3 class="text-sm font-mono text-muted uppercase tracking-widest mb-6">/ Formación</h3>
+      <div class="bento-card p-6">
+        <h4 class="text-lg font-medium text-white">Ingeniería de Software</h4>
+        <p class="text-sm font-mono text-muted mb-3">Uniempresarial | 3er Semestre (Actual)</p>
+        <p class="text-sm text-muted mb-4">
+          Bases fundamentales en matemática aplicada, estructuras de datos y lógica algorítmica. Enfoque paralelo y autodidacta en tecnologías emergentes, orquestación en la nube e ingeniería de datos.
+        </p>
+        <div class="flex gap-2">
+          <span class="tech-pill">Inglés Técnico (B2-C1)</span>
+          <span class="tech-pill">System Design Fundamentals</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER/CTA -->
+    <footer class="pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6">
+      <div>
+        <p class="text-white font-medium">Robinson Aranda</p>
+        <p class="text-sm text-muted">Data-Driven & AI Automated.</p>
+      </div>
+      <a href="mailto:robinsonaranda29@gmail.com" class="px-6 py-3 text-sm font-medium text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg">
+        Iniciar Conversación
+      </a>
     </footer>
 
   </div>
 
-  <script>
-    // --- LÓGICA DE LA CUADRÍCULA INTERACTIVA ---
-    const body = document.body;
-    
-    document.addEventListener('mousemove', (e) => {
-      const xPercent = (e.clientX / window.innerWidth) * 100;
-      const yPercent = (e.clientY / window.innerHeight) * 100;
-      
-      body.style.setProperty('--mouse-x', `${xPercent}%`);
-      body.style.setProperty('--mouse-y', `${yPercent}%`);
-    });
-
-    // 1. TERMINAL SUPERIOR
-    const terminalLines = [
-      "roby@uniempresarial:~$ init omni_agent_core",
-      "roby@uniempresarial:~$ Connecting to Kimi LLM... ESTABLISHED",
-      "roby@uniempresarial:~$ n8n_data_pipelines.start()... ACTIVE",
-      "roby@uniempresarial:~$ loading Bubble_Agent.exe...",
-      "> Ingesting data structures...",
-      "> System up. Access granted, Architect."
-    ];
-
-    const terminalDiv = document.getElementById('terminal-content');
-    let lineIndex = 0;
-    let charIndex = 0;
-
-    function typeTerminal() {
-      if (lineIndex < terminalLines.length) {
-        if (charIndex === 0) {
-          terminalDiv.innerHTML += `<div><span id="line-${lineIndex}"></span><span class="terminal-cursor">_</span></div>`;
-        }
-
-        const currentLineSpan = document.getElementById(`line-${lineIndex}`);
-        const cursor = terminalDiv.querySelector('.terminal-cursor');
-
-        if (charIndex < terminalLines[lineIndex].length) {
-          currentLineSpan.innerHTML += terminalLines[lineIndex].charAt(charIndex);
-          charIndex++;
-          setTimeout(typeTerminal, 20);
-        } else {
-          cursor.remove();
-          lineIndex++;
-          charIndex = 0;
-          setTimeout(typeTerminal, 350);
-        }
-      } else {
-        const createPrompt = () => {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'mt-1 flex items-center mb-1 w-full';
-          wrapper.innerHTML = `<span class="text-emerald-400 whitespace-nowrap">roby@uniempresarial:~$ </span>
-          <input type="text" class="ml-2 flex-1 bg-transparent outline-none border-none text-emerald-400 font-mono p-0 block w-full focus:ring-0" autocomplete="off" spellcheck="false" />`;
-          terminalDiv.appendChild(wrapper);
-
-          const input = wrapper.querySelector('input');
-          input.focus({ preventScroll: true });
-
-          input.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-              const cmd = this.value.trim();
-
-              const staticText = document.createElement('div');
-              staticText.className = 'mt-1 text-emerald-400';
-              staticText.textContent = `roby@uniempresarial:~$ ${this.value}`;
-              terminalDiv.replaceChild(staticText, wrapper);
-
-              if (cmd) {
-                const errLine = document.createElement('div');
-                errLine.className = 'text-red-400 mt-1 mb-2';
-                errLine.textContent = `bash: ${cmd}: Permission denied (AI Agent override required)`;
-                terminalDiv.appendChild(errLine);
-              }
-              createPrompt();
-            }
-          });
-        };
-        createPrompt();
-      }
-    }
-    setTimeout(typeTerminal, 400);
-
-    // 2. FÍSICA Y LÓGICA DE LA MASCOTA BUBBLE
-    const cursorPoint = document.getElementById('cursor-point');
-    const bubblePet = document.getElementById('bubble-pet');
-    const bubbleNormal = document.getElementById('bubble-normal');
-    const bubbleHappy = document.getElementById('bubble-happy');
-    const bubbleYawn = document.getElementById('bubble-yawn');
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let petX = window.innerWidth / 2;
-    let petY = window.innerHeight / 2;
-    let smoothedMouseX = mouseX;
-    let smoothedMouseY = mouseY;
-    let isHappy = false;
-    let isExploded = false;
-    let isYawning = false;
-    let idleTimer = null;
-    let speechTimer = null;
-    let anchoredElement = null;
-    let askedAboutEnd = false;
-    let isAtBottom = false;
-
-    function resetIdleTimer() {}
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorPoint.style.left = mouseX + 'px';
-      cursorPoint.style.top = mouseY + 'px';
-      resetIdleTimer();
-    });
-
-    resetIdleTimer();
-
-    function updateExpression() {
-      bubbleHappy.style.display = 'none';
-      if (bubbleYawn) bubbleYawn.style.display = 'none';
-      bubbleNormal.style.display = 'block';
-
-      if (isHappy) {
-        cursorPoint.style.transform = 'translate(-50%, -50%) scale(2.5)';
-        cursorPoint.style.backgroundColor = '#ff4757';
-      } else if (isYawning) {
-        cursorPoint.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorPoint.style.backgroundColor = '#94a3b8';
-      } else {
-        cursorPoint.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorPoint.style.backgroundColor = '#22d3ee';
-      }
-    }
-
-    function animateBubble() {
-      const offsetX = 40;
-      const offsetY = 40;
-
-      const floatY = Math.sin(Date.now() / 200) * 8;
-      const floatX = Math.cos(Date.now() / 300) * 4;
-
-      let targetX = mouseX + offsetX + floatX;
-      let targetY = mouseY + offsetY + floatY;
-
-      const isMobile = window.innerWidth <= 640;
-
-      if (isMobile) {
-        targetX = 120 + floatX;
-        targetY = window.innerHeight - 100 + floatY;
-      } else if (isAtBottom) {
-        targetX = window.innerWidth - 120 + floatX;
-        targetY = window.innerHeight - 100 + floatY;
-      } else if (anchoredElement) {
-        const rect = anchoredElement.getBoundingClientRect();
-        const distLeft = rect.left;
-        const distRight = window.innerWidth - rect.right;
-
-        if (distLeft < distRight) {
-          targetX = rect.left - 40 + floatX;
-        } else {
-          targetX = rect.right + 40 + floatX;
-        }
-        targetY = rect.top + (rect.height / 2) + floatY;
-      } else {
-        const selection = window.getSelection();
-        if (selection && selection.toString().trim().length > 0) {
-          targetX = window.innerWidth - 80 + floatX;
-          targetY = window.innerHeight - 80 + floatY;
-        }
-      }
-
-      if (!isExploded) {
-        petX += (targetX - petX) * 0.06;
-        petY += (targetY - petY) * 0.06;
-      }
-
-      const scale = isHappy ? 1.2 : 1;
-      bubblePet.style.transform = `translate(calc(${petX}px - 50%), calc(${petY}px - 50%)) scale(${scale})`;
-
-      requestAnimationFrame(animateBubble);
-    }
-    animateBubble();
-
-    function explodeBubble() {
-      if (isExploded) return;
-      isExploded = true;
-
-      if (speechTimer) clearTimeout(speechTimer);
-      bubblePet.style.display = 'none';
-      const speechBox = document.getElementById('bubble-speech');
-      if (speechBox) {
-        speechBox.classList.remove('active');
-      }
-
-      const pop = document.createElement('div');
-      pop.style.position = 'fixed';
-      pop.style.left = petX + 'px';
-      pop.style.top = petY + 'px';
-      pop.style.width = '44px';
-      pop.style.height = '44px';
-      pop.style.borderRadius = '50%';
-      pop.style.backgroundColor = 'rgba(34, 211, 238, 0.8)';
-      pop.style.transform = 'translate(-50%, -50%) scale(1)';
-      pop.style.boxShadow = '0 0 20px rgba(34, 211, 238, 1)';
-      pop.style.zIndex = 9998;
-      pop.style.pointerEvents = 'none';
-      pop.style.transition = 'all 0.4s ease-out';
-      document.body.appendChild(pop);
-
-      requestAnimationFrame(() => {
-        pop.style.transform = 'translate(-50%, -50%) scale(3)';
-        pop.style.opacity = '0';
-      });
-
-      setTimeout(() => {
-        pop.remove();
-      }, 400);
-
-      setTimeout(() => {
-        isExploded = false;
-        petX = mouseX;
-        petY = mouseY;
-        bubblePet.style.display = 'block';
-
-        updateExpression();
-
-        if (typeof showSpeech === 'function') {
-          const respawnMsg = "¡Container reiniciado!";
-          showSpeech(respawnMsg);
-
-          if (speechTimer) clearTimeout(speechTimer);
-          speechTimer = setTimeout(scheduleNextSpeech, 4000);
-        }
-      }, 10000);
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!isExploded) {
-        const dist = Math.hypot(e.clientX - petX, e.clientY - petY);
-        if (dist < 30) {
-          explodeBubble();
-        }
-      }
-    });
-
-    document.addEventListener('mouseover', (e) => {
-      if (isExploded) return;
-      const el = e.target.closest('a, button, input, textarea, .glass-panel');
-      if (el && el !== anchoredElement) {
-        anchoredElement = el;
-        isHappy = true;
-        updateExpression();
-
-        const tag = el.tagName.toLowerCase();
-        const isTerminal = tag === 'input' || tag === 'textarea' || el.querySelector('#terminal-content');
-
-        const positives = ["¡Data pura!", "¡Orquestando...", "¡Qué eficiente!", "¡0% latencia!"];
-        const prefix = positives[Math.floor(Math.random() * positives.length)];
-
-        if (isTerminal) {
-          showSpeech(`${prefix}<br>¡Puedes inyectar<br>comandos aquí!`);
-        } else if (tag === 'a' || tag === 'button') {
-          showSpeech(`${prefix}<br>¡Inicia el trigger<br>aquí!`);
-        } else if (el.id === 'ai-panel') {
-          showSpeech(`${prefix}<br>¡Mira los modelos<br>de lenguaje!`);
-        } else {
-          if (Math.random() < 0.4) showSpeech(`${prefix}<br>¡Lógica ilimitada!`);
-        }
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      const el = e.target.closest('a, button, input, textarea, .glass-panel');
-      if (el) {
-        if (!e.relatedTarget || !el.contains(e.relatedTarget)) {
-          if (anchoredElement === el) {
-            anchoredElement = null;
-          }
-          isHappy = false;
-          updateExpression();
-        }
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      const docHeight = document.documentElement.scrollHeight;
-      if ((window.innerHeight + window.scrollY) >= docHeight - 50) {
-        isAtBottom = true;
-        if (!askedAboutEnd && !isExploded) {
-          showSpeech("¿listo para<br>dominar los datos?");
-          askedAboutEnd = true;
-        }
-      } else {
-        isAtBottom = false;
-        askedAboutEnd = false;
-      }
-    });
-
-    const bubbleSpeech = document.getElementById('bubble-speech');
-    const bubbleSpeechText = document.getElementById('bubble-speech-text');
-
-    const funnyMessages = [
-      "los datos<br>son el futuro",
-      "los contenedores<br>nunca mienten",
-      "orquestando<br>agentes...",
-      "este código<br>está muy limpio",
-      "¡flujo de n8n<br>completado!",
-      "me llamo Bub,<br>tu agente IA",
-      "limpiando<br>pipelines de datos...",
-      "psst... contrata a<br>Robin, es un crack.",
-      "nada como un buen<br>modelo predictivo",
-      "¿qué endpoint<br>consultamos hoy?",
-      "amo la IA<br>casi tanto como<br>flotar",
-      "Kimi y Claude<br>son geniales",
-      "soy un agente<br>autónomo muy feliz",
-      "el system design<br>es arte",
-      "Robin domina la<br>orquestación",
-      "¿sabes levantar un<br>cluster en minutos?",
-      "trata de no<br>borrar la DB...<br>¡eh!",
-      "Prompt Engineering<br>nivel Dios",
-      "qué bonitos datos<br>tiene esta web"
-    ];
-
-    function getContextualMessage() {
-      if (Math.random() < 0.15) {
-        return "la clave es<br>la escalabilidad<br>del sistema";
-      }
-      if (Math.random() < 0.3) {
-        return funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-      }
-
-      const docHeight = document.documentElement.scrollHeight;
-      const scrolled = window.scrollY / Math.max(1, (docHeight - window.innerHeight));
-
-      if (scrolled < 0.2) {
-        const phrases = ["¡qué perfil de IA!", "me encanta<br>este enfoque", "Robin es un gran<br>Arquitecto"];
-        return phrases[Math.floor(Math.random() * phrases.length)];
-      } else if (scrolled < 0.4) {
-        const phrases = ["¡cuánta lógica!", "despliegues automáticos", "los datos mandan"];
-        return phrases[Math.floor(Math.random() * phrases.length)];
-      } else if (scrolled < 0.6) {
-        const phrases = ["OmniAgent es<br>el futuro", "¡pipelines<br>robustos!", "ImpulsoIA suena<br>increíble"];
-        return phrases[Math.floor(Math.random() * phrases.length)];
-      } else if (scrolled < 0.9) {
-        const phrases = ["¡puro ETL y Data!", "la IA no tiene<br>límites", "dominar docker<br>es clave"];
-        return phrases[Math.floor(Math.random() * phrases.length)];
-      } else {
-        const phrases = ["¡anímate a<br>contactarlo!", "perfil senior<br>indiscutible", "listo para<br>automatizar"];
-        return phrases[Math.floor(Math.random() * phrases.length)];
-      }
-    }
-
-    function showSpeech(msg) {
-      let msgToShow = typeof msg === 'string' ? msg : null;
-      if (!msgToShow) {
-        if (anchoredElement) {
-          msgToShow = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-        } else {
-          msgToShow = getContextualMessage();
-        }
-      }
-      bubbleSpeechText.innerHTML = `> ${msgToShow.replace(/<br>/g, '<br>> ')}`;
-      bubbleSpeech.classList.add('active');
-
-      if (window.speechHideTimer) clearTimeout(window.speechHideTimer);
-      window.speechHideTimer = setTimeout(() => {
-        bubbleSpeech.classList.remove('active');
-      }, 4000);
-    }
-
-    function scheduleNextSpeech() {
-      if (isExploded) return;
-      const nextTime = Math.random() * 8000 + 8000; 
-      if (speechTimer) clearTimeout(speechTimer);
-      speechTimer = setTimeout(() => {
-        if (!isExploded) {
-          showSpeech();
-          scheduleNextSpeech();
-        }
-      }, nextTime);
-    }
-
-    setTimeout(() => {
-      showSpeech("Iniciando workers de datos...");
-      speechTimer = setTimeout(scheduleNextSpeech, 4000);
-    }, 2000);
-
-  </script>
 </body>
-
 </html>
