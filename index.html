@@ -91,27 +91,16 @@
       </button>
       
       <h3 class="text-2xl font-bold text-white mb-2" data-i18n="modal_title">Iniciar Conversación</h3>
-      <p class="text-zinc-400 mb-6 text-sm" data-i18n="modal_desc">Elige cómo prefieres enviar tu mensaje. Puedes usar la plantilla o tu propio formato.</p>
+      <p class="text-zinc-400 mb-6 text-sm" data-i18n="modal_desc">Puedes usar esta plantilla rápida o escribir tu propio mensaje. Al hacer clic, se abrirá tu aplicación de correo predeterminada.</p>
       
-      <div class="space-y-6">
-        <!-- Opcion 1: Formulario predeterminado -->
-        <div>
-          <label class="block text-sm font-medium text-zinc-300 mb-2" data-i18n="modal_template_label">Mensaje Rápido (Puedes editarlo)</label>
-          <textarea id="modal-msg" rows="4" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu perfil enfocado en datos y automatización IA. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
-          <button onclick="sendTemplateMail()" class="mt-4 w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-colors" data-i18n="modal_send_btn">Generar Correo con este Mensaje</button>
-        </div>
-
-        <div class="flex items-center gap-4">
-          <div class="h-px bg-[#27272a] flex-1"></div>
-          <span class="text-xs font-mono text-zinc-500 uppercase">O</span>
-          <div class="h-px bg-[#27272a] flex-1"></div>
-        </div>
-
-        <!-- Opcion 2: Mailto directo -->
-        <a href="mailto:robinsonaranda29@gmail.com" class="flex justify-center items-center gap-2 w-full py-3 bg-[#18181b] border border-[#27272a] text-white font-bold rounded-lg hover:border-zinc-500 transition-colors" data-i18n="modal_direct_btn">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-          Abrir mi cliente de correo en blanco
-        </a>
+      <div class="space-y-4">
+        <label class="block text-sm font-medium text-zinc-300" data-i18n="modal_template_label">Mensaje (Editable)</label>
+        <textarea id="modal-msg" rows="5" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu perfil enfocado en datos y automatización IA. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
+        
+        <button onclick="sendTemplateMail()" class="w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <span data-i18n="modal_send_btn">Generar Correo con este Mensaje</span>
+        </button>
       </div>
     </div>
   </div>
@@ -427,10 +416,9 @@
         footer_tag: "Impulsado por Datos. Automatizado por IA.",
         footer_btn: "Escríbeme un Correo",
         modal_title: "Iniciar Conversación",
-        modal_desc: "Elige cómo prefieres enviar tu mensaje. Puedes usar la plantilla o tu propio formato.",
-        modal_template_label: "Mensaje Rápido (Puedes editarlo)",
-        modal_send_btn: "Generar Correo con este Mensaje",
-        modal_direct_btn: "Abrir mi cliente de correo en blanco"
+        modal_desc: "Puedes usar esta plantilla rápida o escribir tu propio mensaje. Al hacer clic, se abrirá tu aplicación de correo predeterminada.",
+        modal_template_label: "Mensaje (Editable)",
+        modal_send_btn: "Generar Correo con este Mensaje"
       },
       en: {
         role: "Data Engineer & AI Automation Specialist",
@@ -475,10 +463,9 @@
         footer_tag: "Data-Driven. AI Automated.",
         footer_btn: "Send me an Email",
         modal_title: "Start a Conversation",
-        modal_desc: "Choose how you prefer to send your message. You can use the template or your own format.",
-        modal_template_label: "Quick Message (Editable)",
-        modal_send_btn: "Generate Email with this Message",
-        modal_direct_btn: "Open my blank email client"
+        modal_desc: "You can use this quick template or write your own message. Clicking the button will open your default email application.",
+        modal_template_label: "Message (Editable)",
+        modal_send_btn: "Generate Email with this Message"
       }
     };
 
