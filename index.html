@@ -4,12 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robinson Aranda | Arquitecto de Datos y Automatización IA</title>
+  <title>Robinson Aranda | Agnostic Systems & AI Automation Architect</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Fuentes Premium: Plus Jakarta Sans (Títulos), Inter (Cuerpo), JetBrains Mono (Código) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +29,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Tarjetas elegantes y minimalistas */
     .premium-card {
       background-color: #121214;
       border: 1px solid #27272a;
@@ -44,7 +41,6 @@
       transform: translateY(-2px);
     }
 
-    /* Píldoras de tecnología (Tags) */
     .tech-tag {
       display: inline-flex;
       align-items: center;
@@ -64,13 +60,11 @@
       color: #ffffff;
     }
 
-    /* Scrollbar minimalista */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #0a0a0a; }
     ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #52525b; }
 
-    /* Estilos del botón de idiomas */
     .lang-toggle {
       transition: all 0.2s;
     }
@@ -83,7 +77,7 @@
 
 <body class="selection:bg-zinc-800 selection:text-white">
 
-  <!-- MODAL DE CONTACTO (Oculto por defecto) -->
+  <!-- MODAL DE CONTACTO -->
   <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 backdrop-blur-sm flex items-center justify-center px-4">
     <div class="premium-card p-8 w-full max-w-lg relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors">
@@ -95,7 +89,7 @@
       
       <div class="space-y-4">
         <label class="block text-sm font-medium text-zinc-300" data-i18n="modal_template_label">Mensaje (Editable)</label>
-        <textarea id="modal-msg" rows="5" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu perfil enfocado en datos y automatización IA. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
+        <textarea id="modal-msg" rows="5" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al lenguaje y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
         
         <button onclick="sendTemplateMail()" class="w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -121,11 +115,11 @@
         Robinson Aranda
       </h1>
       <h2 class="text-xl md:text-2xl text-zinc-300 font-medium mb-8 text-center md:text-left" data-i18n="role">
-        Ingeniero de Datos & Especialista en Automatización con IA
+        Arquitecto de Sistemas, Datos & Automatización IA
       </h2>
       
       <p class="text-lg text-zinc-400 leading-relaxed mb-10 max-w-3xl text-center md:text-left mx-auto md:mx-0" data-i18n="bio">
-        Construyo infraestructura de datos y arquitecturas automatizadas. Me especializo en integrar el ecosistema de Inteligencia Artificial con flujos de datos mediante <strong class="text-white font-medium">Python, Docker y n8n</strong>. Mi enfoque técnico busca eliminar procesos manuales, optimizar la extracción de información y crear sistemas de alto rendimiento para la toma de decisiones corporativas.
+        La sintaxis de un lenguaje es un problema resuelto; el verdadero valor reside en el diseño del sistema. Soy un arquitecto agnóstico a la tecnología: construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables de alto rendimiento para la toma de decisiones.
       </p>
 
       <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start">
@@ -135,7 +129,7 @@
         <a href="https://github.com/vTrxn" target="_blank" class="p-3 text-zinc-400 hover:text-white transition-colors border border-[#27272a] rounded-lg bg-[#121214] hover:bg-[#18181b]">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         </a>
-        <a href="https://linkedin.com/in/tu-perfil-aqui" target="_blank" class="p-3 text-zinc-400 hover:text-white transition-colors border border-[#27272a] rounded-lg bg-[#121214] hover:bg-[#18181b]">
+        <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" class="p-3 text-zinc-400 hover:text-white transition-colors border border-[#27272a] rounded-lg bg-[#121214] hover:bg-[#18181b]">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
       </div>
@@ -151,43 +145,41 @@
         
         <!-- Tarjeta 1: AI & Prompt Engineering -->
         <div class="premium-card p-8 md:col-span-2">
-          <h4 class="text-2xl font-bold text-white mb-3" data-i18n="ai_title">Orquestación de IA & Ingeniería de Instrucciones</h4>
-          <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="ai_desc">Integración avanzada de modelos de lenguaje e inteligencias artificiales mediante conexiones y diseño de sistemas multi-agente autónomos.</p>
+          <h4 class="text-2xl font-bold text-white mb-3" data-i18n="ai_title">Diseño Agnóstico Asistido por IA</h4>
+          <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="ai_desc">Capacidad para construir lógica de negocio en cualquier tecnología delegando la sintaxis a modelos fundacionales, enfocándome puramente en el diseño de arquitectura y sistemas multi-agente.</p>
           <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tech-tag">Claude 3.5 Sonnet</span>
-            <span class="tech-tag">GPT-4o</span>
-            <span class="tech-tag">Kimi</span>
+            <span class="tech-tag">Modelos LLM (Claude, GPT-4o, Kimi)</span>
             <span class="tech-tag">API de Perplexity</span>
             <span class="tech-tag">Cursor AI</span>
           </div>
           <ul class="space-y-3 border-t border-[#27272a] pt-6">
             <li class="flex items-start gap-3 text-zinc-400">
-              <span class="text-white font-bold mt-0.5">·</span> <span data-i18n="ai_point1">Diseño de arquitecturas para la carga y lectura de datos corporativos masivos mediante Inteligencia Artificial.</span>
+              <span class="text-white font-bold mt-0.5">·</span> <span data-i18n="ai_point1">Diseño de arquitecturas RAG para la ingestión de bases de conocimiento corporativo masivas.</span>
             </li>
             <li class="flex items-start gap-3 text-zinc-400">
-              <span class="text-white font-bold mt-0.5">·</span> <span data-i18n="ai_point2">Estructuración lógica de instrucciones para la ejecución de tareas complejas sin intervención humana.</span>
+              <span class="text-white font-bold mt-0.5">·</span> <span data-i18n="ai_point2">Ingeniería de Instrucciones Avanzada (Prompting Estructurado) para ejecución asíncrona de procesos lógicos.</span>
             </li>
           </ul>
         </div>
 
         <!-- Tarjeta 2: Data Engineering -->
         <div class="premium-card p-8">
-          <h4 class="text-xl font-bold text-white mb-3" data-i18n="data_title">Ingeniería de Datos</h4>
-          <p class="text-zinc-400 mb-6" data-i18n="data_desc">Diseño de sistemas de extracción, transformación y carga (ETL) a gran escala.</p>
+          <h4 class="text-xl font-bold text-white mb-3" data-i18n="data_title">Ingeniería & Flujos de Datos</h4>
+          <p class="text-zinc-400 mb-6" data-i18n="data_desc">Diseño de persistencia relacional y extracción masiva (ETL) independiente del lenguaje.</p>
           <div class="flex flex-wrap gap-2">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">Bases de Datos Relacionales</span>
+            <span class="tech-tag">Pipelines ETL</span>
+            <span class="tech-tag">Cloud BaaS (Supabase)</span>
           </div>
         </div>
 
         <!-- Tarjeta 3: Workflow Automation -->
         <div class="premium-card p-8">
-          <h4 class="text-xl font-bold text-white mb-3" data-i18n="auto_title">Automatización de Flujos</h4>
-          <p class="text-zinc-400 mb-6" data-i18n="auto_desc">Sistemas que conectan aplicaciones y automatizan procesos empresariales en tiempo real.</p>
+          <h4 class="text-xl font-bold text-white mb-3" data-i18n="auto_title">Orquestación e Infraestructura</h4>
+          <p class="text-zinc-400 mb-6" data-i18n="auto_desc">Contenerización y conexión de microservicios mediante webhooks empresariales.</p>
           <div class="flex flex-wrap gap-2">
+            <span class="tech-tag">Arquitectura Microservicios</span>
             <span class="tech-tag">n8n</span>
-            <span class="tech-tag">FastAPI</span>
             <span class="tech-tag">Docker</span>
           </div>
         </div>
@@ -208,17 +200,16 @@
               <h4 class="text-2xl font-bold text-white mb-2" data-i18n="proj1_title">Sistema Multi-Agente Integral</h4>
               <p class="font-mono text-xs text-zinc-500 mb-6 uppercase tracking-wider" data-i18n="proj1_sub">Prueba de Concepto</p>
               <div class="flex flex-wrap gap-2">
-                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Diseño de Sistemas IA</span>
                 <span class="tech-tag">n8n</span>
-                <span class="tech-tag">Modelos IA</span>
               </div>
             </div>
             <div class="md:w-2/3 md:border-l border-[#27272a] md:pl-8">
               <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="proj1_desc">
-                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales (Claude, Kimi) a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de código, operando de forma independiente y asíncrona.
+                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.
               </p>
               <p class="text-sm font-medium text-zinc-200" data-i18n="proj1_impact">
-                → Impacto: Demostración técnica de automatización operativa extrema.
+                → Impacto: Demostración técnica de que la delegación de código a la IA permite enfocar 100% el esfuerzo humano en la arquitectura corporativa.
               </p>
             </div>
           </div>
@@ -228,16 +219,16 @@
         <div class="premium-card p-8 md:p-10">
           <div class="flex flex-col md:flex-row gap-8">
             <div class="md:w-1/3">
-              <h4 class="text-2xl font-bold text-white mb-2" data-i18n="proj2_title">Flujo de Datos SupplyAI</h4>
-              <p class="font-mono text-xs text-zinc-500 mb-6 uppercase tracking-wider" data-i18n="proj2_sub">Arquitectura de Software en la Nube</p>
+              <h4 class="text-2xl font-bold text-white mb-2" data-i18n="proj2_title">Arquitectura Core SupplyAI</h4>
+              <p class="font-mono text-xs text-zinc-500 mb-6 uppercase tracking-wider" data-i18n="proj2_sub">Arquitectura Cloud SaaS</p>
               <div class="flex flex-wrap gap-2">
-                <span class="tech-tag">Supabase</span>
-                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Diseño API REST</span>
+                <span class="tech-tag">Bases de Datos Escalables</span>
               </div>
             </div>
             <div class="md:w-2/3 md:border-l border-[#27272a] md:pl-8">
               <p class="text-zinc-400 leading-relaxed" data-i18n="proj2_desc">
-                Diseño de arquitectura en la nube para una plataforma corporativa orientada a la cadena de suministro. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en la seguridad de la información, optimización de consultas de bases de datos y alta disponibilidad del servidor.
+                Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para modelos de IA que predicen la demanda. Enfoque estricto en la seguridad de la información (Políticas RLS), normalización de datos y alta disponibilidad del servidor.
               </p>
             </div>
           </div>
@@ -250,13 +241,13 @@
               <h4 class="text-2xl font-bold text-white mb-2" data-i18n="proj3_title">Motor ImpulsoIA</h4>
               <p class="font-mono text-xs text-zinc-500 mb-6 uppercase tracking-wider" data-i18n="proj3_sub">Procesamiento de Información</p>
               <div class="flex flex-wrap gap-2">
-                <span class="tech-tag">Ingeniería Prompts</span>
-                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Contenedores</span>
+                <span class="tech-tag">Integración LLM</span>
               </div>
             </div>
             <div class="md:w-2/3 md:border-l border-[#27272a] md:pl-8">
               <p class="text-zinc-400 leading-relaxed" data-i18n="proj3_desc">
-                Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Desarrollado para demostrar la viabilidad de reemplazar el análisis de consultoría tradicional por herramientas tecnológicas a gran escala.
+                Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables mediante el uso agnóstico de tecnologías.
               </p>
             </div>
           </div>
@@ -273,28 +264,28 @@
         
         <!-- Freelance 1 -->
         <div class="pb-8 border-b border-[#27272a]">
-          <h4 class="text-xl font-bold text-white mb-2" data-i18n="exp1_title">Consultor Independiente de Automatización con IA</h4>
+          <h4 class="text-xl font-bold text-white mb-2" data-i18n="exp1_title">Consultor Independiente de Automatización y Sistemas</h4>
           <p class="text-sm font-mono text-zinc-500 mb-4" data-i18n="exp1_sub">Proyectos Externos | Trabajo Remoto</p>
           <p class="text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
-            Asesoría técnica y desarrollo de soluciones de integración utilizando la plataforma n8n y contenedores Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de Inteligencia Artificial para el análisis de información comercial (por ejemplo: calificación crediticia automática, análisis de riesgo financiero y generación de reportes empresariales).
+            Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos (SQL/NoSQL) con módulos de Inteligencia Artificial para el análisis de información comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.
           </p>
         </div>
 
         <!-- Freelance 2 -->
         <div class="pb-8 border-b border-[#27272a]">
-          <h4 class="text-xl font-bold text-white mb-2" data-i18n="exp2_title">Desarrollador de Extracción y Transformación de Datos</h4>
+          <h4 class="text-xl font-bold text-white mb-2" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
           <p class="text-sm font-mono text-zinc-500 mb-4" data-i18n="exp2_sub">Proyecto de Arquitectura para Comercio Electrónico</p>
           <p class="text-zinc-400 leading-relaxed" data-i18n="exp2_desc">
-            Diseño y programación de un canal de procesamiento de datos escalable escrito en lenguaje Python para gestionar grandes volúmenes de ventas virtuales. Enfoque en la limpieza automática de información desordenada y su carga eficiente en bases de datos analíticas para facilitar la toma de decisiones por parte de la gerencia.
+            Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información desordenada y su persistencia eficiente en bases de datos analíticas, habilitando la ingesta rápida para algoritmos de toma de decisiones.
           </p>
         </div>
 
         <!-- Practicante -->
         <div>
-          <h4 class="text-xl font-bold text-white mb-2" data-i18n="exp3_title">Ingeniero de Datos y Software (Practicante)</h4>
+          <h4 class="text-xl font-bold text-white mb-2" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
           <p class="text-sm font-mono text-zinc-500 mb-4" data-i18n="exp3_sub">fUSoft - Fábrica de Soluciones | Bogotá, Col.</p>
           <p class="text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
-            Desarrollo de soluciones tecnológicas empresariales. Mantenimiento de arquitecturas de sistemas completos, mejora de código heredado y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la modernización de los servidores para optimizar el procesamiento de información de los clientes locales.
+            Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica en repositorios existentes y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos para optimizar el procesamiento de información de los clientes corporativos.
           </p>
         </div>
 
@@ -308,11 +299,11 @@
         <h4 class="text-xl font-bold text-white mb-2" data-i18n="edu_title">Ingeniería de Software</h4>
         <p class="text-sm font-mono text-zinc-500 mb-6" data-i18n="edu_sub">Uniempresarial | 3er Semestre (Actual)</p>
         <p class="text-zinc-400 mb-8 leading-relaxed" data-i18n="edu_desc">
-          Bases fundamentales en matemática aplicada, estructuras de datos y lógica de programación. Especialización autodidacta en tecnologías de automatización, gestión de servidores y manejo de grandes bases de datos a nivel corporativo.
+          Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura en la nube, la automatización y la resolución eficiente de problemas complejos.
         </p>
         <div class="flex flex-wrap gap-2">
           <span class="tech-tag" data-i18n="edu_tag1">Inglés Técnico (Nivel B2-C1)</span>
-          <span class="tech-tag" data-i18n="edu_tag2">Fundamentos de Diseño de Sistemas</span>
+          <span class="tech-tag" data-i18n="edu_tag2">Arquitectura y Diseño de Sistemas</span>
         </div>
       </div>
     </section>
@@ -321,7 +312,7 @@
     <footer class="pt-12 border-t border-[#27272a] flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="text-center md:text-left">
         <p class="text-white font-bold text-lg mb-1">Robinson Aranda</p>
-        <p class="text-sm font-mono text-zinc-500" data-i18n="footer_tag">Impulsado por Datos. Automatizado por IA.</p>
+        <p class="text-sm font-mono text-zinc-500" data-i18n="footer_tag">Sistemas Agnósticos. Automatización con IA.</p>
       </div>
       <button onclick="openModal()" class="px-8 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="footer_btn">
         Escríbeme un Correo
@@ -338,7 +329,6 @@
       const content = document.getElementById('contact-modal-content');
       modal.classList.remove('hidden');
       
-      // Delay de animación
       setTimeout(() => {
         modal.classList.remove('opacity-0');
         content.classList.remove('scale-95');
@@ -356,7 +346,6 @@
       }, 300);
     }
 
-    // Cierra modal al dar clic por fuera de la tarjeta
     document.getElementById('contact-modal').addEventListener('click', function(e) {
       if (e.target === this) {
         closeModal();
@@ -374,46 +363,46 @@
     // ----- LÓGICA DE TRADUCCIÓN -----
     const translations = {
       es: {
-        role: "Ingeniero de Datos & Especialista en Automatización con IA",
+        role: "Arquitecto de Sistemas, Datos & Automatización IA",
         contact_btn: "Iniciar Conversación",
-        bio: "Construyo infraestructura de datos y arquitecturas automatizadas. Me especializo en integrar el ecosistema de Inteligencia Artificial con flujos de datos mediante <strong class='text-white font-medium'>Python, Docker y n8n</strong>. Mi enfoque técnico busca eliminar procesos manuales, optimizar la extracción de información y crear sistemas de alto rendimiento para la toma de decisiones corporativas.",
+        bio: "La sintaxis de un lenguaje es un problema resuelto; el verdadero valor reside en el diseño del sistema. Soy un arquitecto agnóstico a la tecnología: construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables de alto rendimiento para la toma de decisiones.",
         section_expertise: "Competencias Principales",
-        ai_title: "Orquestación de IA & Ingeniería de Instrucciones",
-        ai_desc: "Integración avanzada de modelos de lenguaje e inteligencias artificiales mediante conexiones y diseño de sistemas multi-agente autónomos.",
-        ai_point1: "Diseño de arquitecturas para la carga y lectura de datos corporativos masivos mediante Inteligencia Artificial.",
-        ai_point2: "Estructuración lógica de instrucciones para la ejecución de tareas complejas sin intervención humana.",
-        data_title: "Ingeniería de Datos",
-        data_desc: "Diseño de sistemas de extracción, transformación y carga (ETL) a gran escala.",
-        auto_title: "Automatización de Flujos",
-        auto_desc: "Sistemas que conectan aplicaciones y automatizan procesos empresariales en tiempo real.",
+        ai_title: "Diseño Agnóstico Asistido por IA",
+        ai_desc: "Capacidad para construir lógica de negocio en cualquier tecnología delegando la sintaxis a modelos fundacionales, enfocándome puramente en el diseño de arquitectura y sistemas multi-agente.",
+        ai_point1: "Diseño de arquitecturas RAG para la ingestión de bases de conocimiento corporativo masivas.",
+        ai_point2: "Ingeniería de Instrucciones Avanzada (Prompting Estructurado) para ejecución asíncrona de procesos lógicos.",
+        data_title: "Ingeniería & Flujos de Datos",
+        data_desc: "Diseño de persistencia relacional y extracción masiva (ETL) independiente del lenguaje.",
+        auto_title: "Orquestación e Infraestructura",
+        auto_desc: "Contenerización y conexión de microservicios mediante webhooks empresariales.",
         section_projects: "Arquitectura & Proyectos Clave",
         proj1_title: "Sistema Multi-Agente Integral",
         proj1_sub: "Prueba de Concepto",
-        proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales (Claude, Kimi) a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de código, operando de forma independiente y asíncrona.",
-        proj1_impact: "→ Impacto: Demostración técnica de automatización operativa extrema.",
-        proj2_title: "Flujo de Datos SupplyAI",
-        proj2_sub: "Arquitectura de Software en la Nube",
-        proj2_desc: "Diseño de arquitectura en la nube para una plataforma corporativa orientada a la cadena de suministro. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en la seguridad de la información, optimización de consultas de bases de datos y alta disponibilidad del servidor.",
+        proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.",
+        proj1_impact: "→ Impacto: Demostración técnica de que la delegación de código a la IA permite enfocar 100% el esfuerzo humano en la arquitectura corporativa.",
+        proj2_title: "Arquitectura Core SupplyAI",
+        proj2_sub: "Arquitectura Cloud SaaS",
+        proj2_desc: "Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para modelos de IA que predicen la demanda. Enfoque estricto en la seguridad de la información (Políticas RLS), normalización de datos y alta disponibilidad del servidor.",
         proj3_title: "Motor ImpulsoIA",
         proj3_sub: "Procesamiento de Información",
-        proj3_desc: "Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Desarrollado para demostrar la viabilidad de reemplazar el análisis de consultoría tradicional por herramientas tecnológicas a gran escala.",
+        proj3_desc: "Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables mediante el uso agnóstico de tecnologías.",
         section_exp: "Experiencia Aplicada",
-        exp1_title: "Consultor Independiente de Automatización con IA",
+        exp1_title: "Consultor Independiente de Automatización y Sistemas",
         exp1_sub: "Proyectos Externos | Trabajo Remoto",
-        exp1_desc: "Asesoría técnica y desarrollo de soluciones de integración utilizando la plataforma n8n y contenedores Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de Inteligencia Artificial para el análisis de información comercial (por ejemplo: calificación crediticia automática, análisis de riesgo financiero y generación de reportes empresariales).",
-        exp2_title: "Desarrollador de Extracción y Transformación de Datos",
+        exp1_desc: "Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos (SQL/NoSQL) con módulos de Inteligencia Artificial para el análisis de información comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.",
+        exp2_title: "Arquitecto de Extracción y Transformación de Datos (ETL)",
         exp2_sub: "Proyecto de Arquitectura para Comercio Electrónico",
-        exp2_desc: "Diseño y programación de un canal de procesamiento de datos escalable escrito en lenguaje Python para gestionar grandes volúmenes de ventas virtuales. Enfoque en la limpieza automática de información desordenada y su carga eficiente en bases de datos analíticas para facilitar la toma de decisiones por parte de la gerencia.",
-        exp3_title: "Ingeniero de Datos y Software (Practicante)",
+        exp2_desc: "Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información desordenada y su persistencia eficiente en bases de datos analíticas, habilitando la ingesta rápida para algoritmos de toma de decisiones.",
+        exp3_title: "Ingeniero de Software y Datos (Practicante)",
         exp3_sub: "fUSoft - Fábrica de Soluciones | Bogotá, Col.",
-        exp3_desc: "Desarrollo de soluciones tecnológicas empresariales. Mantenimiento de arquitecturas de sistemas completos, mejora de código heredado y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la modernización de los servidores para optimizar el procesamiento de información de los clientes locales.",
+        exp3_desc: "Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica en repositorios existentes y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos para optimizar el procesamiento de información de los clientes corporativos.",
         section_edu: "Formación Académica",
         edu_title: "Ingeniería de Software",
         edu_sub: "Uniempresarial | 3er Semestre (Actual)",
-        edu_desc: "Bases fundamentales en matemática aplicada, estructuras de datos y lógica de programación. Especialización autodidacta en tecnologías de automatización, gestión de servidores y manejo de grandes bases de datos a nivel corporativo.",
+        edu_desc: "Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura en la nube, la automatización y la resolución eficiente de problemas complejos.",
         edu_tag1: "Inglés Técnico (Nivel B2-C1)",
-        edu_tag2: "Fundamentos de Diseño de Sistemas",
-        footer_tag: "Impulsado por Datos. Automatizado por IA.",
+        edu_tag2: "Arquitectura y Diseño de Sistemas",
+        footer_tag: "Sistemas Agnósticos. Automatización con IA.",
         footer_btn: "Escríbeme un Correo",
         modal_title: "Iniciar Conversación",
         modal_desc: "Puedes usar esta plantilla rápida o escribir tu propio mensaje. Al hacer clic, se abrirá tu aplicación de correo predeterminada.",
@@ -421,46 +410,46 @@
         modal_send_btn: "Generar Correo con este Mensaje"
       },
       en: {
-        role: "Data Engineer & AI Automation Specialist",
+        role: "Systems, Data & AI Automation Architect",
         contact_btn: "Start Conversation",
-        bio: "I build data infrastructure and automated architectures. I specialize in integrating the Artificial Intelligence ecosystem with data pipelines using <strong class='text-white font-medium'>Python, Docker, and n8n</strong>. My technical focus aims to eliminate manual processes, optimize data extraction, and build high-performance systems for corporate decision-making.",
+        bio: "Language syntax is a solved problem; true value lies in system design. I am a technology-agnostic architect: I build data infrastructure and automate complex business logic by orchestrating Artificial Intelligence. My focus is eliminating operational bottlenecks, deploying robust ETL pipelines, and creating scalable, high-performance ecosystems for decision-making.",
         section_expertise: "Core Expertise",
-        ai_title: "AI Orchestration & Prompt Engineering",
-        ai_desc: "Advanced integration of language models via APIs and design of autonomous multi-agent systems.",
-        ai_point1: "Design of RAG (Retrieval-Augmented Generation) architectures for massive corporate data ingestion.",
-        ai_point2: "Structured prompting (Chain-of-Thought) to execute complex tasks without human intervention.",
-        data_title: "Data Engineering",
-        data_desc: "Design of data flow and large-scale relational data persistence (ETL pipelines).",
-        auto_title: "Workflow Automation",
-        auto_desc: "Decoupled systems for continuous integration of enterprise applications and processes.",
+        ai_title: "AI-Assisted Agnostic Design",
+        ai_desc: "Ability to build business logic in any technology by delegating syntax to foundational models, focusing purely on architecture design and autonomous multi-agent systems.",
+        ai_point1: "Design of RAG architectures for the ingestion of massive corporate knowledge bases.",
+        ai_point2: "Advanced Prompt Engineering (Structured Prompting) for asynchronous execution of logical processes.",
+        data_title: "Data Engineering & Pipelines",
+        data_desc: "Design of language-independent relational persistence and massive extraction (ETL) systems.",
+        auto_title: "Orchestration & Infrastructure",
+        auto_desc: "Containerization and microservices integration via enterprise webhooks.",
         section_projects: "Architecture & Key Projects",
         proj1_title: "OmniAgent System",
         proj1_sub: "Proof of Concept (PoC)",
-        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates multiple AI models (Claude, Kimi) via n8n to perform web scraping, data cleaning, information synthesis, and code generation, operating as an asynchronous pipeline with zero manual intervention.",
-        proj1_impact: "→ Impact: Technical demonstration of extreme operational automation.",
-        proj2_title: "SupplyAI Pipeline",
+        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates multiple artificial intelligences via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation, operating independently and asynchronously.",
+        proj1_impact: "→ Impact: Technical demonstration that delegating code syntax to AI allows 100% human effort focus on corporate architecture.",
+        proj2_title: "SupplyAI Core Architecture",
         proj2_sub: "Cloud SaaS Architecture",
-        proj2_desc: "Cloud architecture design for a B2B supply chain platform. The core of the project is a pipeline that processes relational logistics data and prepares it for predictive demand models. Strict focus on data security (RLS), SQL query optimization, and high availability.",
+        proj2_desc: "Cloud architecture design (Backend-as-a-Service) for a supply chain-oriented platform. The core of the project is an automated pipeline that processes logistics databases and prepares them for AI models that predict demand. Strict focus on data security (RLS Policies), data normalization, and high server availability.",
         proj3_title: "ImpulsoIA Engine",
-        proj3_sub: "Data Processing Engine",
-        proj3_desc: "Containerized environment that digests volumes of raw corporate data, processes it through structured prompts, and outputs business action plans. Developed to demonstrate the technical feasibility of replacing traditional consultative analysis with automated scripts and large language models.",
+        proj3_sub: "Information Processing Engine",
+        proj3_desc: "Containerized environment that receives large volumes of raw corporate data, analyzes it through structured AI prompts, and exports business action plans. Demonstrates the feasibility of replacing manual analysis with scalable algorithmic processes through agnostic technology use.",
         section_exp: "Applied Experience",
-        exp1_title: "Independent AI Automation Consultant",
+        exp1_title: "Independent Systems & Automation Consultant",
         exp1_sub: "Freelance Projects | Remote",
-        exp1_desc: "Technical consulting and integration development using n8n and Docker containers. Implementation of workflows connecting relational databases with AI endpoints for automated analysis of raw data (e.g., automated credit scoring, risk analysis, and dynamic corporate reporting).",
-        exp2_title: "ETL Developer (eCommerce Proof of Concept)",
-        exp2_sub: "Data Architecture Project",
-        exp2_desc: "Design and implementation of a scalable ETL pipeline written in Python to process simulated high-volume transactional events. Focus on automated cleaning of unstructured data and efficient loading into analytical databases to facilitate algorithmic decision-making.",
+        exp1_desc: "Systems auditing and integration solutions development using the n8n platform and Docker. Implementation of automated processes connecting databases (SQL/NoSQL) with Artificial Intelligence modules for commercial data analysis, eliminating the need for custom development for repetitive operational tasks.",
+        exp2_title: "Data Extraction & Transformation Architect (ETL)",
+        exp2_sub: "Data Architecture Project for e-Commerce",
+        exp2_desc: "Logical design of a massive processing pipeline to manage virtual transactional events. Construction of the core flow focused on automatic cleaning of unstructured information and its efficient persistence in analytical databases, enabling rapid ingestion for decision-making algorithms.",
         exp3_title: "Software & Data Engineer (Intern)",
         exp3_sub: "fUSoft - Software Factory | Bogotá, Col.",
-        exp3_desc: "Development of enterprise technological solutions. Maintenance of Full-Stack architectures, legacy code refactoring, and creation of internal tooling through automated scripts. Active participation in infrastructure modernization to optimize local clients' data processing.",
+        exp3_desc: "Development of business-oriented technological solutions. Maintenance of complete system architectures, improvement of algorithmic logic in existing repositories, and creation of internal tools through automated processes. Direct participation in resource orchestration to optimize information processing for corporate clients.",
         section_edu: "Education",
         edu_title: "Software Engineering",
         edu_sub: "Uniempresarial | 3rd Semester (Current)",
-        edu_desc: "Fundamental basis in applied mathematics, data structures, and algorithmic logic. Parallel self-taught focus on emerging technologies, cloud orchestration, and enterprise-level data engineering.",
-        edu_tag1: "Technical English (B2-C1)",
-        edu_tag2: "System Design Fundamentals",
-        footer_tag: "Data-Driven. AI Automated.",
+        edu_desc: "Fundamental basis in applied mathematics, logical system design, and data structures. Development of a tool-agnostic engineering mindset, prioritizing cloud architecture, automation, and efficient resolution of complex problems.",
+        edu_tag1: "Technical English (B2-C1 Level)",
+        edu_tag2: "System Architecture & Design",
+        footer_tag: "Agnostic Systems. AI Automated.",
         footer_btn: "Send me an Email",
         modal_title: "Start a Conversation",
         modal_desc: "You can use this quick template or write your own message. Clicking the button will open your default email application.",
@@ -470,7 +459,6 @@
     };
 
     function setLanguage(lang) {
-      // Toggle button styles
       document.getElementById('btn-es').classList.remove('active', 'bg-white', 'text-black');
       document.getElementById('btn-en').classList.remove('active', 'bg-white', 'text-black');
       
@@ -481,7 +469,6 @@
       activeBtn.classList.remove('text-zinc-400');
       activeBtn.classList.add('active', 'bg-white', 'text-black');
 
-      // Update text content
       const elements = document.querySelectorAll('[data-i18n]');
       elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -490,12 +477,11 @@
         }
       });
 
-      // Update textarea placeholder text directly
       const msgArea = document.getElementById('modal-msg');
       if(lang === 'en') {
-        msgArea.value = "Hi Robinson, I reviewed your portfolio and found your profile focused on data and AI automation very interesting. I would like to chat with you about a potential opportunity or collaboration.";
+        msgArea.value = "Hi Robinson, I reviewed your portfolio and found your language-agnostic approach and vision on data architecture very interesting. I would like to chat with you about a potential opportunity or collaboration.";
       } else {
-        msgArea.value = "Hola Robinson, revisé tu portafolio y me pareció muy interesante tu perfil enfocado en datos y automatización IA. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
+        msgArea.value = "Hola Robinson, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al lenguaje y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
       }
       
       document.documentElement.lang = lang;
