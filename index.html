@@ -4,12 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robinson Aranda | Arquitecto de Datos y Automatización IA</title>
+  <title>Robinson Aranda | Agnostic Systems & AI Automation Architect</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Fuentes Premium -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -75,9 +73,9 @@
       color: #000000;
     }
     
-    /* Animación suave para el menú desplegable */
+    /* Animación segura y fluida para el stack */
     #full-stack-grid {
-      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
       overflow: hidden;
     }
   </style>
@@ -97,7 +95,7 @@
       
       <div class="space-y-4">
         <label class="block text-sm font-medium text-zinc-300" data-i18n="modal_template_label">Mensaje (Editable)</label>
-        <textarea id="modal-msg" rows="5" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
+        <textarea id="modal-msg" rows="5" class="w-full bg-[#0a0a0a] border border-[#27272a] rounded-lg p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors">Hola Robinson, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al lenguaje y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
         
         <button onclick="sendTemplateMail()" class="w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -109,7 +107,7 @@
 
   <div class="max-w-4xl mx-auto px-6 pb-20">
 
-    <!-- SELECTOR DE IDIOMA -->
+    <!-- SELECTOR DE IDIOMA CENTRADO -->
     <div class="flex justify-center pt-10 pb-8">
       <div class="flex bg-[#18181b] p-1 rounded-lg border border-[#27272a]">
         <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-5 py-1.5 text-xs font-semibold rounded-md text-white">ES</button>
@@ -118,19 +116,19 @@
     </div>
 
     <!-- HEADER -->
-    <header class="mb-24">
+    <header class="mb-12">
       <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 text-center md:text-left">
         Robinson Aranda
       </h1>
-      <h2 class="text-xl md:text-2xl text-zinc-300 font-medium mb-8 text-center md:text-left" data-i18n="role">
-        Ingeniero de Software, Datos & Especialista en IA
+      <h2 class="text-xl md:text-2xl text-zinc-300 font-medium mb-6 text-center md:text-left" data-i18n="role">
+        Arquitecto de Sistemas, Datos & Automatización IA
       </h2>
       
-      <p class="text-lg text-zinc-400 leading-relaxed mb-10 max-w-3xl text-center md:text-left mx-auto md:mx-0" data-i18n="bio">
-        Domino los fundamentos de la ingeniería, lo que me permite ser agnóstico a la tecnología. Construyo infraestructura de datos y automatizo lógicas de negocio complejas utilizando Inteligencia Artificial para multiplicar exponencialmente mi velocidad de desarrollo. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables para la toma de decisiones.
+      <p class="text-lg text-zinc-400 leading-relaxed mb-8 max-w-3xl text-center md:text-left mx-auto md:mx-0" data-i18n="bio">
+        La sintaxis de un lenguaje es un problema resuelto; el verdadero valor reside en el diseño del sistema. Soy un arquitecto agnóstico a la tecnología: construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables de alto rendimiento para la toma de decisiones.
       </p>
 
-      <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start mb-10">
+      <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start mb-8">
         <button onclick="openModal()" class="px-6 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="contact_btn">
           Iniciar Conversación
         </button>
@@ -142,18 +140,18 @@
         </a>
       </div>
 
-      <!-- STACK DESPLEGABLE -->
-      <div class="border-t border-[#27272a] pt-6 flex flex-col items-center md:items-start">
+      <!-- STACK DESPLEGABLE CON ESPACIADO REDUCIDO -->
+      <div class="border-t border-[#27272a] pt-4 flex flex-col items-center md:items-start">
         <button onclick="toggleStack()" class="flex items-center gap-2 text-sm font-mono text-zinc-500 hover:text-zinc-300 transition-colors group">
           <span id="stack-btn-text" data-i18n="stack_btn_show">[+] Desplegar Stack Tecnológico Completo</span>
         </button>
         
-        <div id="full-stack-grid" class="max-h-0 opacity-0 mt-0 grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
+        <div id="full-stack-grid" class="max-h-0 opacity-0 pointer-events-none grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
           <div class="pt-6">
             <p class="text-white font-bold text-sm mb-3 border-b border-[#27272a] pb-2" data-i18n="stack_cat1">IA & Modelos</p>
             <ul class="space-y-2 text-sm text-zinc-400 font-mono">
-              <li>Claude</li>
-              <li>GPT</li>
+              <li>Claude 3.5</li>
+              <li>GPT-4o</li>
               <li>Gemini</li>
               <li>Antigravity</li>
               <li>Kimi</li>
@@ -164,7 +162,6 @@
             <p class="text-white font-bold text-sm mb-3 border-b border-[#27272a] pb-2" data-i18n="stack_cat2">Datos & Backend</p>
             <ul class="space-y-2 text-sm text-zinc-400 font-mono">
               <li>Python</li>
-              <li>Java</li>
               <li>PostgreSQL</li>
               <li>Supabase</li>
               <li>FastAPI</li>
@@ -185,15 +182,15 @@
             <ul class="space-y-2 text-sm text-zinc-400 font-mono">
               <li>VS Code / Cursor</li>
               <li>Git / GitHub</li>
-              <li>Bash / Zsh / Fish</li>
-              <li>Linux</li>
+              <li>Bash / Zsh</li>
+              <li>Linux (Ubuntu)</li>
             </ul>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#27272a] to-transparent mb-24"></div>
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-[#27272a] to-transparent mb-16"></div>
 
     <!-- COMPETENCIAS PRINCIPALES -->
     <section class="mb-24">
@@ -204,11 +201,11 @@
         <!-- Tarjeta 1: AI & Prompt Engineering -->
         <div class="premium-card p-8 md:col-span-2">
           <h4 class="text-2xl font-bold text-white mb-3" data-i18n="ai_title">Diseño Agnóstico Asistido por IA</h4>
-          <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="ai_desc">Capacidad para acelerar el desarrollo de lógica de negocio compleja mediante modelos fundacionales, manteniendo un control estricto sobre la arquitectura, la seguridad y la eficiencia de los algoritmos generados.</p>
+          <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="ai_desc">Capacidad para construir lógica de negocio en cualquier tecnología delegando la sintaxis a modelos fundacionales, enfocándome puramente en el diseño de arquitectura y sistemas multi-agente.</p>
           <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tech-tag">Sistemas Multi-Agente</span>
-            <span class="tech-tag">Arquitecturas RAG</span>
-            <span class="tech-tag">Prompt Engineering</span>
+            <span class="tech-tag">Modelos LLM (Claude, GPT-4o, Kimi)</span>
+            <span class="tech-tag">API de Perplexity</span>
+            <span class="tech-tag">Cursor AI</span>
           </div>
           <ul class="space-y-3 border-t border-[#27272a] pt-6">
             <li class="flex items-start gap-3 text-zinc-400">
@@ -227,7 +224,7 @@
           <div class="flex flex-wrap gap-2">
             <span class="tech-tag">Bases de Datos Relacionales</span>
             <span class="tech-tag">Pipelines ETL</span>
-            <span class="tech-tag">Cloud BaaS</span>
+            <span class="tech-tag">Cloud BaaS (Supabase)</span>
           </div>
         </div>
 
@@ -237,7 +234,7 @@
           <p class="text-zinc-400 mb-6" data-i18n="auto_desc">Contenerización y conexión de microservicios mediante webhooks empresariales.</p>
           <div class="flex flex-wrap gap-2">
             <span class="tech-tag">Arquitectura Microservicios</span>
-            <span class="tech-tag">Automatización n8n</span>
+            <span class="tech-tag">n8n</span>
             <span class="tech-tag">Docker</span>
           </div>
         </div>
@@ -267,7 +264,7 @@
                 Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.
               </p>
               <p class="text-sm font-medium text-zinc-200" data-i18n="proj1_impact">
-                → Impacto: Demostración técnica de que el uso de IA permite enfocar el esfuerzo humano en la arquitectura corporativa de alto nivel.
+                → Impacto: Demostración técnica de que la delegación de código a la IA permite enfocar 100% el esfuerzo humano en la arquitectura corporativa.
               </p>
             </div>
           </div>
@@ -393,18 +390,16 @@
       
       if(stackExpanded) {
         // Expandir
-        grid.style.maxHeight = grid.scrollHeight + "px";
+        grid.style.pointerEvents = "auto";
+        grid.style.maxHeight = "1000px"; // Usamos un valor fijo alto para garantizar transición CSS
         grid.style.opacity = "1";
-        grid.classList.remove("hidden");
         btnText.innerHTML = translations[currentLang].stack_btn_hide;
         btnText.setAttribute('data-i18n', 'stack_btn_hide');
       } else {
         // Colapsar
+        grid.style.pointerEvents = "none";
         grid.style.maxHeight = "0px";
         grid.style.opacity = "0";
-        setTimeout(() => {
-          grid.classList.add("hidden");
-        }, 400); // esperar que termine la transición
         btnText.innerHTML = translations[currentLang].stack_btn_show;
         btnText.setAttribute('data-i18n', 'stack_btn_show');
       }
@@ -450,9 +445,9 @@
     // ----- LÓGICA DE TRADUCCIÓN -----
     const translations = {
       es: {
-        role: "Ingeniero de Software, Datos & Especialista en IA",
+        role: "Arquitecto de Sistemas, Datos & Automatización IA",
         contact_btn: "Iniciar Conversación",
-        bio: "Domino los fundamentos de la ingeniería, lo que me permite ser agnóstico a la tecnología. Construyo infraestructura de datos y automatizo lógicas de negocio complejas utilizando Inteligencia Artificial para multiplicar exponencialmente mi velocidad de desarrollo. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables para la toma de decisiones.",
+        bio: "La sintaxis de un lenguaje es un problema resuelto; el verdadero valor reside en el diseño del sistema. Soy un arquitecto agnóstico a la tecnología: construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables de alto rendimiento para la toma de decisiones.",
         
         // Stack Toggle
         stack_btn_show: "[+] Desplegar Stack Tecnológico Completo",
@@ -464,7 +459,7 @@
 
         section_expertise: "Competencias Principales",
         ai_title: "Diseño Agnóstico Asistido por IA",
-        ai_desc: "Capacidad para acelerar el desarrollo de lógica de negocio compleja mediante modelos fundacionales, manteniendo un control estricto sobre la arquitectura, la seguridad y la eficiencia de los algoritmos generados.",
+        ai_desc: "Capacidad para construir lógica de negocio en cualquier tecnología delegando la sintaxis a modelos fundacionales, enfocándome puramente en el diseño de arquitectura y sistemas multi-agente.",
         ai_point1: "Diseño de arquitecturas RAG para la ingestión de bases de conocimiento corporativo masivas.",
         ai_point2: "Ingeniería de Instrucciones Avanzada (Prompting Estructurado) para ejecución asíncrona de procesos lógicos.",
         data_title: "Ingeniería & Flujos de Datos",
@@ -475,7 +470,7 @@
         proj1_title: "Sistema Multi-Agente Integral",
         proj1_sub: "Prueba de Concepto",
         proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.",
-        proj1_impact: "→ Impacto: Demostración técnica de que el uso de IA permite enfocar el esfuerzo humano en la arquitectura corporativa de alto nivel.",
+        proj1_impact: "→ Impacto: Demostración técnica de que la delegación de código a la IA permite enfocar 100% el esfuerzo humano en la arquitectura corporativa.",
         proj2_title: "Arquitectura Core SupplyAI",
         proj2_sub: "Arquitectura Cloud SaaS",
         proj2_desc: "Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para modelos de IA que predicen la demanda. Enfoque estricto en la seguridad de la información (Políticas RLS), normalización de datos y alta disponibilidad del servidor.",
@@ -506,9 +501,9 @@
         modal_send_btn: "Generar Correo con este Mensaje"
       },
       en: {
-        role: "Software & Data Engineer, AI Specialist",
+        role: "Systems, Data & AI Automation Architect",
         contact_btn: "Start Conversation",
-        bio: "I master engineering fundamentals, allowing me to be technology-agnostic. I build data infrastructure and automate complex business logic using Artificial Intelligence to exponentially multiply my development speed. My focus is on eliminating operational bottlenecks, deploying robust ETL pipelines, and creating scalable ecosystems for decision-making.",
+        bio: "Language syntax is a solved problem; true value lies in system design. I am a technology-agnostic architect: I build data infrastructure and automate complex business logic by orchestrating Artificial Intelligence. My focus is eliminating operational bottlenecks, deploying robust ETL pipelines, and creating scalable, high-performance ecosystems for decision-making.",
         
         // Stack Toggle
         stack_btn_show: "[+] Expand Full Tech Stack",
@@ -520,7 +515,7 @@
 
         section_expertise: "Core Expertise",
         ai_title: "AI-Assisted Agnostic Design",
-        ai_desc: "Ability to accelerate the development of complex business logic through foundational models, maintaining strict control over the architecture, security, and efficiency of the generated algorithms.",
+        ai_desc: "Ability to build business logic in any technology by delegating syntax to foundational models, focusing purely on architecture design and autonomous multi-agent systems.",
         ai_point1: "Design of RAG architectures for the ingestion of massive corporate knowledge bases.",
         ai_point2: "Advanced Prompt Engineering (Structured Prompting) for asynchronous execution of logical processes.",
         data_title: "Data Engineering & Pipelines",
@@ -531,7 +526,7 @@
         proj1_title: "OmniAgent System",
         proj1_sub: "Proof of Concept (PoC)",
         proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates multiple artificial intelligences via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation, operating independently and asynchronously.",
-        proj1_impact: "→ Impact: Technical demonstration that using AI allows human effort to focus on high-level corporate architecture.",
+        proj1_impact: "→ Impact: Technical demonstration that delegating code syntax to AI allows 100% human effort focus on corporate architecture.",
         proj2_title: "SupplyAI Core Architecture",
         proj2_sub: "Cloud SaaS Architecture",
         proj2_desc: "Cloud architecture design (Backend-as-a-Service) for a supply chain-oriented platform. The core of the project is an automated pipeline that processes logistics databases and prepares them for AI models that predict demand. Strict focus on data security (RLS Policies), data normalization, and high server availability.",
@@ -564,10 +559,15 @@
     };
 
     function setLanguage(lang) {
-      document.getElementById('btn-es').classList.remove('active');
-      document.getElementById('btn-en').classList.remove('active');
+      document.getElementById('btn-es').classList.remove('active', 'bg-white', 'text-black');
+      document.getElementById('btn-en').classList.remove('active', 'bg-white', 'text-black');
+      
+      document.getElementById('btn-es').classList.add('text-zinc-400');
+      document.getElementById('btn-en').classList.add('text-zinc-400');
 
-      document.getElementById(`btn-${lang}`).classList.add('active');
+      const activeBtn = document.getElementById(`btn-${lang}`);
+      activeBtn.classList.remove('text-zinc-400');
+      activeBtn.classList.add('active', 'bg-white', 'text-black');
 
       const elements = document.querySelectorAll('[data-i18n]');
       elements.forEach(el => {
@@ -581,9 +581,18 @@
       if(lang === 'en') {
         msgArea.value = "Hi Robinson, I reviewed your portfolio and found your language-agnostic approach and vision on data architecture very interesting. I would like to chat with you about a potential opportunity or collaboration.";
       } else {
-        msgArea.value = "Hola Robinson, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
+        msgArea.value = "Hola Robinson, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al lenguaje y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
       }
       
+      const stackBtnText = document.getElementById('stack-btn-text');
+      if (stackExpanded) {
+        stackBtnText.innerHTML = translations[lang].stack_btn_hide;
+        stackBtnText.setAttribute('data-i18n', 'stack_btn_hide');
+      } else {
+        stackBtnText.innerHTML = translations[lang].stack_btn_show;
+        stackBtnText.setAttribute('data-i18n', 'stack_btn_show');
+      }
+
       document.documentElement.lang = lang;
     }
   </script>
