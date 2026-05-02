@@ -9,7 +9,7 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Fuentes Premium: Plus Jakarta Sans (Títulos), Inter (Cuerpo), JetBrains Mono (Código) -->
+  <!-- Fuentes Premium -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Tarjetas elegantes y minimalistas */
     .premium-card {
       background-color: #121214;
       border: 1px solid #27272a;
@@ -44,7 +43,6 @@
       transform: translateY(-2px);
     }
 
-    /* Píldoras de tecnología (Tags) */
     .tech-tag {
       display: inline-flex;
       align-items: center;
@@ -64,26 +62,23 @@
       color: #ffffff;
     }
 
-    /* Scrollbar minimalista */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #0a0a0a; }
     ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #52525b; }
 
-    /* Estilos corregidos del botón de idiomas */
     .lang-toggle {
       transition: all 0.2s;
-      color: #a1a1aa; /* Color base (zinc-400) */
-    }
-    .lang-toggle:hover {
-      color: #ffffff; /* Blanco al pasar el mouse cuando está inactivo */
     }
     .lang-toggle.active {
       background-color: #ffffff;
       color: #000000;
     }
-    .lang-toggle.active:hover {
-      color: #000000; /* Mantiene el texto negro al pasar el mouse si está activo */
+    
+    /* Animación suave para el menú desplegable */
+    #full-stack-grid {
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -114,11 +109,11 @@
 
   <div class="max-w-4xl mx-auto px-6 pb-20">
 
-    <!-- SELECTOR DE IDIOMA CENTRADO Y LIMPIO -->
+    <!-- SELECTOR DE IDIOMA -->
     <div class="flex justify-center pt-10 pb-8">
       <div class="flex bg-[#18181b] p-1 rounded-lg border border-[#27272a]">
-        <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-5 py-1.5 text-xs font-semibold rounded-md">ES</button>
-        <button id="btn-en" onclick="setLanguage('en')" class="lang-toggle px-5 py-1.5 text-xs font-semibold rounded-md">EN</button>
+        <button id="btn-es" onclick="setLanguage('es')" class="lang-toggle active px-5 py-1.5 text-xs font-semibold rounded-md text-white">ES</button>
+        <button id="btn-en" onclick="setLanguage('en')" class="lang-toggle px-5 py-1.5 text-xs font-semibold rounded-md text-zinc-400 hover:text-white">EN</button>
       </div>
     </div>
 
@@ -135,7 +130,7 @@
         Domino los fundamentos de la ingeniería, lo que me permite ser agnóstico a la tecnología. Construyo infraestructura de datos y automatizo lógicas de negocio complejas utilizando Inteligencia Artificial para multiplicar exponencialmente mi velocidad de desarrollo. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables para la toma de decisiones.
       </p>
 
-      <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start">
+      <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start mb-10">
         <button onclick="openModal()" class="px-6 py-3 text-sm font-bold text-black bg-white hover:bg-zinc-200 transition-colors rounded-lg" data-i18n="contact_btn">
           Iniciar Conversación
         </button>
@@ -145,6 +140,55 @@
         <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" class="p-3 text-zinc-400 hover:text-white transition-colors border border-[#27272a] rounded-lg bg-[#121214] hover:bg-[#18181b]">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
+      </div>
+
+      <!-- STACK DESPLEGABLE -->
+      <div class="border-t border-[#27272a] pt-6 flex flex-col items-center md:items-start">
+        <button onclick="toggleStack()" class="flex items-center gap-2 text-sm font-mono text-zinc-500 hover:text-zinc-300 transition-colors group">
+          <span id="stack-btn-text" data-i18n="stack_btn_show">[+] Desplegar Stack Tecnológico Completo</span>
+        </button>
+        
+        <div id="full-stack-grid" class="max-h-0 opacity-0 mt-0 grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
+          <div class="pt-6">
+            <p class="text-white font-bold text-sm mb-3 border-b border-[#27272a] pb-2" data-i18n="stack_cat1">IA & Modelos</p>
+            <ul class="space-y-2 text-sm text-zinc-400 font-mono">
+              <li>Claude 3.5</li>
+              <li>GPT-4o</li>
+              <li>Gemini</li>
+              <li>Antigravity</li>
+              <li>Kimi</li>
+              <li>Perplexity</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <p class="text-white font-bold text-sm mb-3 border-b border-[#27272a] pb-2" data-i18n="stack_cat2">Datos & Backend</p>
+            <ul class="space-y-2 text-sm text-zinc-400 font-mono">
+              <li>Python</li>
+              <li>PostgreSQL</li>
+              <li>Supabase</li>
+              <li>FastAPI</li>
+              <li>Node.js</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <p class="text-white font-bold text-sm mb-3 border-b border-[#27272a] pb-2" data-i18n="stack_cat3">Orquestación</p>
+            <ul class="space-y-2 text-sm text-zinc-400 font-mono">
+              <li>n8n</li>
+              <li>Docker</li>
+              <li>Microservicios</li>
+              <li>Pipelines ETL</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <p class="text-white font-bold text-sm mb-3 border-b border-[#27272a] pb-2" data-i18n="stack_cat4">Entorno & Core</p>
+            <ul class="space-y-2 text-sm text-zinc-400 font-mono">
+              <li>VS Code / Cursor</li>
+              <li>Git / GitHub</li>
+              <li>Bash / Zsh</li>
+              <li>Linux (Ubuntu)</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -161,9 +205,9 @@
           <h4 class="text-2xl font-bold text-white mb-3" data-i18n="ai_title">Diseño Agnóstico Asistido por IA</h4>
           <p class="text-zinc-400 mb-6 leading-relaxed" data-i18n="ai_desc">Capacidad para acelerar el desarrollo de lógica de negocio compleja mediante modelos fundacionales, manteniendo un control estricto sobre la arquitectura, la seguridad y la eficiencia de los algoritmos generados.</p>
           <div class="flex flex-wrap gap-2 mb-6">
-            <span class="tech-tag">Modelos LLM (Claude, GPT-4o, Kimi)</span>
-            <span class="tech-tag">API de Perplexity</span>
-            <span class="tech-tag">Cursor AI</span>
+            <span class="tech-tag">Sistemas Multi-Agente</span>
+            <span class="tech-tag">Arquitecturas RAG</span>
+            <span class="tech-tag">Prompt Engineering</span>
           </div>
           <ul class="space-y-3 border-t border-[#27272a] pt-6">
             <li class="flex items-start gap-3 text-zinc-400">
@@ -182,7 +226,7 @@
           <div class="flex flex-wrap gap-2">
             <span class="tech-tag">Bases de Datos Relacionales</span>
             <span class="tech-tag">Pipelines ETL</span>
-            <span class="tech-tag">Cloud BaaS (Supabase)</span>
+            <span class="tech-tag">Cloud BaaS</span>
           </div>
         </div>
 
@@ -192,7 +236,7 @@
           <p class="text-zinc-400 mb-6" data-i18n="auto_desc">Contenerización y conexión de microservicios mediante webhooks empresariales.</p>
           <div class="flex flex-wrap gap-2">
             <span class="tech-tag">Arquitectura Microservicios</span>
-            <span class="tech-tag">n8n</span>
+            <span class="tech-tag">Automatización n8n</span>
             <span class="tech-tag">Docker</span>
           </div>
         </div>
@@ -334,8 +378,37 @@
 
   </div>
 
-  <!-- SCRIPT LÓGICO (Traducción + Modal) -->
+  <!-- SCRIPT LÓGICO -->
   <script>
+    // ----- LÓGICA DEL STACK DESPLEGABLE -----
+    let stackExpanded = false;
+    
+    function toggleStack() {
+      const grid = document.getElementById('full-stack-grid');
+      const btnText = document.getElementById('stack-btn-text');
+      const currentLang = document.documentElement.lang || 'es';
+      
+      stackExpanded = !stackExpanded;
+      
+      if(stackExpanded) {
+        // Expandir
+        grid.style.maxHeight = grid.scrollHeight + "px";
+        grid.style.opacity = "1";
+        grid.classList.remove("hidden");
+        btnText.innerHTML = translations[currentLang].stack_btn_hide;
+        btnText.setAttribute('data-i18n', 'stack_btn_hide');
+      } else {
+        // Colapsar
+        grid.style.maxHeight = "0px";
+        grid.style.opacity = "0";
+        setTimeout(() => {
+          grid.classList.add("hidden");
+        }, 400); // esperar que termine la transición
+        btnText.innerHTML = translations[currentLang].stack_btn_show;
+        btnText.setAttribute('data-i18n', 'stack_btn_show');
+      }
+    }
+
     // ----- LÓGICA DEL MODAL -----
     function openModal() {
       const modal = document.getElementById('contact-modal');
@@ -379,6 +452,15 @@
         role: "Ingeniero de Software, Datos & Especialista en IA",
         contact_btn: "Iniciar Conversación",
         bio: "Domino los fundamentos de la ingeniería, lo que me permite ser agnóstico a la tecnología. Construyo infraestructura de datos y automatizo lógicas de negocio complejas utilizando Inteligencia Artificial para multiplicar exponencialmente mi velocidad de desarrollo. Mi enfoque es eliminar cuellos de botella operativos, desplegar canales ETL robustos y crear ecosistemas escalables para la toma de decisiones.",
+        
+        // Stack Toggle
+        stack_btn_show: "[+] Desplegar Stack Tecnológico Completo",
+        stack_btn_hide: "[-] Ocultar Stack Tecnológico",
+        stack_cat1: "IA & Modelos",
+        stack_cat2: "Datos & Backend",
+        stack_cat3: "Orquestación",
+        stack_cat4: "Entorno & Core",
+
         section_expertise: "Competencias Principales",
         ai_title: "Diseño Agnóstico Asistido por IA",
         ai_desc: "Capacidad para acelerar el desarrollo de lógica de negocio compleja mediante modelos fundacionales, manteniendo un control estricto sobre la arquitectura, la seguridad y la eficiencia de los algoritmos generados.",
@@ -426,6 +508,15 @@
         role: "Software & Data Engineer, AI Specialist",
         contact_btn: "Start Conversation",
         bio: "I master engineering fundamentals, allowing me to be technology-agnostic. I build data infrastructure and automate complex business logic using Artificial Intelligence to exponentially multiply my development speed. My focus is on eliminating operational bottlenecks, deploying robust ETL pipelines, and creating scalable ecosystems for decision-making.",
+        
+        // Stack Toggle
+        stack_btn_show: "[+] Expand Full Tech Stack",
+        stack_btn_hide: "[-] Hide Tech Stack",
+        stack_cat1: "AI & Models",
+        stack_cat2: "Data & Backend",
+        stack_cat3: "Orchestration",
+        stack_cat4: "Environment & Core",
+
         section_expertise: "Core Expertise",
         ai_title: "AI-Assisted Agnostic Design",
         ai_desc: "Ability to accelerate the development of complex business logic through foundational models, maintaining strict control over the architecture, security, and efficiency of the generated algorithms.",
@@ -472,7 +563,6 @@
     };
 
     function setLanguage(lang) {
-      // Toggle button classes manually based on the CSS rules defined
       document.getElementById('btn-es').classList.remove('active');
       document.getElementById('btn-en').classList.remove('active');
 
