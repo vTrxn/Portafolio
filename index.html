@@ -28,8 +28,7 @@
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      line-height: 1.7; /* Aumentado ligeramente para mejor legibilidad con texto más grande */
-      /* Base font size aumentado para escalar todo el diseño */
+      line-height: 1.7; 
       font-size: 1.05rem; 
     }
 
@@ -52,9 +51,9 @@
     }
 
     .terminal-tab {
-      padding: 14px 28px; /* Ligeramente más grande */
+      padding: 14px 28px; 
       color: var(--text-muted);
-      font-size: 0.95rem; /* Aumentado */
+      font-size: 0.95rem; 
       cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: all 0.2s ease;
@@ -76,7 +75,7 @@
     .nav-link {
       color: var(--text-main);
       text-decoration: none;
-      font-size: 0.95rem; /* Aumentado */
+      font-size: 0.95rem; 
       transition: color 0.2s;
     }
     .nav-link:hover {
@@ -86,8 +85,8 @@
     .badge-nuevo {
       background-color: #ffffff;
       color: #000000;
-      padding: 4px 10px; /* Aumentado */
-      font-size: 0.85rem; /* Aumentado */
+      padding: 4px 10px; 
+      font-size: 0.85rem; 
       font-weight: 700;
       border-radius: 4px;
       display: inline-block;
@@ -121,11 +120,11 @@
       }
     }
     .project-main {
-      padding: 32px; /* Aumentado padding */
+      padding: 32px; 
       border-bottom: 1px solid var(--border-color);
     }
     .project-sidebar {
-      padding: 32px; /* Aumentado padding */
+      padding: 32px; 
       background-color: #0a0a0a;
       border-bottom-right-radius: 8px;
     }
@@ -136,6 +135,19 @@
 
     #contact-modal {
       backdrop-filter: blur(4px);
+    }
+
+    /* FAQ Transición */
+    .faq-answer {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      opacity: 1;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -174,7 +186,6 @@
       <div class="px-8 md:px-14 h-24 flex items-center justify-between">
         
         <div class="flex items-center gap-10">
-          <!-- Logo con fuente Monospace en minúsculas y sin cuadro blanco -->
           <div class="font-bold text-2xl tracking-tighter text-white flex items-center font-mono">
             robin
           </div>
@@ -395,13 +406,12 @@ $ n8n start --tunnel
       </section>
 
       <!-- EXPERIENCIA -->
-      <section id="experiencia" class="mb-16 scroll-mt-32">
+      <section id="experiencia" class="mb-24 scroll-mt-32">
         <h2 class="text-base font-bold text-zinc-500 uppercase tracking-widest mb-10 border-b border-[#27272a] pb-6" data-i18n="section_logs">Experiencia & Educación</h2>
         
         <div class="space-y-10">
           
-          <div class="border-l-2 border-[#27272a] pl-8 relative">
-            <div class="absolute w-3 h-3 bg-zinc-500 rounded-full -left-[7px] top-1.5"></div>
+          <div class="border-l-2 border-[#27272a] pl-8 py-2">
             <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp1_sub">Consultor Externo / Remoto</span>
             <h4 class="text-white font-bold mb-3 text-xl" data-i18n="exp1_title">Consultoría de Automatización y Sistemas</h4>
             <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
@@ -409,8 +419,7 @@ $ n8n start --tunnel
             </p>
           </div>
 
-          <div class="border-l-2 border-[#27272a] pl-8 relative">
-            <div class="absolute w-3 h-3 bg-zinc-500 rounded-full -left-[7px] top-1.5"></div>
+          <div class="border-l-2 border-[#27272a] pl-8 py-2">
             <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp2_sub">Arquitectura de Datos / eCommerce</span>
             <h4 class="text-white font-bold mb-3 text-xl" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
             <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp2_desc">
@@ -418,8 +427,8 @@ $ n8n start --tunnel
             </p>
           </div>
 
-          <div class="border-l-2 border-white pl-8 relative">
-            <div class="absolute w-3 h-3 bg-white rounded-full -left-[7px] top-1.5 shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+          <!-- Highlighted Experience (fUSoft) -->
+          <div class="border-l-2 border-white pl-8 py-2">
             <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
             <h4 class="text-white font-bold mb-3 text-xl" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
             <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
@@ -427,13 +436,65 @@ $ n8n start --tunnel
             </p>
           </div>
 
-          <div class="border-l-2 border-[#27272a] pl-8 relative mt-16 pt-4">
-            <div class="absolute w-3 h-3 bg-[#27272a] rounded-full -left-[7px] top-6"></div>
+          <div class="border-l-2 border-[#27272a] pl-8 py-2 mt-16">
             <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="edu_sub">Educación / 3er Semestre (Actual)</span>
             <h4 class="text-white font-bold mb-3 text-xl" data-i18n="edu_title">Ingeniería de Software (Uniempresarial)</h4>
             <p class="text-base text-zinc-400 leading-relaxed" data-i18n="edu_desc">
               Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.
             </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section id="faq" class="mb-16 scroll-mt-32">
+        <h2 class="text-base font-bold text-white uppercase font-mono tracking-widest mb-10" data-i18n="section_faq">FAQ</h2>
+
+        <div class="space-y-6">
+          
+          <!-- FAQ 1 -->
+          <div>
+            <button onclick="toggleFaq(1)" class="w-full flex items-start gap-4 text-left group">
+              <span id="faq-icon-1" class="text-zinc-500 font-mono text-xl leading-none group-hover:text-white transition-colors mt-0.5">+</span>
+              <span class="font-mono font-bold text-white text-base leading-snug" data-i18n="faq1_q">¿Qué significa ser un "arquitecto agnóstico"?</span>
+            </button>
+            <div id="faq-ans-1" class="faq-answer pl-8">
+              <p class="text-zinc-400 text-base leading-relaxed" data-i18n="faq1_a">Significa que mi enfoque está en resolver problemas de negocio mediante lógica y diseño de sistemas, sin depender de un lenguaje o framework específico. Utilizo las herramientas que mejor se adapten a la necesidad.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div>
+            <button onclick="toggleFaq(2)" class="w-full flex items-start gap-4 text-left group">
+              <span id="faq-icon-2" class="text-zinc-500 font-mono text-xl leading-none group-hover:text-white transition-colors mt-0.5">+</span>
+              <span class="font-mono font-bold text-white text-base leading-snug" data-i18n="faq2_q">¿Por qué no listas nombres específicos de IAs en tu stack?</span>
+            </button>
+            <div id="faq-ans-2" class="faq-answer pl-8">
+              <p class="text-zinc-400 text-base leading-relaxed" data-i18n="faq2_a">El ecosistema de modelos fundacionales evoluciona constantemente. Por ello, construyo infraestructuras modulares que permiten intercambiar modelos (LLMs) como si fueran piezas de un rompecabezas, asegurando que la arquitectura base nunca quede obsoleta.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div>
+            <button onclick="toggleFaq(3)" class="w-full flex items-start gap-4 text-left group">
+              <span id="faq-icon-3" class="text-zinc-500 font-mono text-xl leading-none group-hover:text-white transition-colors mt-0.5">+</span>
+              <span class="font-mono font-bold text-white text-base leading-snug" data-i18n="faq3_q">¿Qué tipo de proyectos buscas actualmente?</span>
+            </button>
+            <div id="faq-ans-3" class="faq-answer pl-8">
+              <p class="text-zinc-400 text-base leading-relaxed" data-i18n="faq3_a">Me interesan los desafíos donde pueda diseñar canales de datos escalables (ETL), optimizar flujos de trabajo mediante automatización e integrar soluciones de Inteligencia Artificial para reducir drásticamente los cuellos de botella operativos.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div>
+            <button onclick="toggleFaq(4)" class="w-full flex items-start gap-4 text-left group">
+              <span id="faq-icon-4" class="text-zinc-500 font-mono text-xl leading-none group-hover:text-white transition-colors mt-0.5">+</span>
+              <span class="font-mono font-bold text-white text-base leading-snug" data-i18n="faq4_q">¿Estás disponible para contratación?</span>
+            </button>
+            <div id="faq-ans-4" class="faq-answer pl-8">
+              <p class="text-zinc-400 text-base leading-relaxed" data-i18n="faq4_a">Sí, actualmente estoy explorando oportunidades tanto para roles internos a tiempo completo (posiciones Junior/Mid en Ingeniería de Datos o Automatización) como para consultorías de proyectos freelance.</p>
+            </div>
           </div>
 
         </div>
@@ -462,6 +523,23 @@ $ n8n start --tunnel
       document.getElementById(`tab-${tabId}`).classList.add('active');
       document.querySelectorAll('.terminal-content-panel').forEach(panel => panel.classList.remove('active'));
       document.getElementById(`panel-${tabId}`).classList.add('active');
+    }
+
+    function toggleFaq(id) {
+      const ans = document.getElementById(`faq-ans-${id}`);
+      const icon = document.getElementById(`faq-icon-${id}`);
+      
+      if (ans.classList.contains('open')) {
+        ans.classList.remove('open');
+        icon.innerText = '+';
+        icon.classList.remove('text-white');
+        icon.classList.add('text-zinc-500');
+      } else {
+        ans.classList.add('open');
+        icon.innerText = '-';
+        icon.classList.remove('text-zinc-500');
+        icon.classList.add('text-white');
+      }
     }
 
     function openModal() {
@@ -560,6 +638,17 @@ $ n8n start --tunnel
         edu_sub: "Educación / 3er Semestre (Actual)",
         edu_title: "Ingeniería de Software (Uniempresarial)",
         edu_desc: "Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.",
+        
+        section_faq: "FAQ",
+        faq1_q: "¿Qué significa ser un 'arquitecto agnóstico'?",
+        faq1_a: "Significa que mi enfoque está en resolver problemas de negocio mediante lógica y diseño de sistemas, sin depender de un lenguaje o framework específico. Utilizo las herramientas que mejor se adapten a la necesidad operativa.",
+        faq2_q: "¿Por qué no listas nombres específicos de IAs en tu stack?",
+        faq2_a: "El ecosistema de modelos fundacionales evoluciona constantemente. Por ello, construyo infraestructuras modulares que permiten intercambiar modelos (LLMs) como si fueran piezas de un rompecabezas, asegurando que la arquitectura base nunca quede obsoleta.",
+        faq3_q: "¿Qué tipo de proyectos buscas actualmente?",
+        faq3_a: "Me interesan los desafíos donde pueda diseñar canales de datos escalables (ETL), optimizar flujos de trabajo mediante automatización e integrar soluciones de Inteligencia Artificial para reducir drásticamente los cuellos de botella operativos.",
+        faq4_q: "¿Estás disponible para contratación?",
+        faq4_a: "Sí, actualmente estoy explorando oportunidades tanto para roles internos a tiempo completo (posiciones Junior/Mid en Ingeniería de Datos o Automatización) como para consultorías de proyectos freelance.",
+
         footer_tag: "Sistemas Agnósticos. Automatización Estructurada.",
         
         modal_path: "~ /usr/bin/contacto",
@@ -633,6 +722,17 @@ $ n8n start --tunnel
         edu_sub: "Education / 3rd Semester (Current)",
         edu_title: "Software Engineering (Uniempresarial)",
         edu_desc: "Fundamental basis in applied mathematics, logical system design, and data structures. Development of a tool-agnostic engineering mindset, prioritizing architecture and the efficient resolution of complex problems.",
+
+        section_faq: "FAQ",
+        faq1_q: "What does it mean to be an 'agnostic architect'?",
+        faq1_a: "It means my focus is on solving business problems through logic and system design, without relying on a specific language or framework. I use the tools that best fit the operational need.",
+        faq2_q: "Why don't you list specific AI names in your stack?",
+        faq2_a: "The foundational model ecosystem is constantly evolving. Therefore, I build modular infrastructures that allow swapping models (LLMs) like puzzle pieces, ensuring the core architecture never becomes obsolete.",
+        faq3_q: "What kind of projects are you currently looking for?",
+        faq3_a: "I am interested in challenges where I can design scalable data pipelines (ETL), optimize workflows through automation, and integrate Artificial Intelligence solutions to drastically reduce operational bottlenecks.",
+        faq4_q: "Are you available for hire?",
+        faq4_a: "Yes, I am currently exploring opportunities for both full-time internal roles (Junior/Mid positions in Data Engineering or Automation) and freelance project consulting.",
+
         footer_tag: "Agnostic Systems. Structured Automation.",
         
         modal_path: "~ /usr/bin/contact",
@@ -655,9 +755,9 @@ $ n8n start --tunnel
 
       const msgArea = document.getElementById('modal-msg');
       if(lang === 'en') {
-        msgArea.value = "Hi Robin, I reviewed your portfolio and found your language-agnostic approach and vision on data architecture very interesting. I would like to chat with you about a potential opportunity or collaboration.";
+        msgArea.value = "Hi robin, I reviewed your portfolio and found your language-agnostic approach and vision on data architecture very interesting. I would like to chat with you about a potential opportunity or collaboration.";
       } else {
-        msgArea.value = "Hola Robin, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
+        msgArea.value = "Hola robin, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
       }
       document.documentElement.lang = lang;
     }
