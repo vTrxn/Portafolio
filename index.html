@@ -10,7 +10,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -34,8 +34,27 @@
       font-family: 'Inter', sans-serif;
     }
 
+    .font-pixel {
+      font-family: 'Press Start 2P', cursive;
+      letter-spacing: -1px;
+    }
+
+    /* Logotipo estilo Opencode */
+    .logo-opencode {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.25rem;
+      color: #e5e5e5;
+      text-transform: lowercase;
+    }
+    .logo-opencode span:nth-child(even) {
+      color: #888888;
+    }
+
+    /* Terminal Block */
     .terminal-block {
-      background-color: #141414;
+      background-color: #0a0a0a;
       border: 1px solid var(--border-color);
       border-radius: 8px;
       overflow: hidden;
@@ -59,6 +78,14 @@
     .terminal-tab.active {
       color: var(--text-main);
       border-bottom-color: var(--text-main);
+    }
+
+    /* Contenido de la terminal */
+    .terminal-content-panel {
+      display: none;
+    }
+    .terminal-content-panel.active {
+      display: flex;
     }
 
     .btn-primary {
@@ -174,9 +201,9 @@
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       
       <div class="flex items-center gap-8">
-        <div class="font-bold text-xl tracking-tight text-white flex items-center gap-2">
-          <span class="w-4 h-4 bg-white block"></span>
-          robinson_aranda
+        <!-- Logo Opencode Style -->
+        <div class="logo-opencode">
+          <span>r</span><span>o</span><span>b</span><span>i</span><span>n</span><span>s</span><span>o</span><span>n</span>
         </div>
         
         <div class="hidden md:flex items-center gap-6">
@@ -222,19 +249,39 @@
         La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo agnóstico a la tecnología.
       </p>
 
+      <!-- TERMINAL INTERACTIVA -->
       <div class="terminal-block mb-12">
         <div class="terminal-header">
-          <div class="terminal-tab active" data-i18n="term_tab1">contacto</div>
-          <div class="terminal-tab" data-i18n="term_tab2">tecnologías</div>
-          <div class="terminal-tab" data-i18n="term_tab3">ubicación</div>
+          <div class="terminal-tab active" onclick="switchTab('contacto')" id="tab-contacto" data-i18n="term_tab1">contacto</div>
+          <div class="terminal-tab" onclick="switchTab('tecnologias')" id="tab-tecnologias" data-i18n="term_tab2">tecnologías</div>
+          <div class="terminal-tab" onclick="switchTab('ubicacion')" id="tab-ubicacion" data-i18n="term_tab3">ubicación</div>
         </div>
-        <div class="p-5 bg-[#0a0a0a] flex justify-between items-center text-sm md:text-base">
-          <div class="text-zinc-300" data-i18n="term_cmd">
+        
+        <!-- Panel Contacto -->
+        <div id="panel-contacto" class="terminal-content-panel active p-5 bg-[#0a0a0a] justify-between items-center text-sm md:text-base">
+          <div class="text-zinc-300" data-i18n="term_cmd_contact">
             <span class="text-zinc-500 mr-2">~</span><span class="text-white">npx</span> contratar-robinson --rol="Arquitecto de Datos"
           </div>
           <button onclick="openModal()" class="text-zinc-500 hover:text-white transition-colors" title="Ejecutar">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </button>
+        </div>
+
+        <!-- Panel Tecnologías -->
+        <div id="panel-tecnologias" class="terminal-content-panel p-5 bg-[#0a0a0a] justify-between items-center text-sm md:text-base">
+          <div class="text-zinc-300" data-i18n="term_cmd_tech">
+            <span class="text-zinc-500 mr-2">~</span><span class="text-white">cat</span> package.json | grep "stack"
+          </div>
+          <button onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})" class="text-zinc-500 hover:text-white transition-colors" title="Ejecutar">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+
+        <!-- Panel Ubicación -->
+        <div id="panel-ubicacion" class="terminal-content-panel p-5 bg-[#0a0a0a] justify-between items-center text-sm md:text-base">
+          <div class="text-zinc-300">
+            <span class="text-zinc-500 mr-2">~</span><span class="text-white">curl</span> ipinfo.io/loc | echo "Bogotá, Colombia"
+          </div>
         </div>
       </div>
     </header>
@@ -242,11 +289,11 @@
     <div class="w-full h-px bg-[#333] mb-16"></div>
 
     <!-- CORE EXPERTISE -->
-    <section class="mb-20">
+    <section id="core-expertise" class="mb-20 scroll-mt-24">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="md:col-span-1">
           <h3 class="text-white font-bold mb-2 font-sans-alt text-xl" data-i18n="exp_h1">Agnóstico & IA</h3>
-          <p class="text-sm text-zinc-500 leading-relaxed" data-i18n="exp_p1">Ingeniería de instrucciones y modelos fundacionales para acelerar la lógica de negocio.</p>
+          <p class="text-sm text-zinc-500 leading-relaxed" data-i18n="exp_p1">Ingeniería de instrucciones (Prompting) y modelos fundacionales para acelerar la lógica de negocio.</p>
         </div>
         <div class="md:col-span-2 border border-[#333] rounded-md p-6 bg-[#141414]">
           <pre class="text-xs text-zinc-400 overflow-x-auto"><code data-i18n="code_block1"><span class="text-zinc-600"># Modelos Soportados & Herramientas</span>
@@ -306,7 +353,7 @@ $ n8n start --tunnel
         <div class="project-grid">
           <div class="project-main">
             <div class="flex justify-between items-start mb-4">
-              <h3 class="text-white font-bold text-xl" data-i18n="proj1_title">Sistema Multi-Agente Integral</h3>
+              <h3 class="text-white font-bold text-xl">OmniAgent System</h3>
               <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400">PoC</span>
             </div>
             <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj1_desc">
@@ -335,11 +382,11 @@ $ n8n start --tunnel
         <div class="project-grid">
           <div class="project-main">
             <div class="flex justify-between items-start mb-4">
-              <h3 class="text-white font-bold text-xl" data-i18n="proj2_title">Núcleo SupplyAI</h3>
+              <h3 class="text-white font-bold text-xl">SupplyAI Core</h3>
               <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400">SaaS</span>
             </div>
             <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj2_desc">
-              Diseño de arquitectura en la nube para una plataforma orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para modelos de IA que predicen la demanda. Enfoque estricto en seguridad de datos (Políticas RLS) y optimización de consultas SQL.
+              Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de datos (RLS) y optimización SQL.
             </p>
           </div>
           <div class="project-sidebar">
@@ -360,11 +407,11 @@ $ n8n start --tunnel
         <div class="project-grid">
           <div class="project-main">
             <div class="flex justify-between items-start mb-4">
-              <h3 class="text-white font-bold text-xl" data-i18n="proj3_title">Motor ImpulsoIA</h3>
+              <h3 class="text-white font-bold text-xl">ImpulsoIA Engine</h3>
               <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400">Engine</span>
             </div>
             <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj3_desc">
-              Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar el análisis manual por procesos algorítmicos escalables.
+              Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables.
             </p>
           </div>
           <div class="project-sidebar">
@@ -433,8 +480,8 @@ $ n8n start --tunnel
   <!-- FOOTER -->
   <footer class="border-t border-[#333] bg-[#0f0f0f] py-8">
     <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
-      <div>
-        <span class="text-white font-bold">robinson_aranda</span> © 2026
+      <div class="logo-opencode text-sm">
+        <span>r</span><span>o</span><span>b</span><span>i</span><span>n</span><span>s</span><span>o</span><span>n</span>
       </div>
       <div class="font-mono text-xs">
         <span data-i18n="footer_tag">Sistemas Agnósticos. Automatización con IA.</span>
@@ -442,8 +489,26 @@ $ n8n start --tunnel
     </div>
   </footer>
 
-  <!-- SCRIPT DE LÓGICA & TRADUCCIÓN PURIFICADA -->
+  <!-- SCRIPT DE LÓGICA -->
   <script>
+    // ----- TERMINAL TABS LOGIC -----
+    function switchTab(tabId) {
+      // Remove active class from all tabs
+      document.querySelectorAll('.terminal-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      // Add active class to clicked tab
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+
+      // Hide all panels
+      document.querySelectorAll('.terminal-content-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+      // Show target panel
+      document.getElementById(`panel-${tabId}`).classList.add('active');
+    }
+
+    // ----- MODAL LOGIC -----
     function openModal() {
       const modal = document.getElementById('contact-modal');
       const content = document.getElementById('contact-modal-content');
@@ -474,6 +539,7 @@ $ n8n start --tunnel
       closeModal();
     }
 
+    // ----- TRANSLATION LOGIC -----
     const translations = {
       es: {
         nav_git: "[Portafolio]",
@@ -488,10 +554,11 @@ $ n8n start --tunnel
         term_tab1: "contacto",
         term_tab2: "tecnologías",
         term_tab3: "ubicación",
-        term_cmd: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> contratar-robinson --rol='Arquitecto de Datos'",
+        term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> contratar-robinson --rol='Arquitecto de Datos'",
+        term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
         
         exp_h1: "Agnóstico & IA",
-        exp_p1: "Ingeniería de instrucciones y modelos fundacionales para acelerar la lógica de negocio.",
+        exp_p1: "Ingeniería de instrucciones (Prompting) y modelos fundacionales para acelerar la lógica de negocio.",
         code_block1: "<span class='text-zinc-600'># Modelos Soportados & Herramientas</span>\n- Claude 3.5 Sonnet   <span class='text-zinc-600'># Lógica principal</span>\n- GPT-4o / Kimi       <span class='text-zinc-600'># Ingestión de datos</span>\n- API de Perplexity   <span class='text-zinc-600'># Agentes de investigación</span>\n\n<span class='text-zinc-600'># Capacidades</span>\n> Diseño de arquitecturas RAG para bases corporativas.\n> Creación de sistemas multi-agente autónomos.",
         
         exp_h2: "Flujos ETL & Datos",
@@ -503,18 +570,12 @@ $ n8n start --tunnel
         code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual con n8n.\n- Microservicios con FastAPI & Node.js.\n- Entornos aislados basados en Linux.",
         
         section_projects: "Arquitectura & Pruebas de Concepto",
-        proj1_title: "Sistema Multi-Agente Integral",
-        proj1_sub: "Prueba de Concepto",
         proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.",
         proj1_impact: "<span class='text-zinc-500'>Impacto //</span> Demostración técnica de que delegar código a la IA permite enfocar 100% el esfuerzo humano en arquitectura.",
         
-        proj2_title: "Núcleo SupplyAI",
-        proj2_sub: "Arquitectura Cloud SaaS",
         proj2_desc: "Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de datos (RLS) y optimización SQL.",
         
-        proj3_title: "Motor ImpulsoIA",
-        proj3_sub: "Procesamiento de Información",
-        proj3_desc: "Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar el análisis manual por procesos algorítmicos escalables.",
+        proj3_desc: "Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables.",
         
         sidebar_context: "Contexto",
         sidebar_tech: "Tecnologías",
@@ -557,7 +618,8 @@ $ n8n start --tunnel
         term_tab1: "contact",
         term_tab2: "stack",
         term_tab3: "location",
-        term_cmd: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> hire-robinson --role='Data Architect'",
+        term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> hire-robinson --role='Data Architect'",
+        term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
         
         exp_h1: "Agnostic & AI",
         exp_p1: "Prompt engineering and foundational models to accelerate business logic.",
@@ -572,18 +634,12 @@ $ n8n start --tunnel
         code_block3: "<span class='text-zinc-600'># Deployment Tools</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual automation with n8n.\n- Microservices with FastAPI & Node.js.\n- Isolated Linux-based environments.",
         
         section_projects: "Architecture & Proofs of Concept",
-        proj1_title: "OmniAgent System",
-        proj1_sub: "Proof of Concept",
-        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. Integrates multiple AIs via n8n to perform web data extraction, cleaning, report synthesis, and code generation independently and asynchronously.",
+        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. Integrates multiple AIs via n8n to perform web data extraction, cleaning, report synthesis, and code generation asynchronously.",
         proj1_impact: "<span class='text-zinc-500'>Impact //</span> Technical demonstration that delegating code to AI allows 100% human effort to focus on architecture.",
         
-        proj2_title: "SupplyAI Core",
-        proj2_sub: "Cloud SaaS Architecture",
-        proj2_desc: "Cloud Backend-as-a-Service architecture for a corporate supply chain platform. The core is an automated pipeline that processes logistics databases for predictive AI models. Strict focus on data security (RLS Policies) and SQL optimization.",
+        proj2_desc: "Cloud Backend-as-a-Service architecture for a corporate supply chain platform. The core is an automated pipeline that processes logistics databases for predictive AI models. Strict focus on RLS security and SQL optimization.",
         
-        proj3_title: "ImpulsoIA Engine",
-        proj3_sub: "Data Processing Engine",
-        proj3_desc: "Containerized environment that receives massive raw corporate data, analyzes it through structured AI prompts, and exports business action plans. Demonstrates feasibility of replacing manual analysis with scalable algorithmic processes.",
+        proj3_desc: "Containerized environment that receives raw corporate data, analyzes it through structured AI prompts, and exports business action plans. Demonstrates feasibility of replacing manual analysis with algorithmic processes.",
         
         sidebar_context: "Context",
         sidebar_tech: "Stack",
@@ -598,7 +654,7 @@ $ n8n start --tunnel
         exp1_desc: "System auditing and integration development using n8n and Docker. Implemented automated processes connecting databases with AI modules for commercial analysis, eliminating manual custom developments for repetitive tasks.",
         exp2_sub: "Data Architecture / eCommerce",
         exp2_title: "Data Extraction & Transformation Architect (ETL)",
-        exp2_desc: "Logical design of a massive processing pipeline for transactional events. Built core flows focused on automatic data cleaning and efficient persistence in analytical databases.",
+        exp2_desc: "Logical design of a massive processing pipeline for transactional events. Built core flows focused on automatic data cleaning and efficient persistence in analytical DBs.",
         exp3_sub: "fUSoft / Bogota, Col.",
         exp3_title: "Software & Data Engineer (Intern)",
         exp3_desc: "Developed business-oriented solutions. Maintained architectures, improved algorithmic logic in existing repositories, and created internal tools via automated processes.",
