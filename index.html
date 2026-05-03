@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robin | Arquitecto de Datos y Sistemas</title>
+  <title>robin | Arquitecto de Datos y Sistemas</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -28,7 +28,9 @@
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
+      line-height: 1.7; /* Aumentado ligeramente para mejor legibilidad con texto más grande */
+      /* Base font size aumentado para escalar todo el diseño */
+      font-size: 1.05rem; 
     }
 
     .font-mono {
@@ -50,9 +52,9 @@
     }
 
     .terminal-tab {
-      padding: 12px 24px;
+      padding: 14px 28px; /* Ligeramente más grande */
       color: var(--text-muted);
-      font-size: 0.875rem;
+      font-size: 0.95rem; /* Aumentado */
       cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: all 0.2s ease;
@@ -74,7 +76,7 @@
     .nav-link {
       color: var(--text-main);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.95rem; /* Aumentado */
       transition: color 0.2s;
     }
     .nav-link:hover {
@@ -84,10 +86,10 @@
     .badge-nuevo {
       background-color: #ffffff;
       color: #000000;
-      padding: 2px 8px;
-      font-size: 0.75rem;
+      padding: 4px 10px; /* Aumentado */
+      font-size: 0.85rem; /* Aumentado */
       font-weight: 700;
-      border-radius: 2px;
+      border-radius: 4px;
       display: inline-block;
     }
 
@@ -119,11 +121,11 @@
       }
     }
     .project-main {
-      padding: 24px;
+      padding: 32px; /* Aumentado padding */
       border-bottom: 1px solid var(--border-color);
     }
     .project-sidebar {
-      padding: 24px;
+      padding: 32px; /* Aumentado padding */
       background-color: #0a0a0a;
       border-bottom-right-radius: 8px;
     }
@@ -142,22 +144,22 @@
 
   <!-- MODAL DE CONTACTO -->
   <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 flex items-center justify-center px-4">
-    <div class="terminal-block w-full max-w-lg relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
-      <div class="terminal-header justify-between items-center px-4 py-2 font-mono">
-        <span class="text-sm text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
-        <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition-colors text-lg">×</button>
+    <div class="terminal-block w-full max-w-xl relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
+      <div class="terminal-header justify-between items-center px-6 py-3 font-mono">
+        <span class="text-base text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
+        <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition-colors text-xl">×</button>
       </div>
       
-      <div class="p-6">
-        <p class="text-zinc-400 mb-6 text-sm" data-i18n="modal_desc">Edita el cuerpo del mensaje. Se ejecutará tu cliente de correo local al confirmar.</p>
+      <div class="p-8">
+        <p class="text-zinc-400 mb-6 text-base" data-i18n="modal_desc">Edita el cuerpo del mensaje. Se ejecutará tu cliente de correo local al confirmar.</p>
         
         <div class="space-y-4">
-          <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest" data-i18n="modal_body_label">CUERPO DEL MENSAJE</label>
-          <textarea id="modal-msg" rows="5" class="w-full bg-[#050505] border border-[#27272a] rounded-md p-3 text-zinc-300 text-sm focus:outline-none focus:border-zinc-500 transition-colors font-mono">Hola Robin, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
+          <label class="block text-sm font-bold text-zinc-500 uppercase tracking-widest" data-i18n="modal_body_label">CUERPO DEL MENSAJE</label>
+          <textarea id="modal-msg" rows="5" class="w-full bg-[#050505] border border-[#27272a] rounded-md p-4 text-zinc-300 text-base focus:outline-none focus:border-zinc-500 transition-colors font-mono">Hola robin, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
           
-          <button onclick="sendTemplateMail()" class="w-full py-3 bg-white text-black font-bold rounded-md hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-2">
+          <button onclick="sendTemplateMail()" class="w-full py-4 bg-white text-black font-bold text-lg rounded-md hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-4">
             <span data-i18n="modal_send_btn">Ejecutar mailto:</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </button>
         </div>
       </div>
@@ -165,22 +167,21 @@
   </div>
 
   <!-- CONTENEDOR MAESTRO CENTRAL -->
-  <div class="max-w-[1150px] mx-auto border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative shadow-2xl shadow-black">
+  <div class="max-w-[1280px] mx-auto border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative shadow-2xl shadow-black">
 
     <!-- NAVEGACIÓN TOP -->
     <nav class="border-b border-[#27272a] bg-[#0a0a0a] sticky top-0 z-50">
-      <div class="px-8 md:px-12 h-20 flex items-center justify-between">
+      <div class="px-8 md:px-14 h-24 flex items-center justify-between">
         
-        <div class="flex items-center gap-8">
-          <!-- Logo con fuente Monospace -->
-          <div class="font-bold text-xl tracking-tighter text-white flex items-center gap-2 font-mono">
-            <span class="w-4 h-4 bg-white block"></span>
-            Robin
+        <div class="flex items-center gap-10">
+          <!-- Logo con fuente Monospace en minúsculas y sin cuadro blanco -->
+          <div class="font-bold text-2xl tracking-tighter text-white flex items-center font-mono">
+            robin
           </div>
           
-          <div class="hidden md:flex items-center gap-6">
-            <a href="https://github.com/vTrxn" target="_blank" class="nav-link flex items-center gap-1 font-medium">
-              GitHub <span class="text-zinc-600 font-mono text-xs" data-i18n="nav_git">[Portafolio]</span>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="https://github.com/vTrxn" target="_blank" class="nav-link flex items-center gap-2 font-medium">
+              GitHub <span class="text-zinc-600 font-mono text-sm" data-i18n="nav_git">[Portafolio]</span>
             </a>
             <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" class="nav-link font-medium">LinkedIn</a>
             <a href="#proyectos" class="nav-link font-medium" data-i18n="nav_projects">Proyectos</a>
@@ -188,15 +189,15 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-6">
-          <div class="flex gap-2 text-sm font-medium">
+        <div class="flex items-center gap-8">
+          <div class="flex gap-3 text-base font-medium">
             <span id="btn-es" onclick="setLanguage('es')" class="lang-toggle active">ES</span>
             <span class="text-zinc-700">|</span>
             <span id="btn-en" onclick="setLanguage('en')" class="lang-toggle">EN</span>
           </div>
           
-          <button onclick="openModal()" class="bg-white text-black font-bold px-4 py-2 rounded-md hover:bg-zinc-200 transition-colors text-sm hidden md:flex items-center gap-2" data-i18n="nav_contact">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <button onclick="openModal()" class="bg-white text-black font-bold px-5 py-2.5 rounded-md hover:bg-zinc-200 transition-colors text-base hidden md:flex items-center gap-2" data-i18n="nav_contact">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             Contactar
           </button>
         </div>
@@ -204,21 +205,21 @@
     </nav>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-1 px-8 md:px-12 py-16 md:py-24">
+    <main class="flex-1 px-8 md:px-16 py-20 md:py-28">
       
       <!-- HERO SECTION -->
-      <header class="mb-20">
-        <div class="flex items-center gap-4 mb-8">
+      <header class="mb-24">
+        <div class="flex items-center gap-4 mb-10">
           <span class="badge-nuevo" data-i18n="badge_status">DISPONIBLE</span>
-          <span class="text-zinc-400 text-sm" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización de Sistemas.</span>
+          <span class="text-zinc-400 text-base" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización de Sistemas.</span>
         </div>
 
-        <h1 class="text-4xl md:text-[3.5rem] font-bold text-white leading-tight mb-6 tracking-tight" data-i18n="hero_title">
+        <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-8 tracking-tight" data-i18n="hero_title">
           El arquitecto de sistemas y datos asistido por IA.
         </h1>
         
-        <p class="text-lg text-zinc-400 mb-12 max-w-3xl" data-i18n="hero_desc">
-          La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales de datos robustos siendo completamente agnóstico a la tecnología.
+        <p class="text-xl text-zinc-400 mb-14 max-w-4xl" data-i18n="hero_desc">
+          La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo completamente agnóstico a la tecnología.
         </p>
 
         <!-- TERMINAL INTERACTIVA -->
@@ -229,39 +230,39 @@
             <div class="terminal-tab" onclick="switchTab('ubicacion')" id="tab-ubicacion" data-i18n="term_tab3">ubicación</div>
           </div>
           
-          <div id="panel-contacto" class="terminal-content-panel font-mono active p-5 justify-between items-center text-sm md:text-base cursor-pointer group hover:bg-[#141414] transition-colors" onclick="openModal()">
+          <div id="panel-contacto" class="terminal-content-panel font-mono active p-6 justify-between items-center text-base md:text-lg cursor-pointer group hover:bg-[#141414] transition-colors" onclick="openModal()">
             <div class="text-zinc-300" data-i18n="term_cmd_contact">
-              <span class="text-zinc-500 mr-2">~</span><span class="text-white">npx</span> contactar-robin --rol="Arquitecto de Datos"
+              <span class="text-zinc-500 mr-3">~</span><span class="text-white">npx</span> contactar-robin --rol="Arquitecto de Datos"
             </div>
-            <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            <svg class="w-6 h-6 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
           </div>
 
-          <div id="panel-tecnologias" class="terminal-content-panel font-mono p-5 justify-between items-center text-sm md:text-base cursor-pointer group hover:bg-[#141414] transition-colors" onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})">
+          <div id="panel-tecnologias" class="terminal-content-panel font-mono p-6 justify-between items-center text-base md:text-lg cursor-pointer group hover:bg-[#141414] transition-colors" onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})">
             <div class="text-zinc-300" data-i18n="term_cmd_tech">
-              <span class="text-zinc-500 mr-2">~</span><span class="text-white">cat</span> package.json | grep "tecnologias"
+              <span class="text-zinc-500 mr-3">~</span><span class="text-white">cat</span> package.json | grep "tecnologias"
             </div>
-            <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-6 h-6 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </div>
 
-          <div id="panel-ubicacion" class="terminal-content-panel font-mono p-5 justify-between items-center text-sm md:text-base">
+          <div id="panel-ubicacion" class="terminal-content-panel font-mono p-6 justify-between items-center text-base md:text-lg">
             <div class="text-zinc-300">
-              <span class="text-zinc-500 mr-2">~</span><span class="text-white">curl</span> ipinfo.io/loc | echo "Bogotá, Colombia"
+              <span class="text-zinc-500 mr-3">~</span><span class="text-white">curl</span> ipinfo.io/loc | echo "Bogotá, Colombia"
             </div>
           </div>
         </div>
       </header>
 
-      <hr class="border-[#27272a] my-16">
+      <hr class="border-[#27272a] my-20">
 
       <!-- CORE EXPERTISE -->
-      <section id="core-expertise" class="mb-20 scroll-mt-24">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section id="core-expertise" class="mb-24 scroll-mt-32">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-3 text-xl" data-i18n="exp_h1">Arquitectura Asistida por IA</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp_p1">Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.</p>
+            <h3 class="text-white font-bold mb-4 text-2xl" data-i18n="exp_h1">Arquitectura Asistida por IA</h3>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp_p1">Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.</p>
           </div>
-          <div class="md:col-span-2 border border-[#27272a] rounded-md p-6 bg-[#0f0f0f]">
-            <pre class="text-xs text-zinc-400 overflow-x-auto font-mono"><code data-i18n="code_block1"><span class="text-zinc-600"># Componentes de Arquitectura IA</span>
+          <div class="md:col-span-2 border border-[#27272a] rounded-lg p-8 bg-[#0f0f0f]">
+            <pre class="text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block1"><span class="text-zinc-600"># Componentes de Arquitectura IA</span>
 [x] Integración de Modelos Fundacionales (LLMs)
 [x] Diseño de Sistemas Multi-Agente
 [x] Orquestación de Prompts Estructurados
@@ -273,13 +274,13 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-3 text-xl" data-i18n="exp_h2">Ingeniería de Datos</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp_p2">Extracción, transformación y carga (ETL) de información para sistemas empresariales.</p>
+            <h3 class="text-white font-bold mb-4 text-2xl" data-i18n="exp_h2">Ingeniería de Datos</h3>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp_p2">Extracción, transformación y carga (ETL) de información para sistemas empresariales.</p>
           </div>
-          <div class="md:col-span-2 border border-[#27272a] rounded-md p-6 bg-[#0f0f0f]">
-            <pre class="text-xs text-zinc-400 overflow-x-auto font-mono"><code data-i18n="code_block2"><span class="text-zinc-600"># Infraestructura y Tecnologías Principales</span>
+          <div class="md:col-span-2 border border-[#27272a] rounded-lg p-8 bg-[#0f0f0f]">
+            <pre class="text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block2"><span class="text-zinc-600"># Infraestructura y Tecnologías Principales</span>
 import pipeline_core
 from database import engine
 
@@ -291,13 +292,13 @@ from database import engine
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-3 text-xl" data-i18n="exp_h3">Automatización & Orquestación</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp_p3">Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.</p>
+            <h3 class="text-white font-bold mb-4 text-2xl" data-i18n="exp_h3">Automatización & Orquestación</h3>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp_p3">Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.</p>
           </div>
-          <div class="md:col-span-2 border border-[#27272a] rounded-md p-6 bg-[#0f0f0f]">
-             <pre class="text-xs text-zinc-400 overflow-x-auto font-mono"><code data-i18n="code_block3"><span class="text-zinc-600"># Herramientas de Despliegue</span>
+          <div class="md:col-span-2 border border-[#27272a] rounded-lg p-8 bg-[#0f0f0f]">
+             <pre class="text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block3"><span class="text-zinc-600"># Herramientas de Despliegue</span>
 $ docker-compose up -d
 $ n8n start --tunnel
 
@@ -310,32 +311,32 @@ $ n8n start --tunnel
       </section>
 
       <!-- PROYECTOS -->
-      <section id="proyectos" class="mb-24 scroll-mt-24">
-        <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-[#27272a] pb-4" data-i18n="section_projects">Arquitectura & Pruebas de Concepto</h2>
+      <section id="proyectos" class="mb-28 scroll-mt-32">
+        <h2 class="text-base font-bold text-zinc-500 uppercase tracking-widest mb-10 border-b border-[#27272a] pb-6" data-i18n="section_projects">Arquitectura & Pruebas de Concepto</h2>
 
-        <div class="space-y-8">
+        <div class="space-y-10">
           
           <div class="project-grid">
             <div class="project-main">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-white font-bold text-xl" data-i18n="proj1_title">Sistema OmniAgent</h3>
-                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">PdC</span>
+              <div class="flex justify-between items-start mb-6">
+                <h3 class="text-white font-bold text-2xl" data-i18n="proj1_title">Sistema OmniAgent</h3>
+                <span class="text-sm border border-[#333] px-3 py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">PdC</span>
               </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj1_desc">
+              <p class="text-zinc-400 text-base leading-relaxed mb-8" data-i18n="proj1_desc">
                 Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.
               </p>
-              <div class="bg-[#050505] p-3 rounded border border-[#27272a] text-xs text-zinc-300">
+              <div class="bg-[#050505] p-4 rounded border border-[#27272a] text-sm text-zinc-300">
                 <span class="text-zinc-500 font-mono" data-i18n="proj1_impact_tag">Impacto //</span> <span data-i18n="proj1_impact">Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.</span>
               </div>
             </div>
             <div class="project-sidebar">
-              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs text-zinc-500 space-y-2 font-mono">
+              <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-sm text-zinc-500 space-y-3 font-mono">
                 <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role1">Arquitecto de Datos</span></li>
                 <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type1">Sist. Multi-Agente</span></li>
               </ul>
-              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs text-zinc-500 space-y-1 font-mono">
+              <h4 class="text-sm font-bold text-white mt-8 mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-sm text-zinc-500 space-y-2 font-mono">
                 <li><span class="text-green-500">•</span> Python</li>
                 <li><span class="text-green-500">•</span> n8n</li>
                 <li><span class="text-green-500">•</span> Modelos de Lenguaje</li>
@@ -345,21 +346,21 @@ $ n8n start --tunnel
 
           <div class="project-grid">
             <div class="project-main">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-white font-bold text-xl" data-i18n="proj2_title">Núcleo SupplyAI</h3>
-                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">SaaS</span>
+              <div class="flex justify-between items-start mb-6">
+                <h3 class="text-white font-bold text-2xl" data-i18n="proj2_title">Núcleo SupplyAI</h3>
+                <span class="text-sm border border-[#333] px-3 py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">SaaS</span>
               </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj2_desc">
+              <p class="text-zinc-400 text-base leading-relaxed mb-8" data-i18n="proj2_desc">
                 Diseño de arquitectura en la nube orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de la información (Políticas RLS), normalización y alta disponibilidad.
               </p>
             </div>
             <div class="project-sidebar">
-              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs text-zinc-500 space-y-2 font-mono">
+              <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-sm text-zinc-500 space-y-3 font-mono">
                 <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type2">Servidor en Nube</span></li>
               </ul>
-              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs text-zinc-500 space-y-1 font-mono">
+              <h4 class="text-sm font-bold text-white mt-8 mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-sm text-zinc-500 space-y-2 font-mono">
                 <li><span class="text-green-500">•</span> Supabase</li>
                 <li><span class="text-green-500">•</span> FastAPI</li>
                 <li><span class="text-green-500">•</span> PostgreSQL</li>
@@ -369,21 +370,21 @@ $ n8n start --tunnel
 
           <div class="project-grid">
             <div class="project-main">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-white font-bold text-xl" data-i18n="proj3_title">Motor ImpulsoIA</h3>
-                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400 font-mono" data-i18n="proj3_badge">Motor</span>
+              <div class="flex justify-between items-start mb-6">
+                <h3 class="text-white font-bold text-2xl" data-i18n="proj3_title">Motor ImpulsoIA</h3>
+                <span class="text-sm border border-[#333] px-3 py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj3_badge">Motor</span>
               </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj3_desc">
+              <p class="text-zinc-400 text-base leading-relaxed mb-8" data-i18n="proj3_desc">
                 Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables mediante tecnología agnóstica.
               </p>
             </div>
             <div class="project-sidebar">
-              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs text-zinc-500 space-y-2 font-mono">
+              <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-sm text-zinc-500 space-y-3 font-mono">
                 <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type3">App en Contenedor</span></li>
               </ul>
-              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs text-zinc-500 space-y-1 font-mono">
+              <h4 class="text-sm font-bold text-white mt-8 mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-sm text-zinc-500 space-y-2 font-mono">
                 <li><span class="text-green-500">•</span> Docker</li>
                 <li><span class="text-green-500">•</span> Ing. Prompts</li>
               </ul>
@@ -394,43 +395,43 @@ $ n8n start --tunnel
       </section>
 
       <!-- EXPERIENCIA -->
-      <section id="experiencia" class="mb-12 scroll-mt-24">
-        <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-[#27272a] pb-4" data-i18n="section_logs">Experiencia & Educación</h2>
+      <section id="experiencia" class="mb-16 scroll-mt-32">
+        <h2 class="text-base font-bold text-zinc-500 uppercase tracking-widest mb-10 border-b border-[#27272a] pb-6" data-i18n="section_logs">Experiencia & Educación</h2>
         
-        <div class="space-y-6">
+        <div class="space-y-10">
           
-          <div class="border-l-2 border-[#27272a] pl-6 relative">
-            <div class="absolute w-2 h-2 bg-zinc-500 rounded-full -left-[5px] top-1.5"></div>
-            <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="exp1_sub">Consultor Externo / Remoto</span>
-            <h4 class="text-white font-bold mb-2" data-i18n="exp1_title">Consultoría de Automatización y Sistemas</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
+          <div class="border-l-2 border-[#27272a] pl-8 relative">
+            <div class="absolute w-3 h-3 bg-zinc-500 rounded-full -left-[7px] top-1.5"></div>
+            <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp1_sub">Consultor Externo / Remoto</span>
+            <h4 class="text-white font-bold mb-3 text-xl" data-i18n="exp1_title">Consultoría de Automatización y Sistemas</h4>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
               Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.
             </p>
           </div>
 
-          <div class="border-l-2 border-[#27272a] pl-6 relative">
-            <div class="absolute w-2 h-2 bg-zinc-500 rounded-full -left-[5px] top-1.5"></div>
-            <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="exp2_sub">Arquitectura de Datos / eCommerce</span>
-            <h4 class="text-white font-bold mb-2" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp2_desc">
+          <div class="border-l-2 border-[#27272a] pl-8 relative">
+            <div class="absolute w-3 h-3 bg-zinc-500 rounded-full -left-[7px] top-1.5"></div>
+            <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp2_sub">Arquitectura de Datos / eCommerce</span>
+            <h4 class="text-white font-bold mb-3 text-xl" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp2_desc">
               Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información y su persistencia eficiente en bases de datos analíticas, habilitando la toma de decisiones.
             </p>
           </div>
 
-          <div class="border-l-2 border-white pl-6 relative">
-            <div class="absolute w-2 h-2 bg-white rounded-full -left-[5px] top-1.5 shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
-            <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
-            <h4 class="text-white font-bold mb-2" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
+          <div class="border-l-2 border-white pl-8 relative">
+            <div class="absolute w-3 h-3 bg-white rounded-full -left-[7px] top-1.5 shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+            <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
+            <h4 class="text-white font-bold mb-3 text-xl" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
               Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.
             </p>
           </div>
 
-          <div class="border-l-2 border-[#27272a] pl-6 relative mt-12 pt-4">
-            <div class="absolute w-2 h-2 bg-[#27272a] rounded-full -left-[5px] top-5"></div>
-            <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="edu_sub">Educación / 3er Semestre (Actual)</span>
-            <h4 class="text-white font-bold mb-2" data-i18n="edu_title">Ingeniería de Software (Uniempresarial)</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="edu_desc">
+          <div class="border-l-2 border-[#27272a] pl-8 relative mt-16 pt-4">
+            <div class="absolute w-3 h-3 bg-[#27272a] rounded-full -left-[7px] top-6"></div>
+            <span class="text-sm text-zinc-500 font-mono mb-2 block" data-i18n="edu_sub">Educación / 3er Semestre (Actual)</span>
+            <h4 class="text-white font-bold mb-3 text-xl" data-i18n="edu_title">Ingeniería de Software (Uniempresarial)</h4>
+            <p class="text-base text-zinc-400 leading-relaxed" data-i18n="edu_desc">
               Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.
             </p>
           </div>
@@ -441,12 +442,12 @@ $ n8n start --tunnel
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-[#27272a] px-8 md:px-12 py-8 mt-auto bg-[#0a0a0a]">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
-        <div class="font-mono text-white font-bold">
-          Robin © 2026
+    <footer class="border-t border-[#27272a] px-8 md:px-14 py-10 mt-auto bg-[#0a0a0a]">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-base text-zinc-500">
+        <div class="font-mono text-white font-bold text-lg">
+          robin © 2026
         </div>
-        <div class="font-mono text-xs">
+        <div class="font-mono text-sm">
           <span data-i18n="footer_tag">Sistemas Agnósticos. Automatización Estructurada.</span>
         </div>
       </div>
@@ -507,8 +508,8 @@ $ n8n start --tunnel
         term_tab1: "contacto",
         term_tab2: "tecnologías",
         term_tab3: "ubicación",
-        term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> contactar-robin --rol='Arquitecto de Datos'",
-        term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'tecnologias'",
+        term_cmd_contact: "<span class='text-zinc-500 mr-3'>~</span><span class='text-white'>npx</span> contactar-robin --rol='Arquitecto de Datos'",
+        term_cmd_tech: "<span class='text-zinc-500 mr-3'>~</span><span class='text-white'>cat</span> package.json | grep 'tecnologias'",
         
         exp_h1: "Arquitectura Asistida por IA",
         exp_p1: "Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.",
@@ -580,8 +581,8 @@ $ n8n start --tunnel
         term_tab1: "contact",
         term_tab2: "stack",
         term_tab3: "location",
-        term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> hire-robin --role='Data Architect'",
-        term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
+        term_cmd_contact: "<span class='text-zinc-500 mr-3'>~</span><span class='text-white'>npx</span> hire-robin --role='Data Architect'",
+        term_cmd_tech: "<span class='text-zinc-500 mr-3'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
         
         exp_h1: "AI-Assisted Architecture",
         exp_p1: "Orchestration of foundational models and multi-agent systems to abstract complex logic and scale development.",
