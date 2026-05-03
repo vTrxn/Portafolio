@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>robin | AI & Data Architect</title>
+  <title>Robin | Arquitecto de Datos y Sistemas</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   
+  <!-- Regla de 2 Fuentes: Inter (Sans-serif) y JetBrains Mono (Monospace) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -24,14 +25,14 @@
     body {
       background-color: var(--bg-color); 
       color: var(--text-main);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.6;
     }
 
-    h1, h2, h3, .font-sans-alt {
-      font-family: 'Inter', sans-serif;
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
     }
 
     /* Terminal Block */
@@ -55,6 +56,7 @@
       cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: all 0.2s ease;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .terminal-tab.active {
@@ -123,9 +125,11 @@
     .project-sidebar {
       padding: 24px;
       background-color: #0a0a0a;
+      border-bottom-right-radius: 8px;
     }
     @media (min-width: 768px) {
       .project-main { border-bottom: none; border-right: 1px solid var(--border-color); }
+      .project-sidebar { border-top-right-radius: 8px; }
     }
 
     #contact-modal {
@@ -139,7 +143,7 @@
   <!-- MODAL DE CONTACTO -->
   <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 flex items-center justify-center px-4">
     <div class="terminal-block w-full max-w-lg relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
-      <div class="terminal-header justify-between items-center px-4 py-2">
+      <div class="terminal-header justify-between items-center px-4 py-2 font-mono">
         <span class="text-sm text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
         <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition-colors text-lg">×</button>
       </div>
@@ -160,7 +164,7 @@
     </div>
   </div>
 
-  <!-- CONTENEDOR MAESTRO CENTRAL (El secreto del Layout de Opencode) -->
+  <!-- CONTENEDOR MAESTRO CENTRAL -->
   <div class="max-w-[1150px] mx-auto border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative shadow-2xl shadow-black">
 
     <!-- NAVEGACIÓN TOP -->
@@ -168,30 +172,30 @@
       <div class="px-8 md:px-12 h-20 flex items-center justify-between">
         
         <div class="flex items-center gap-8">
-          <!-- Logo Simple -->
-          <div class="font-bold text-xl tracking-tight text-white flex items-center gap-2">
+          <!-- Logo con fuente Monospace -->
+          <div class="font-bold text-xl tracking-tighter text-white flex items-center gap-2 font-mono">
             <span class="w-4 h-4 bg-white block"></span>
             Robin
           </div>
           
           <div class="hidden md:flex items-center gap-6">
-            <a href="https://github.com/vTrxn" target="_blank" class="nav-link flex items-center gap-1 font-sans-alt">
+            <a href="https://github.com/vTrxn" target="_blank" class="nav-link flex items-center gap-1 font-medium">
               GitHub <span class="text-zinc-600 font-mono text-xs" data-i18n="nav_git">[Portafolio]</span>
             </a>
-            <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" class="nav-link font-sans-alt">LinkedIn</a>
-            <a href="#proyectos" class="nav-link font-sans-alt" data-i18n="nav_projects">Proyectos</a>
-            <a href="#experiencia" class="nav-link font-sans-alt" data-i18n="nav_exp">Experiencia</a>
+            <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" class="nav-link font-medium">LinkedIn</a>
+            <a href="#proyectos" class="nav-link font-medium" data-i18n="nav_projects">Proyectos</a>
+            <a href="#experiencia" class="nav-link font-medium" data-i18n="nav_exp">Experiencia</a>
           </div>
         </div>
 
         <div class="flex items-center gap-6">
-          <div class="flex gap-2 text-sm font-sans-alt font-medium">
+          <div class="flex gap-2 text-sm font-medium">
             <span id="btn-es" onclick="setLanguage('es')" class="lang-toggle active">ES</span>
             <span class="text-zinc-700">|</span>
             <span id="btn-en" onclick="setLanguage('en')" class="lang-toggle">EN</span>
           </div>
           
-          <button onclick="openModal()" class="bg-white text-black font-sans-alt font-bold px-4 py-2 rounded-md hover:bg-zinc-200 transition-colors text-sm hidden md:flex items-center gap-2" data-i18n="nav_contact">
+          <button onclick="openModal()" class="bg-white text-black font-bold px-4 py-2 rounded-md hover:bg-zinc-200 transition-colors text-sm hidden md:flex items-center gap-2" data-i18n="nav_contact">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             Contactar
           </button>
@@ -205,41 +209,41 @@
       <!-- HERO SECTION -->
       <header class="mb-20">
         <div class="flex items-center gap-4 mb-8">
-          <span class="badge-nuevo font-sans-alt" data-i18n="badge_status">DISPONIBLE</span>
-          <span class="text-zinc-400 text-sm font-sans-alt" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización IA.</span>
+          <span class="badge-nuevo" data-i18n="badge_status">DISPONIBLE</span>
+          <span class="text-zinc-400 text-sm" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización de Sistemas.</span>
         </div>
 
-        <h1 class="font-sans-alt text-4xl md:text-[3.5rem] font-bold text-white leading-tight mb-6" data-i18n="hero_title">
+        <h1 class="text-4xl md:text-[3.5rem] font-bold text-white leading-tight mb-6 tracking-tight" data-i18n="hero_title">
           El arquitecto de sistemas y datos asistido por IA.
         </h1>
         
-        <p class="text-lg text-zinc-400 mb-12 max-w-3xl font-sans-alt" data-i18n="hero_desc">
-          La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo agnóstico a la tecnología.
+        <p class="text-lg text-zinc-400 mb-12 max-w-3xl" data-i18n="hero_desc">
+          La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales de datos robustos siendo completamente agnóstico a la tecnología.
         </p>
 
         <!-- TERMINAL INTERACTIVA -->
         <div class="terminal-block">
           <div class="terminal-header">
-            <div class="terminal-tab active font-sans-alt" onclick="switchTab('contacto')" id="tab-contacto" data-i18n="term_tab1">contacto</div>
-            <div class="terminal-tab font-sans-alt" onclick="switchTab('tecnologias')" id="tab-tecnologias" data-i18n="term_tab2">tecnologías</div>
-            <div class="terminal-tab font-sans-alt" onclick="switchTab('ubicacion')" id="tab-ubicacion" data-i18n="term_tab3">ubicación</div>
+            <div class="terminal-tab active" onclick="switchTab('contacto')" id="tab-contacto" data-i18n="term_tab1">contacto</div>
+            <div class="terminal-tab" onclick="switchTab('tecnologias')" id="tab-tecnologias" data-i18n="term_tab2">tecnologías</div>
+            <div class="terminal-tab" onclick="switchTab('ubicacion')" id="tab-ubicacion" data-i18n="term_tab3">ubicación</div>
           </div>
           
-          <div id="panel-contacto" class="terminal-content-panel active p-5 justify-between items-center text-sm md:text-base cursor-pointer group hover:bg-[#141414] transition-colors" onclick="openModal()">
+          <div id="panel-contacto" class="terminal-content-panel font-mono active p-5 justify-between items-center text-sm md:text-base cursor-pointer group hover:bg-[#141414] transition-colors" onclick="openModal()">
             <div class="text-zinc-300" data-i18n="term_cmd_contact">
-              <span class="text-zinc-500 mr-2">~</span><span class="text-white">npx</span> contratar-robin --rol="Arquitecto de Datos"
+              <span class="text-zinc-500 mr-2">~</span><span class="text-white">npx</span> contactar-robin --rol="Arquitecto de Datos"
             </div>
             <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
           </div>
 
-          <div id="panel-tecnologias" class="terminal-content-panel p-5 justify-between items-center text-sm md:text-base cursor-pointer group hover:bg-[#141414] transition-colors" onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})">
+          <div id="panel-tecnologias" class="terminal-content-panel font-mono p-5 justify-between items-center text-sm md:text-base cursor-pointer group hover:bg-[#141414] transition-colors" onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})">
             <div class="text-zinc-300" data-i18n="term_cmd_tech">
-              <span class="text-zinc-500 mr-2">~</span><span class="text-white">cat</span> package.json | grep "stack"
+              <span class="text-zinc-500 mr-2">~</span><span class="text-white">cat</span> package.json | grep "tecnologias"
             </div>
             <svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </div>
 
-          <div id="panel-ubicacion" class="terminal-content-panel p-5 justify-between items-center text-sm md:text-base">
+          <div id="panel-ubicacion" class="terminal-content-panel font-mono p-5 justify-between items-center text-sm md:text-base">
             <div class="text-zinc-300">
               <span class="text-zinc-500 mr-2">~</span><span class="text-white">curl</span> ipinfo.io/loc | echo "Bogotá, Colombia"
             </div>
@@ -253,87 +257,88 @@
       <section id="core-expertise" class="mb-20 scroll-mt-24">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-3 font-sans-alt text-xl" data-i18n="exp_h1">Agnóstico & IA</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="exp_p1">Ingeniería de instrucciones (Prompting) y modelos fundacionales para acelerar la lógica de negocio.</p>
+            <h3 class="text-white font-bold mb-3 text-xl" data-i18n="exp_h1">Arquitectura Asistida por IA</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp_p1">Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.</p>
           </div>
           <div class="md:col-span-2 border border-[#27272a] rounded-md p-6 bg-[#0f0f0f]">
-            <pre class="text-xs text-zinc-400 overflow-x-auto"><code data-i18n="code_block1"><span class="text-zinc-600"># Modelos Soportados & Herramientas</span>
-- Claude 3.5 Sonnet   <span class="text-zinc-600"># Lógica principal</span>
-- GPT-4o / Kimi       <span class="text-zinc-600"># Ingestión de datos</span>
-- API de Perplexity   <span class="text-zinc-600"># Agentes de investigación</span>
+            <pre class="text-xs text-zinc-400 overflow-x-auto font-mono"><code data-i18n="code_block1"><span class="text-zinc-600"># Componentes de Arquitectura IA</span>
+[x] Integración de Modelos Fundacionales (LLMs)
+[x] Diseño de Sistemas Multi-Agente
+[x] Orquestación de Prompts Estructurados
+[x] Generación Aumentada por Recuperación (RAG)
 
-<span class="text-zinc-600"># Capacidades</span>
-> Diseño de arquitecturas RAG para bases corporativas.
-> Creación de sistemas multi-agente autónomos.</code></pre>
+<span class="text-zinc-600"># Enfoque</span>
+> Delegar la sintaxis y tareas repetitivas al modelo.
+> Enfocar el esfuerzo humano en seguridad y escalabilidad.</code></pre>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-3 font-sans-alt text-xl" data-i18n="exp_h2">Flujos ETL & Datos</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="exp_p2">Persistencia relacional y extracción masiva de información a nivel empresarial.</p>
+            <h3 class="text-white font-bold mb-3 text-xl" data-i18n="exp_h2">Ingeniería de Datos</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp_p2">Extracción, transformación y carga (ETL) de información para sistemas empresariales.</p>
           </div>
           <div class="md:col-span-2 border border-[#27272a] rounded-md p-6 bg-[#0f0f0f]">
-            <pre class="text-xs text-zinc-400 overflow-x-auto"><code data-i18n="code_block2"><span class="text-zinc-600"># Stack Base</span>
-import pandas as pd
-from sqlalchemy import create_engine
+            <pre class="text-xs text-zinc-400 overflow-x-auto font-mono"><code data-i18n="code_block2"><span class="text-zinc-600"># Infraestructura y Tecnologías Principales</span>
+import pipeline_core
+from database import engine
 
-<span class="text-zinc-600"># Infraestructura</span>
-[x] PostgreSQL / Bases de Datos Relacionales
-[x] Pipelines ETL automatizados
-[x] Cloud BaaS (Supabase)
-[x] Normalización estricta de datos</code></pre>
+<span class="text-zinc-600"># Stack</span>
+- PostgreSQL / Bases de Datos Relacionales
+- Desarrollo Backend (Python / Node.js / FastAPI)
+- Plataformas Cloud BaaS (Supabase)
+- Normalización estricta y seguridad (RLS)</code></pre>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-3 font-sans-alt text-xl" data-i18n="exp_h3">Orquestación</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="exp_p3">Despliegue asíncrono y contenerización de microservicios.</p>
+            <h3 class="text-white font-bold mb-3 text-xl" data-i18n="exp_h3">Automatización & Orquestación</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp_p3">Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.</p>
           </div>
           <div class="md:col-span-2 border border-[#27272a] rounded-md p-6 bg-[#0f0f0f]">
-             <pre class="text-xs text-zinc-400 overflow-x-auto"><code data-i18n="code_block3"><span class="text-zinc-600"># Herramientas de Despliegue</span>
+             <pre class="text-xs text-zinc-400 overflow-x-auto font-mono"><code data-i18n="code_block3"><span class="text-zinc-600"># Herramientas de Despliegue</span>
 $ docker-compose up -d
 $ n8n start --tunnel
 
 <span class="text-zinc-600"># Integraciones</span>
-- Automatización visual con n8n.
-- Microservicios con FastAPI & Node.js.
-- Entornos aislados basados en Linux.</code></pre>
+- Automatización visual de flujos de trabajo (n8n).
+- Aislamiento de entornos mediante Docker.
+- Conexión de aplicaciones mediante Webhooks REST.</code></pre>
           </div>
         </div>
       </section>
 
       <!-- PROYECTOS -->
       <section id="proyectos" class="mb-24 scroll-mt-24">
-        <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-[#27272a] pb-4 font-sans-alt" data-i18n="section_projects">Arquitectura & Pruebas de Concepto</h2>
+        <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-[#27272a] pb-4" data-i18n="section_projects">Arquitectura & Pruebas de Concepto</h2>
 
         <div class="space-y-8">
           
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4">
-                <h3 class="text-white font-bold text-xl font-sans-alt">OmniAgent System</h3>
-                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400">PoC</span>
+                <h3 class="text-white font-bold text-xl" data-i18n="proj1_title">Sistema OmniAgent</h3>
+                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">PdC</span>
               </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-6 font-sans-alt" data-i18n="proj1_desc">
-                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.
+              <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj1_desc">
+                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.
               </p>
               <div class="bg-[#050505] p-3 rounded border border-[#27272a] text-xs text-zinc-300">
-                <span class="text-zinc-500" data-i18n="proj1_impact_tag">Impacto //</span> <span data-i18n="proj1_impact">Demostración técnica de que delegar código a la IA permite enfocar 100% el esfuerzo humano en arquitectura.</span>
+                <span class="text-zinc-500 font-mono" data-i18n="proj1_impact_tag">Impacto //</span> <span data-i18n="proj1_impact">Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.</span>
               </div>
             </div>
             <div class="project-sidebar">
-              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider font-sans-alt" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs text-zinc-500 space-y-2">
-                <li data-i18n="sidebar_role1"><span class="text-white">Rol:</span> Arquitecto de Datos</li>
-                <li data-i18n="sidebar_type1"><span class="text-white">Tipo:</span> Sist. Multi-Agente</li>
+              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-xs text-zinc-500 space-y-2 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role1">Arquitecto de Datos</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type1">Sist. Multi-Agente</span></li>
               </ul>
-              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider font-sans-alt" data-i18n="sidebar_tech">Stack</h4>
-              <ul class="text-xs text-zinc-500 space-y-1">
+              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-xs text-zinc-500 space-y-1 font-mono">
                 <li><span class="text-green-500">•</span> Python</li>
                 <li><span class="text-green-500">•</span> n8n</li>
-                <li><span class="text-green-500">•</span> APIs LLM</li>
+                <li><span class="text-green-500">•</span> Modelos de Lenguaje</li>
               </ul>
             </div>
           </div>
@@ -341,20 +346,20 @@ $ n8n start --tunnel
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4">
-                <h3 class="text-white font-bold text-xl font-sans-alt">SupplyAI Core</h3>
-                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400">SaaS</span>
+                <h3 class="text-white font-bold text-xl" data-i18n="proj2_title">Núcleo SupplyAI</h3>
+                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">SaaS</span>
               </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-6 font-sans-alt" data-i18n="proj2_desc">
-                Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de datos (RLS) y optimización SQL.
+              <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj2_desc">
+                Diseño de arquitectura en la nube orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de la información (Políticas RLS), normalización y alta disponibilidad.
               </p>
             </div>
             <div class="project-sidebar">
-              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider font-sans-alt" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs text-zinc-500 space-y-2">
-                <li data-i18n="sidebar_type2"><span class="text-white">Tipo:</span> Backend en Nube</li>
+              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-xs text-zinc-500 space-y-2 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type2">Servidor en Nube</span></li>
               </ul>
-              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider font-sans-alt" data-i18n="sidebar_tech">Stack</h4>
-              <ul class="text-xs text-zinc-500 space-y-1">
+              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-xs text-zinc-500 space-y-1 font-mono">
                 <li><span class="text-green-500">•</span> Supabase</li>
                 <li><span class="text-green-500">•</span> FastAPI</li>
                 <li><span class="text-green-500">•</span> PostgreSQL</li>
@@ -365,22 +370,22 @@ $ n8n start --tunnel
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4">
-                <h3 class="text-white font-bold text-xl font-sans-alt">Motor ImpulsoIA</h3>
-                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400">Engine</span>
+                <h3 class="text-white font-bold text-xl" data-i18n="proj3_title">Motor ImpulsoIA</h3>
+                <span class="text-xs border border-[#333] px-2 py-1 rounded text-zinc-400 font-mono" data-i18n="proj3_badge">Motor</span>
               </div>
-              <p class="text-zinc-400 text-sm leading-relaxed mb-6 font-sans-alt" data-i18n="proj3_desc">
-                Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables.
+              <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj3_desc">
+                Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables mediante tecnología agnóstica.
               </p>
             </div>
             <div class="project-sidebar">
-              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider font-sans-alt" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs text-zinc-500 space-y-2">
-                <li data-i18n="sidebar_type3"><span class="text-white">Tipo:</span> App en Contenedor</li>
+              <h4 class="text-xs font-bold text-white mb-3 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-xs text-zinc-500 space-y-2 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type3">App en Contenedor</span></li>
               </ul>
-              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider font-sans-alt" data-i18n="sidebar_tech">Stack</h4>
-              <ul class="text-xs text-zinc-500 space-y-1">
+              <h4 class="text-xs font-bold text-white mt-6 mb-3 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-xs text-zinc-500 space-y-1 font-mono">
                 <li><span class="text-green-500">•</span> Docker</li>
-                <li><span class="text-green-500">•</span> Prompt Eng.</li>
+                <li><span class="text-green-500">•</span> Ing. Prompts</li>
               </ul>
             </div>
           </div>
@@ -388,45 +393,45 @@ $ n8n start --tunnel
         </div>
       </section>
 
-      <!-- EXPERIENCIA & LOGS -->
+      <!-- EXPERIENCIA -->
       <section id="experiencia" class="mb-12 scroll-mt-24">
-        <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-[#27272a] pb-4 font-sans-alt" data-i18n="section_logs">System Logs // Experiencia & Educación</h2>
+        <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-8 border-b border-[#27272a] pb-4" data-i18n="section_logs">Experiencia & Educación</h2>
         
         <div class="space-y-6">
           
           <div class="border-l-2 border-[#27272a] pl-6 relative">
             <div class="absolute w-2 h-2 bg-zinc-500 rounded-full -left-[5px] top-1.5"></div>
             <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="exp1_sub">Consultor Externo / Remoto</span>
-            <h4 class="text-white font-bold mb-2 font-sans-alt" data-i18n="exp1_title">Consultoría de Automatización y Sistemas IA</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="exp1_desc">
-              Auditoría y desarrollo de soluciones utilizando n8n y Docker. Implementación de procesos automáticos conectando bases de datos con módulos IA para análisis comercial, eliminando desarrollos manuales para tareas repetitivas.
+            <h4 class="text-white font-bold mb-2" data-i18n="exp1_title">Consultoría de Automatización y Sistemas</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
+              Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.
             </p>
           </div>
 
           <div class="border-l-2 border-[#27272a] pl-6 relative">
             <div class="absolute w-2 h-2 bg-zinc-500 rounded-full -left-[5px] top-1.5"></div>
             <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="exp2_sub">Arquitectura de Datos / eCommerce</span>
-            <h4 class="text-white font-bold mb-2 font-sans-alt" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="exp2_desc">
-              Diseño lógico de canal de procesamiento masivo para eventos transaccionales. Construcción de flujo central enfocado en limpieza automática de información y persistencia eficiente en bases de datos analíticas.
+            <h4 class="text-white font-bold mb-2" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp2_desc">
+              Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información y su persistencia eficiente en bases de datos analíticas, habilitando la toma de decisiones.
             </p>
           </div>
 
           <div class="border-l-2 border-white pl-6 relative">
             <div class="absolute w-2 h-2 bg-white rounded-full -left-[5px] top-1.5 shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
             <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
-            <h4 class="text-white font-bold mb-2 font-sans-alt" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="exp3_desc">
-              Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas, mejora de lógica en repositorios existentes y creación de herramientas internas mediante procesos automatizados.
+            <h4 class="text-white font-bold mb-2" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
+              Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.
             </p>
           </div>
 
           <div class="border-l-2 border-[#27272a] pl-6 relative mt-12 pt-4">
             <div class="absolute w-2 h-2 bg-[#27272a] rounded-full -left-[5px] top-5"></div>
             <span class="text-xs text-zinc-500 font-mono mb-1 block" data-i18n="edu_sub">Educación / 3er Semestre (Actual)</span>
-            <h4 class="text-white font-bold mb-2 font-sans-alt" data-i18n="edu_title">Ingeniería de Software (Uniempresarial)</h4>
-            <p class="text-sm text-zinc-400 leading-relaxed font-sans-alt" data-i18n="edu_desc">
-              Bases en matemática aplicada y estructuras de datos. Desarrollo de mentalidad de ingeniería agnóstica, priorizando arquitectura en la nube y resolución eficiente de problemas.
+            <h4 class="text-white font-bold mb-2" data-i18n="edu_title">Ingeniería de Software (Uniempresarial)</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="edu_desc">
+              Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.
             </p>
           </div>
 
@@ -438,18 +443,18 @@ $ n8n start --tunnel
     <!-- FOOTER -->
     <footer class="border-t border-[#27272a] px-8 md:px-12 py-8 mt-auto bg-[#0a0a0a]">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
-        <div>
-          <span class="text-white font-bold">Robin</span> © 2026
+        <div class="font-mono text-white font-bold">
+          Robin © 2026
         </div>
         <div class="font-mono text-xs">
-          <span data-i18n="footer_tag">Sistemas Agnósticos. Automatización con IA.</span>
+          <span data-i18n="footer_tag">Sistemas Agnósticos. Automatización Estructurada.</span>
         </div>
       </div>
     </footer>
 
-  </div> <!-- Cierre del Contenedor Maestro -->
+  </div>
 
-  <!-- SCRIPT DE LÓGICA & TRADUCCIÓN PURIFICADA -->
+  <!-- SCRIPT DE LÓGICA & TRADUCCIÓN -->
   <script>
     function switchTab(tabId) {
       document.querySelectorAll('.terminal-tab').forEach(tab => tab.classList.remove('active'));
@@ -495,58 +500,66 @@ $ n8n start --tunnel
         nav_exp: "Experiencia",
         nav_contact: "Contactar",
         badge_status: "DISPONIBLE",
-        badge_desc: "Abierto a roles de Arquitectura, Datos y Automatización IA.",
+        badge_desc: "Abierto a roles de Arquitectura, Datos y Automatización.",
         hero_title: "El arquitecto de sistemas y datos asistido por IA.",
-        hero_desc: "La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando Inteligencia Artificial. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo agnóstico a la tecnología.",
+        hero_desc: "La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo agnóstico a la tecnología.",
         
         term_tab1: "contacto",
         term_tab2: "tecnologías",
         term_tab3: "ubicación",
-        term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> contratar-robin --rol='Arquitecto de Datos'",
-        term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
+        term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> contactar-robin --rol='Arquitecto de Datos'",
+        term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'tecnologias'",
         
-        exp_h1: "Agnóstico & IA",
-        exp_p1: "Ingeniería de instrucciones (Prompting) y modelos fundacionales para acelerar la lógica de negocio.",
-        code_block1: "<span class='text-zinc-600'># Modelos Soportados & Herramientas</span>\n- Claude 3.5 Sonnet   <span class='text-zinc-600'># Lógica principal</span>\n- GPT-4o / Kimi       <span class='text-zinc-600'># Ingestión de datos</span>\n- API de Perplexity   <span class='text-zinc-600'># Agentes de investigación</span>\n\n<span class='text-zinc-600'># Capacidades</span>\n> Diseño de arquitecturas RAG para bases corporativas.\n> Creación de sistemas multi-agente autónomos.",
+        exp_h1: "Arquitectura Asistida por IA",
+        exp_p1: "Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.",
+        code_block1: "<span class='text-zinc-600'># Componentes de Arquitectura IA</span>\n[x] Integración de Modelos Fundacionales (LLMs)\n[x] Diseño de Sistemas Multi-Agente\n[x] Orquestación de Prompts Estructurados\n[x] Generación Aumentada por Recuperación (RAG)\n\n<span class='text-zinc-600'># Enfoque</span>\n> Delegar la sintaxis y tareas repetitivas al modelo.\n> Enfocar el esfuerzo humano en seguridad y escalabilidad.",
         
-        exp_h2: "Flujos ETL & Datos",
-        exp_p2: "Persistencia relacional y extracción masiva de información a nivel empresarial.",
-        code_block2: "<span class='text-zinc-600'># Stack Base</span>\nimport pandas as pd\nfrom sqlalchemy import create_engine\n\n<span class='text-zinc-600'># Infraestructura</span>\n[x] PostgreSQL / Bases de Datos Relacionales\n[x] Pipelines ETL automatizados\n[x] Cloud BaaS (Supabase)\n[x] Normalización estricta de datos",
+        exp_h2: "Ingeniería de Datos",
+        exp_p2: "Extracción, transformación y carga (ETL) de información para sistemas empresariales.",
+        code_block2: "<span class='text-zinc-600'># Infraestructura y Tecnologías Principales</span>\nimport pipeline_core\nfrom database import engine\n\n<span class='text-zinc-600'># Stack</span>\n- PostgreSQL / Bases de Datos Relacionales\n- Desarrollo Backend (Python / Node.js / FastAPI)\n- Plataformas Cloud BaaS (Supabase)\n- Normalización estricta y seguridad (RLS)",
         
-        exp_h3: "Orquestación",
-        exp_p3: "Despliegue asíncrono y contenerización de microservicios.",
-        code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual con n8n.\n- Microservicios con FastAPI & Node.js.\n- Entornos aislados basados en Linux.",
+        exp_h3: "Automatización & Orquestación",
+        exp_p3: "Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.",
+        code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual de flujos de trabajo (n8n).\n- Aislamiento de entornos mediante Docker.\n- Conexión de aplicaciones mediante Webhooks REST.",
         
         section_projects: "Arquitectura & Pruebas de Concepto",
-        proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra múltiples inteligencias artificiales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma independiente y asíncrona.",
+        proj1_title: "Sistema OmniAgent",
+        proj1_badge: "PdC",
+        proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.",
         proj1_impact_tag: "Impacto //",
-        proj1_impact: "Demostración técnica de que delegar código a la IA permite enfocar 100% el esfuerzo humano en arquitectura.",
+        proj1_impact: "Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.",
         
-        proj2_desc: "Diseño de arquitectura en la nube (Backend-as-a-Service) para una plataforma orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de datos (RLS) y optimización SQL.",
+        proj2_title: "Núcleo SupplyAI",
+        proj2_badge: "SaaS",
+        proj2_desc: "Diseño de arquitectura en la nube orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de la información (Políticas RLS), normalización y alta disponibilidad.",
         
-        proj3_desc: "Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables.",
+        proj3_title: "Motor ImpulsoIA",
+        proj3_badge: "Motor",
+        proj3_desc: "Entorno en contenedores que recibe grandes volúmenes de datos corporativos sin procesar, los analiza a través de instrucciones estructuradas para inteligencias artificiales y exporta planes de acción empresariales. Demuestra la viabilidad de reemplazar análisis manuales por procesos algorítmicos escalables mediante tecnología agnóstica.",
         
         sidebar_context: "Contexto",
-        sidebar_tech: "Stack",
-        sidebar_role1: "<span class='text-white'>Rol:</span> Arquitecto de Datos",
-        sidebar_type1: "<span class='text-white'>Tipo:</span> Sist. Multi-Agente",
-        sidebar_type2: "<span class='text-white'>Tipo:</span> Backend en Nube",
-        sidebar_type3: "<span class='text-white'>Tipo:</span> App en Contenedor",
+        sidebar_tech: "Tecnologías",
+        sidebar_role: "Rol:",
+        sidebar_type: "Tipo:",
+        sidebar_role1: "Arquitecto de Datos",
+        sidebar_type1: "Sist. Multi-Agente",
+        sidebar_type2: "Servidor en Nube",
+        sidebar_type3: "App en Contenedor",
         
-        section_logs: "System Logs // Experiencia & Educación",
+        section_logs: "Experiencia & Educación",
         exp1_sub: "Consultor Externo / Remoto",
-        exp1_title: "Consultoría de Automatización y Sistemas IA",
-        exp1_desc: "Auditoría y desarrollo de soluciones utilizando n8n y Docker. Implementación de procesos automáticos conectando bases de datos con módulos IA para análisis comercial, eliminando desarrollos manuales para tareas repetitivas.",
+        exp1_title: "Consultoría de Automatización y Sistemas",
+        exp1_desc: "Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.",
         exp2_sub: "Arquitectura de Datos / eCommerce",
         exp2_title: "Arquitecto de Extracción y Transformación de Datos (ETL)",
-        exp2_desc: "Diseño lógico de canal de procesamiento masivo para eventos transaccionales. Construcción de flujo central enfocado en limpieza automática de información y persistencia eficiente en bases de datos analíticas.",
+        exp2_desc: "Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información y su persistencia eficiente en bases de datos analíticas, habilitando la toma de decisiones.",
         exp3_sub: "fUSoft / Bogotá, Col.",
         exp3_title: "Ingeniero de Software y Datos (Practicante)",
-        exp3_desc: "Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas, mejora de lógica en repositorios existentes y creación de herramientas internas mediante procesos automatizados.",
+        exp3_desc: "Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.",
         edu_sub: "Educación / 3er Semestre (Actual)",
         edu_title: "Ingeniería de Software (Uniempresarial)",
-        edu_desc: "Bases en matemática aplicada y estructuras de datos. Desarrollo de mentalidad de ingeniería agnóstica, priorizando arquitectura en la nube y resolución eficiente de problemas.",
-        footer_tag: "Sistemas Agnósticos. Automatización con IA.",
+        edu_desc: "Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.",
+        footer_tag: "Sistemas Agnósticos. Automatización Estructurada.",
         
         modal_path: "~ /usr/bin/contacto",
         modal_title: "Iniciar Conversación",
@@ -560,9 +573,9 @@ $ n8n start --tunnel
         nav_exp: "Experience",
         nav_contact: "Contact",
         badge_status: "AVAILABLE",
-        badge_desc: "Open to Architecture, Data & AI Automation roles.",
+        badge_desc: "Open to Architecture, Data & Automation roles.",
         hero_title: "The AI-assisted systems and data architect.",
-        hero_desc: "Syntax is a solved problem. I build data infrastructure and automate complex business logic by orchestrating AI. My focus is eliminating operational bottlenecks and deploying robust ETL pipelines while remaining technology-agnostic.",
+        hero_desc: "Syntax is a solved problem. I build data infrastructure and automate complex business logic by orchestrating foundational models. My focus is eliminating operational bottlenecks and deploying robust ETL pipelines while remaining technology-agnostic.",
         
         term_tab1: "contact",
         term_tab2: "stack",
@@ -570,48 +583,56 @@ $ n8n start --tunnel
         term_cmd_contact: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>npx</span> hire-robin --role='Data Architect'",
         term_cmd_tech: "<span class='text-zinc-500 mr-2'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
         
-        exp_h1: "Agnostic & AI",
-        exp_p1: "Prompt engineering and foundational models to accelerate business logic.",
-        code_block1: "<span class='text-zinc-600'># Supported Models & Tools</span>\n- Claude 3.5 Sonnet   <span class='text-zinc-600'># Main Logic</span>\n- GPT-4o / Kimi       <span class='text-zinc-600'># Data Ingestion</span>\n- Perplexity API      <span class='text-zinc-600'># Research Agents</span>\n\n<span class='text-zinc-600'># Capabilities</span>\n> Design of RAG architectures for corporate DBs.\n> Creation of autonomous multi-agent systems.",
+        exp_h1: "AI-Assisted Architecture",
+        exp_p1: "Orchestration of foundational models and multi-agent systems to abstract complex logic and scale development.",
+        code_block1: "<span class='text-zinc-600'># AI Architecture Components</span>\n[x] Foundational Model Integration (LLMs)\n[x] Multi-Agent Systems Design\n[x] Structured Prompt Orchestration\n[x] Retrieval-Augmented Generation (RAG)\n\n<span class='text-zinc-600'># Approach</span>\n> Delegate syntax and repetitive tasks to the model.\n> Focus human effort on security and scalability.",
         
-        exp_h2: "ETL & Data Flows",
-        exp_p2: "Relational persistence and massive data extraction at enterprise scale.",
-        code_block2: "<span class='text-zinc-600'># Core Stack</span>\nimport pandas as pd\nfrom sqlalchemy import create_engine\n\n<span class='text-zinc-600'># Infrastructure</span>\n[x] PostgreSQL / Relational Databases\n[x] Automated ETL Pipelines\n[x] Cloud BaaS (Supabase)\n[x] Strict Data Normalization",
+        exp_h2: "Data Engineering",
+        exp_p2: "Extraction, transformation, and loading (ETL) of information for enterprise systems.",
+        code_block2: "<span class='text-zinc-600'># Core Infrastructure and Technologies</span>\nimport pipeline_core\nfrom database import engine\n\n<span class='text-zinc-600'># Stack</span>\n- PostgreSQL / Relational Databases\n- Backend Development (Python / Node.js / FastAPI)\n- Cloud BaaS Platforms (Supabase)\n- Strict Normalization and Security (RLS)",
         
-        exp_h3: "Orchestration",
-        exp_p3: "Asynchronous deployment and microservices containerization.",
-        code_block3: "<span class='text-zinc-600'># Deployment Tools</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual automation with n8n.\n- Microservices with FastAPI & Node.js.\n- Isolated Linux-based environments.",
+        exp_h3: "Automation & Orchestration",
+        exp_p3: "Asynchronous deployment and service containerization for efficient infrastructures.",
+        code_block3: "<span class='text-zinc-600'># Deployment Tools</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual workflow automation (n8n).\n- Environment isolation via Docker.\n- Application connection via REST Webhooks.",
         
         section_projects: "Architecture & Proofs of Concept",
-        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. Integrates multiple AIs via n8n to perform web data extraction, cleaning, report synthesis, and code generation asynchronously.",
+        proj1_title: "OmniAgent System",
+        proj1_badge: "PoC",
+        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates foundational models via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation asynchronously without manual intervention.",
         proj1_impact_tag: "Impact //",
-        proj1_impact: "Technical demonstration that delegating code to AI allows 100% human effort to focus on architecture.",
+        proj1_impact: "Technical demonstration that delegating code to agents allows human effort to focus entirely on architecture.",
         
-        proj2_desc: "Cloud Backend-as-a-Service architecture for a corporate supply chain platform. The core is an automated pipeline that processes logistics databases for predictive AI models. Strict focus on RLS security and SQL optimization.",
+        proj2_title: "SupplyAI Core",
+        proj2_badge: "SaaS",
+        proj2_desc: "Cloud architecture design for a corporate supply chain platform. The core of the project is an automated pipeline that processes logistics databases and prepares them for mathematical models that predict demand. Strict focus on information security (RLS Policies), normalization, and high availability.",
         
-        proj3_desc: "Containerized environment that receives raw corporate data, analyzes it through structured AI prompts, and exports business action plans. Demonstrates feasibility of replacing manual analysis with scalable algorithmic processes.",
+        proj3_title: "ImpulsoIA Engine",
+        proj3_badge: "Engine",
+        proj3_desc: "Containerized environment that receives large volumes of raw corporate data, analyzes it through structured instructions for artificial intelligences, and exports business action plans. Demonstrates the feasibility of replacing manual analysis with scalable algorithmic processes using agnostic technology.",
         
         sidebar_context: "Context",
         sidebar_tech: "Stack",
-        sidebar_role1: "<span class='text-white'>Role:</span> Data Architect",
-        sidebar_type1: "<span class='text-white'>Type:</span> Multi-Agent Sys",
-        sidebar_type2: "<span class='text-white'>Type:</span> Cloud Backend",
-        sidebar_type3: "<span class='text-white'>Type:</span> Containerized App",
+        sidebar_role: "Role:",
+        sidebar_type: "Type:",
+        sidebar_role1: "Data Architect",
+        sidebar_type1: "Multi-Agent Sys",
+        sidebar_type2: "Cloud Server",
+        sidebar_type3: "Container App",
 
-        section_logs: "System Logs // Experience & Education",
+        section_logs: "Experience & Education",
         exp1_sub: "Independent Consultant / Remote",
-        exp1_title: "AI Automation & Systems Consulting",
-        exp1_desc: "System auditing and integration development using n8n and Docker. Implemented automated processes connecting databases with AI modules for commercial analysis, eliminating manual custom developments for repetitive tasks.",
+        exp1_title: "Systems & Automation Consulting",
+        exp1_desc: "Systems auditing and integration solutions development using the n8n platform and Docker. Implementation of automated processes connecting databases with commercial analysis modules, eliminating the dependency on custom developments for repetitive operational tasks.",
         exp2_sub: "Data Architecture / eCommerce",
         exp2_title: "Data Extraction & Transformation Architect (ETL)",
-        exp2_desc: "Logical design of a massive processing pipeline for transactional events. Built core flows focused on automatic data cleaning and efficient persistence in analytical DBs.",
+        exp2_desc: "Logical design of a massive processing pipeline to manage virtual transactional events. Construction of the central flow focused on automatic information cleaning and efficient persistence in analytical databases, enabling rapid decision making.",
         exp3_sub: "fUSoft / Bogota, Col.",
         exp3_title: "Software & Data Engineer (Intern)",
-        exp3_desc: "Developed business-oriented solutions. Maintained architectures, improved algorithmic logic in existing repositories, and created internal tools via automated processes.",
+        exp3_desc: "Development of business-oriented technological solutions. Maintenance of complete system architectures, improvement of algorithmic logic, and creation of internal tools via automated processes. Direct participation in cloud resource orchestration.",
         edu_sub: "Education / 3rd Semester (Current)",
         edu_title: "Software Engineering (Uniempresarial)",
-        edu_desc: "Basis in applied mathematics and data structures. Developed a technology-agnostic engineering mindset, prioritizing cloud architecture and efficient problem solving.",
-        footer_tag: "Agnostic Systems. AI Automation.",
+        edu_desc: "Fundamental basis in applied mathematics, logical system design, and data structures. Development of a tool-agnostic engineering mindset, prioritizing architecture and the efficient resolution of complex problems.",
+        footer_tag: "Agnostic Systems. Structured Automation.",
         
         modal_path: "~ /usr/bin/contact",
         modal_title: "Start Conversation",
