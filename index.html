@@ -55,14 +55,14 @@
       border-bottom: 1px solid var(--border-color);
       background-color: #0a0a0a;
       overflow-x: auto;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
     }
     .terminal-header::-webkit-scrollbar {
-      display: none; /* Chrome/Safari/Edge */
+      display: none;
     }
 
     .terminal-tab {
-      padding: 12px 18px; 
+      padding: 12px 16px; 
       color: var(--text-muted);
       font-size: 0.85rem; 
       cursor: pointer;
@@ -93,8 +93,11 @@
     .nav-link {
       color: var(--text-main);
       text-decoration: none;
-      font-size: 0.95rem; 
+      font-size: 0.9rem; 
       transition: color 0.2s;
+    }
+    @media (min-width: 768px) {
+      .nav-link { font-size: 0.95rem; }
     }
     .nav-link:hover {
       color: var(--text-muted);
@@ -103,17 +106,18 @@
     .badge-nuevo {
       background-color: #ffffff;
       color: #000000;
-      padding: 4px 10px; 
+      padding: 4px 8px; 
       font-size: 0.75rem; 
       font-weight: 700;
       border-radius: 4px;
       display: inline-block;
+      white-space: nowrap;
     }
     @media (min-width: 768px) {
-      .badge-nuevo { font-size: 0.85rem; }
+      .badge-nuevo { padding: 4px 10px; font-size: 0.85rem; }
     }
 
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-color); }
     ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #52525b; }
@@ -140,12 +144,13 @@
         grid-template-columns: 3fr 1fr;
       }
     }
+    
     .project-main {
-      padding: 24px; 
+      padding: 20px; 
       border-bottom: 1px solid var(--border-color);
     }
     .project-sidebar {
-      padding: 24px; 
+      padding: 20px; 
       background-color: #0a0a0a;
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
@@ -159,6 +164,7 @@
       backdrop-filter: blur(4px);
     }
 
+    /* FAQ Transición */
     .faq-answer {
       transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
       max-height: 0;
@@ -179,7 +185,7 @@
   <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 flex items-center justify-center px-4">
     <div class="terminal-block w-full max-w-xl relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
       <div class="terminal-header justify-between items-center px-4 md:px-6 py-3 font-mono">
-        <span class="text-sm md:text-base text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
+        <span class="text-xs md:text-base text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
         <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition-colors text-xl">×</button>
       </div>
       
@@ -192,7 +198,7 @@
           
           <button onclick="sendTemplateMail()" class="w-full py-3 md:py-4 bg-white text-black font-bold text-base md:text-lg rounded-md hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-4">
             <span data-i18n="modal_send_btn">Ejecutar mailto:</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </button>
         </div>
       </div>
@@ -200,7 +206,7 @@
   </div>
 
   <!-- CONTENEDOR MAESTRO CENTRAL -->
-  <div class="max-w-[1280px] mx-auto md:border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative shadow-2xl shadow-black">
+  <div class="max-w-[1280px] mx-auto md:border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative md:shadow-2xl shadow-black">
 
     <!-- NAVEGACIÓN TOP -->
     <nav class="border-b border-[#27272a] bg-[#0a0a0a] sticky top-0 z-50">
@@ -241,12 +247,12 @@
       
       <!-- HERO SECTION -->
       <header class="mb-16 md:mb-24">
-        <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4 mb-6 md:mb-10 items-start">
           <span class="badge-nuevo" data-i18n="badge_status">DISPONIBLE</span>
-          <span class="text-zinc-400 text-xs md:text-base leading-tight" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización.</span>
+          <span class="text-zinc-400 text-sm md:text-base leading-tight" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización de Sistemas.</span>
         </div>
 
-        <h1 class="text-4xl md:text-7xl font-bold text-white leading-tight md:leading-[1.1] mb-6 md:mb-8 tracking-tight" data-i18n="hero_title">
+        <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight md:leading-[1.1] mb-6 md:mb-8 tracking-tight" data-i18n="hero_title">
           El arquitecto de sistemas y datos asistido por IA.
         </h1>
         
@@ -348,24 +354,54 @@ $ n8n start --tunnel
 
         <div class="space-y-8 md:space-y-10">
           
+          <!-- QUASO PROJECT -->
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
-                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj1_title">Sistema OmniAgent</h3>
-                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">PdC</span>
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj1_title">Quaso</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">Plataforma</span>
               </div>
               <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj1_desc">
-                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.
+                Plataforma de Inteligencia de Datos Automatizada. Solución integral diseñada para la recopilación, procesamiento y visualización de datos. Permite a los usuarios realizar un seguimiento de temas de interés (precios, mercado, rendimiento) mediante flujos de trabajo inteligentes y análisis potenciados por IA. Todo el sistema está orquestado y empaquetado en contenedores.
               </p>
               <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
-                <span class="text-zinc-500 font-mono" data-i18n="proj1_impact_tag">Impacto //</span> <span data-i18n="proj1_impact">Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.</span>
+                <span class="text-zinc-500 font-mono" data-i18n="proj1_impact_tag">Arquitectura //</span> <span data-i18n="proj1_impact">Integración completa de flujos ETL automatizados, APIs de IA y desarrollo Full-Stack interactivo.</span>
               </div>
             </div>
             <div class="project-sidebar">
               <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
               <ul class="text-xs md:text-sm text-zinc-500 space-y-2 md:space-y-3 font-mono">
-                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role1">Arquitecto de Datos</span></li>
-                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type1">Sist. Multi-Agente</span></li>
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role1">Arquitecto & Full-Stack</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type1">Plataforma SaaS</span></li>
+              </ul>
+              <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 font-mono">
+                <li><span class="text-green-500">•</span> FastAPI & React</li>
+                <li><span class="text-green-500">•</span> n8n & Docker</li>
+                <li><span class="text-green-500">•</span> Supabase (PgSQL)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- OMNIAGENT SYSTEM -->
+          <div class="project-grid">
+            <div class="project-main">
+              <div class="flex justify-between items-start mb-4 md:mb-6">
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj2_title">Sistema OmniAgent</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">PdC</span>
+              </div>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj2_desc">
+                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.
+              </p>
+              <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
+                <span class="text-zinc-500 font-mono" data-i18n="proj2_impact_tag">Impacto //</span> <span data-i18n="proj2_impact">Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.</span>
+              </div>
+            </div>
+            <div class="project-sidebar">
+              <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 md:space-y-3 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role2">Arquitecto de Datos</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type2">Sist. Multi-Agente</span></li>
               </ul>
               <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
               <ul class="text-xs md:text-sm text-zinc-500 space-y-2 font-mono">
@@ -376,30 +412,7 @@ $ n8n start --tunnel
             </div>
           </div>
 
-          <div class="project-grid">
-            <div class="project-main">
-              <div class="flex justify-between items-start mb-4 md:mb-6">
-                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj2_title">Núcleo SupplyAI</h3>
-                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">SaaS</span>
-              </div>
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj2_desc">
-                Diseño de arquitectura en la nube orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de la información (Políticas RLS), normalización y alta disponibilidad.
-              </p>
-            </div>
-            <div class="project-sidebar">
-              <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 md:space-y-3 font-mono">
-                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type2">Servidor en Nube</span></li>
-              </ul>
-              <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 font-mono">
-                <li><span class="text-green-500">•</span> Supabase</li>
-                <li><span class="text-green-500">•</span> FastAPI</li>
-                <li><span class="text-green-500">•</span> PostgreSQL</li>
-              </ul>
-            </div>
-          </div>
-
+          <!-- MOTOR IMPULSO IA -->
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
@@ -448,7 +461,6 @@ $ n8n start --tunnel
             </p>
           </div>
 
-          <!-- Highlighted Experience -->
           <div class="border-l-2 border-white pl-6 md:pl-8 py-1">
             <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
             <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
@@ -474,7 +486,6 @@ $ n8n start --tunnel
 
         <div class="space-y-4 md:space-y-6">
           
-          <!-- FAQ 1 -->
           <div>
             <button onclick="toggleFaq(1)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
               <span id="faq-icon-1" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
@@ -485,7 +496,6 @@ $ n8n start --tunnel
             </div>
           </div>
 
-          <!-- FAQ 2 -->
           <div>
             <button onclick="toggleFaq(2)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
               <span id="faq-icon-2" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
@@ -496,7 +506,6 @@ $ n8n start --tunnel
             </div>
           </div>
 
-          <!-- FAQ 3 -->
           <div>
             <button onclick="toggleFaq(3)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
               <span id="faq-icon-3" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
@@ -507,7 +516,6 @@ $ n8n start --tunnel
             </div>
           </div>
 
-          <!-- FAQ 4 -->
           <div>
             <button onclick="toggleFaq(4)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
               <span id="faq-icon-4" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
@@ -623,15 +631,18 @@ $ n8n start --tunnel
         code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual de flujos de trabajo (n8n).\n- Aislamiento de entornos mediante Docker.\n- Conexión de aplicaciones mediante Webhooks REST.",
         
         section_projects: "Arquitectura & Pruebas de Concepto",
-        proj1_title: "Sistema OmniAgent",
-        proj1_badge: "PdC",
-        proj1_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.",
-        proj1_impact_tag: "Impacto //",
-        proj1_impact: "Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.",
         
-        proj2_title: "Núcleo SupplyAI",
-        proj2_badge: "SaaS",
-        proj2_desc: "Diseño de arquitectura en la nube orientada a la cadena de suministro corporativa. El núcleo del proyecto es un flujo automatizado que procesa bases de datos logísticas y las prepara para el consumo de modelos matemáticos que predicen la demanda. Enfoque estricto en seguridad de la información (Políticas RLS), normalización y alta disponibilidad.",
+        proj1_title: "Quaso",
+        proj1_badge: "Plataforma",
+        proj1_desc: "Plataforma de Inteligencia de Datos Automatizada. Solución integral diseñada para la recopilación, procesamiento y visualización de datos. Permite a los usuarios realizar un seguimiento de temas de interés (precios, mercado, rendimiento) mediante flujos de trabajo inteligentes y análisis potenciados por IA. Todo el sistema está orquestado y empaquetado en contenedores.",
+        proj1_impact_tag: "Arquitectura //",
+        proj1_impact: "Integración completa de flujos ETL automatizados, APIs de IA y desarrollo Full-Stack interactivo.",
+        
+        proj2_title: "Sistema OmniAgent",
+        proj2_badge: "PdC",
+        proj2_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.",
+        proj2_impact_tag: "Impacto //",
+        proj2_impact: "Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.",
         
         proj3_title: "Motor ImpulsoIA",
         proj3_badge: "Motor",
@@ -641,9 +652,10 @@ $ n8n start --tunnel
         sidebar_tech: "Tecnologías",
         sidebar_role: "Rol:",
         sidebar_type: "Tipo:",
-        sidebar_role1: "Arquitecto de Datos",
-        sidebar_type1: "Sist. Multi-Agente",
-        sidebar_type2: "Servidor en Nube",
+        sidebar_role1: "Arquitecto & Full-Stack",
+        sidebar_role2: "Arquitecto de Datos",
+        sidebar_type1: "Plataforma SaaS",
+        sidebar_type2: "Sist. Multi-Agente",
         sidebar_type3: "App en Contenedor",
         
         section_logs: "Experiencia & Educación",
@@ -707,15 +719,18 @@ $ n8n start --tunnel
         code_block3: "<span class='text-zinc-600'># Deployment Tools</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual workflow automation (n8n).\n- Environment isolation via Docker.\n- Application connection via REST Webhooks.",
         
         section_projects: "Architecture & Proofs of Concept",
-        proj1_title: "OmniAgent System",
-        proj1_badge: "PoC",
-        proj1_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates foundational models via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation asynchronously without manual intervention.",
-        proj1_impact_tag: "Impact //",
-        proj1_impact: "Technical demonstration that delegating code to agents allows human effort to focus entirely on architecture.",
         
-        proj2_title: "SupplyAI Core",
-        proj2_badge: "SaaS",
-        proj2_desc: "Cloud architecture design for a corporate supply chain platform. The core of the project is an automated pipeline that processes logistics databases and prepares them for mathematical models that predict demand. Strict focus on information security (RLS Policies), normalization, and high availability.",
+        proj1_title: "Quaso",
+        proj1_badge: "Platform",
+        proj1_desc: "Automated Data Intelligence Platform. Comprehensive solution designed for the automated collection, processing, and visualization of data. Allows users to track topics of interest (prices, market, performance) through intelligent workflows and AI-powered analysis. The entire system is orchestrated and containerized.",
+        proj1_impact_tag: "Architecture //",
+        proj1_impact: "Complete integration of automated ETL pipelines, AI APIs, and interactive Full-Stack development.",
+        
+        proj2_title: "OmniAgent System",
+        proj2_badge: "PoC",
+        proj2_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates foundational models via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation asynchronously without manual intervention.",
+        proj2_impact_tag: "Impact //",
+        proj2_impact: "Technical demonstration that delegating code to agents allows human effort to focus entirely on architecture.",
         
         proj3_title: "ImpulsoIA Engine",
         proj3_badge: "Engine",
@@ -725,9 +740,10 @@ $ n8n start --tunnel
         sidebar_tech: "Stack",
         sidebar_role: "Role:",
         sidebar_type: "Type:",
-        sidebar_role1: "Data Architect",
-        sidebar_type1: "Multi-Agent Sys",
-        sidebar_type2: "Cloud Server",
+        sidebar_role1: "Architect & Full-Stack",
+        sidebar_role2: "Data Architect",
+        sidebar_type1: "SaaS Platform",
+        sidebar_type2: "Multi-Agent Sys",
         sidebar_type3: "Container App",
 
         section_logs: "Experience & Education",
