@@ -1,15 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
   
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>robin | Arquitecto de Datos y Sistemas</title>
+  <title>robin | Arquitecto de Datos y Sistemas Eficientes</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Regla de 2 Fuentes: Inter (Sans-serif) y JetBrains Mono (Monospace) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -104,18 +102,20 @@
       color: var(--text-muted);
     }
 
-    .badge-nuevo {
+    .badge-container {
       background-color: #ffffff;
       color: #000000;
-      padding: 4px 8px; 
+      padding: 4px 10px; 
       font-size: 0.75rem; 
       font-weight: 700;
       border-radius: 4px;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       white-space: nowrap;
     }
     @media (min-width: 768px) {
-      .badge-nuevo { padding: 4px 10px; font-size: 0.85rem; }
+      .badge-container { padding: 4px 12px; font-size: 0.85rem; }
     }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -182,7 +182,6 @@
 
 <body class="selection:bg-zinc-800 selection:text-white">
 
-  <!-- MODAL DE CONTACTO -->
   <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 flex items-center justify-center px-4">
     <div class="terminal-block w-full max-w-xl relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
       <div class="terminal-header justify-between items-center px-4 md:px-6 py-3 font-mono">
@@ -195,7 +194,7 @@
         
         <div class="space-y-4">
           <label class="block text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-widest" data-i18n="modal_body_label">CUERPO DEL MENSAJE</label>
-          <textarea id="modal-msg" rows="5" class="w-full bg-[#050505] border border-[#27272a] rounded-md p-3 md:p-4 text-zinc-300 text-sm md:text-base focus:outline-none focus:border-zinc-500 transition-colors font-mono">Hola robin, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.</textarea>
+          <textarea id="modal-msg" rows="5" class="w-full bg-[#050505] border border-[#27272a] rounded-md p-3 md:p-4 text-zinc-300 text-sm md:text-base focus:outline-none focus:border-zinc-500 transition-colors font-mono"></textarea>
           
           <button onclick="sendTemplateMail()" class="w-full py-3 md:py-4 bg-white text-black font-bold text-base md:text-lg rounded-md hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-4">
             <span data-i18n="modal_send_btn">Ejecutar mailto:</span>
@@ -206,10 +205,8 @@
     </div>
   </div>
 
-  <!-- CONTENEDOR MAESTRO CENTRAL -->
   <div class="max-w-[1280px] mx-auto md:border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative md:shadow-2xl shadow-black">
 
-    <!-- NAVEGACIÓN TOP -->
     <nav class="border-b border-[#27272a] bg-[#0a0a0a] sticky top-0 z-50">
       <div class="px-5 md:px-16 h-16 md:h-24 flex items-center justify-between">
         
@@ -243,13 +240,17 @@
       </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <main class="flex-1 px-5 md:px-16 py-12 md:py-28">
       
-      <!-- HERO SECTION -->
       <header class="mb-16 md:mb-24">
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4 mb-6 md:mb-10 items-start">
-          <span class="badge-nuevo" data-i18n="badge_status">DISPONIBLE</span>
+          <div class="badge-container">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span data-i18n="badge_status">DISPONIBLE</span>
+          </div>
           <span class="text-zinc-400 text-sm md:text-base leading-tight" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización de Sistemas.</span>
         </div>
 
@@ -261,7 +262,6 @@
           La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo completamente agnóstico a la tecnología.
         </p>
 
-        <!-- TERMINAL INTERACTIVA -->
         <div class="terminal-block">
           <div class="terminal-header">
             <div class="terminal-tab active" onclick="switchTab('contacto')" id="tab-contacto" data-i18n="term_tab1">contacto</div>
@@ -293,7 +293,6 @@
 
       <hr class="border-[#27272a] my-16 md:my-20">
 
-      <!-- CORE EXPERTISE -->
       <section id="core-expertise" class="mb-20 md:mb-24 scroll-mt-24 md:scroll-mt-32">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
           <div class="md:col-span-1">
@@ -301,13 +300,13 @@
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p1">Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.</p>
           </div>
           <div class="md:col-span-2 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
-            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block1"><span class="text-zinc-600"># Componentes de Arquitectura IA</span>
+            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block1"># Componentes de Arquitectura IA
 [x] Integración de Modelos Fundacionales (LLMs)
 [x] Diseño de Sistemas Multi-Agente
 [x] Orquestación de Prompts Estructurados
 [x] Generación Aumentada por Recuperación (RAG)
 
-<span class="text-zinc-600"># Enfoque</span>
+# Enfoque
 > Delegar la sintaxis y tareas repetitivas al modelo.
 > Enfocar el esfuerzo humano en seguridad y escalabilidad.</code></pre>
           </div>
@@ -319,11 +318,11 @@
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p2">Extracción, transformación y carga (ETL) de información para sistemas empresariales.</p>
           </div>
           <div class="md:col-span-2 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
-            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block2"><span class="text-zinc-600"># Infraestructura y Tecnologías Principales</span>
+            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block2"># Infraestructura y Tecnologías Principales
 import pipeline_core
 from database import engine
 
-<span class="text-zinc-600"># Stack</span>
+# Stack
 - PostgreSQL / Bases de Datos Relacionales
 - Desarrollo Backend (Python / Node.js / FastAPI)
 - Plataformas Cloud BaaS (Supabase)
@@ -337,11 +336,11 @@ from database import engine
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p3">Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.</p>
           </div>
           <div class="md:col-span-2 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
-             <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block3"><span class="text-zinc-600"># Herramientas de Despliegue</span>
+             <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block3"># Herramientas de Despliegue
 $ docker-compose up -d
 $ n8n start --tunnel
 
-<span class="text-zinc-600"># Integraciones</span>
+# Integraciones
 - Automatización visual de flujos de trabajo (n8n).
 - Aislamiento de entornos mediante Docker.
 - Conexión de aplicaciones mediante Webhooks REST.</code></pre>
@@ -349,13 +348,11 @@ $ n8n start --tunnel
         </div>
       </section>
 
-      <!-- PROYECTOS -->
       <section id="proyectos" class="mb-20 md:mb-28 scroll-mt-24 md:scroll-mt-32">
         <h2 class="text-sm md:text-base font-bold text-zinc-500 uppercase tracking-widest mb-8 md:mb-10 border-b border-[#27272a] pb-4 md:pb-6" data-i18n="section_projects">Arquitectura & Pruebas de Concepto</h2>
 
         <div class="space-y-8 md:space-y-10">
           
-          <!-- QUASO PROJECT -->
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
@@ -384,7 +381,6 @@ $ n8n start --tunnel
             </div>
           </div>
 
-          <!-- OMNIAGENT SYSTEM -->
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
@@ -413,7 +409,6 @@ $ n8n start --tunnel
             </div>
           </div>
 
-          <!-- SUPPLY AI -->
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
@@ -445,7 +440,6 @@ $ n8n start --tunnel
         </div>
       </section>
 
-      <!-- EXPERIENCIA (Líneas minimalistas sin puntos) -->
       <section id="experiencia" class="mb-16 md:mb-16 scroll-mt-24 md:scroll-mt-32">
         <h2 class="text-sm md:text-base font-bold text-zinc-500 uppercase tracking-widest mb-8 md:mb-10 border-b border-[#27272a] pb-4 md:pb-6" data-i18n="section_logs">Experiencia & Educación</h2>
         
@@ -455,7 +449,7 @@ $ n8n start --tunnel
             <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp1_sub">Consultor Externo / Remoto</span>
             <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp1_title">Consultoría de Automatización y Sistemas</h4>
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
-              Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.
+              Auditoría de sistemas y desarrollo de soluciones de integration utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.
             </p>
           </div>
 
@@ -467,12 +461,11 @@ $ n8n start --tunnel
             </p>
           </div>
 
-          <!-- Highlighted Experience -->
           <div class="border-l-2 border-white pl-6 md:pl-8 py-2 shadow-[-1px_0_10px_rgba(255,255,255,0.3)]">
             <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
             <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
-              Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.
+              Desarrollo de solutions tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.
             </p>
           </div>
 
@@ -487,7 +480,6 @@ $ n8n start --tunnel
         </div>
       </section>
 
-      <!-- FAQ SECTION -->
       <section id="faq" class="mb-12 md:mb-16 scroll-mt-24 md:scroll-mt-32">
         <h2 class="text-sm md:text-base font-bold text-white uppercase font-mono tracking-widest mb-8 md:mb-10" data-i18n="section_faq">FAQ</h2>
 
@@ -533,12 +525,21 @@ $ n8n start --tunnel
             </div>
           </div>
 
+          <div>
+            <button onclick="toggleFaq(5)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
+              <span id="faq-icon-5" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
+              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq5_q">¿Cómo manejas los costos y límites de cuota de la IA?</span>
+            </button>
+            <div id="faq-ans-5" class="faq-answer pl-6 md:pl-8">
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq5_a">Diseñando arquitecturas con Prompt Routing, caché avanzado e integrando modelos de código abierto locales dentro de contenedores eficientes.</p>
+            </div>
+          </div>
+
         </div>
       </section>
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="border-t border-[#27272a] px-5 md:px-14 py-8 md:py-10 mt-auto bg-[#0a0a0a]">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 text-sm md:text-base text-zinc-500">
         <div class="font-mono text-white font-bold text-base md:text-lg">
@@ -552,7 +553,6 @@ $ n8n start --tunnel
 
   </div>
 
-  <!-- SCRIPT DE LÓGICA & TRADUCCIÓN -->
   <script>
     function switchTab(tabId) {
       document.querySelectorAll('.terminal-tab').forEach(tab => tab.classList.remove('active'));
@@ -615,9 +615,9 @@ $ n8n start --tunnel
         nav_exp: "Experiencia",
         nav_contact: "Contactar",
         badge_status: "DISPONIBLE",
-        badge_desc: "Abierto a roles de Arquitectura, Datos y Automatización.",
+        badge_desc: "Abierto a roles de Arquitectos de Sistemas, Automatización y Eficiencia de Costos (LLMOps).",
         hero_title: "El arquitecto de sistemas y datos asistido por IA.",
-        hero_desc: "La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo agnóstico a la tecnología.",
+        hero_desc: "La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos, optimizar costos de cómputo en la nube y desplegar canales ETL robustos mediante estrategias eficientes de orquestación y modelos locales/híbridos.",
         
         term_tab1: "contacto",
         term_tab2: "tecnologías",
@@ -625,9 +625,9 @@ $ n8n start --tunnel
         term_cmd_contact: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>npx</span> contactar-robin --rol='Arquitecto de Datos'",
         term_cmd_tech: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>cat</span> package.json | grep 'tecnologias'",
         
-        exp_h1: "Arquitectura Asistida por IA",
-        exp_p1: "Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.",
-        code_block1: "<span class='text-zinc-600'># Componentes de Arquitectura IA</span>\n[x] Integración de Modelos Fundacionales (LLMs)\n[x] Diseño de Sistemas Multi-Agente\n[x] Orquestación de Prompts Estructurados\n[x] Generación Aumentada por Recuperación (RAG)\n\n<span class='text-zinc-600'># Enfoque</span>\n> Delegar la sintaxis y tareas repetitivas al modelo.\n> Enfocar el esfuerzo humano en seguridad y escalabilidad.",
+        exp_h1: "Arquitectura IA & LLMOps",
+        exp_p1: "Orquestación de modelos fundacionales e híbridos (nube/local) maximizando el rendimiento por token.",
+        code_block1: "<span class='text-zinc-600'># Componentes de Arquitectura IA & LLMOps</span>\n[x] Integración de Modelos Fundacionales e Híbridos (Nube/Local)\n[x] Enrutamiento Inteligente de Prompts (Prompt Routing) para control de costos\n[x] Estrategias Avanzadas de Caché de Prompts y Bases Vectoriales\n[x] Sistemas Multi-Agente Autónomos con Control de Bucles\n\n<span class='text-zinc-600'># Enfoque</span>\n> Optimizar cada token y delegar tareas repetitivas al modelo.\n> Enfocar el esfuerzo humano en rendimiento, seguridad y rentabilidad.",
         
         exp_h2: "Ingeniería de Datos",
         exp_p2: "Extracción, transformación y carga (ETL) de información para sistemas empresariales.",
@@ -635,13 +635,13 @@ $ n8n start --tunnel
         
         exp_h3: "Automatización & Orquestación",
         exp_p3: "Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.",
-        code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual de flujos de trabajo (n8n).\n- Aislamiento de entornos mediante Docker.\n- Conexión de aplicaciones mediante Webhooks REST.",
+        code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue & Eficiencia</span>\n$ docker-compose up -d --build\n$ ollama run llama3 <span class='text-zinc-600'># Orquestación local de SLMs</span>\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual de flujos eficientes (n8n).\n- Aislamiento de entornos mediante Docker.\n- Conexión mediante Webhooks REST optimizados.",
         
         section_projects: "Arquitectura & Pruebas de Concepto",
         
         proj1_title: "Quaso",
         proj1_badge: "Plataforma",
-        proj1_desc: "Plataforma de Inteligencia de Datos Automatizada. Solución integral diseñada para la recopilación, procesamiento y visualización de datos. Permite a los usuarios realizar un seguimiento de temas de interés (precios, mercado, rendimiento) mediante flujos de trabajo inteligentes y análisis potenciados por IA. Todo el sistema está orquestado y empaquetado en contenedores.",
+        proj1_desc: "Plataforma de Inteligencia de Datos Automatizada. Solución integral diseñada para la recopilación, procesamiento y visualización de datos. Permite realizar un seguimiento de temas de interés mediante flujos de trabajo inteligentes y análisis potenciados por IA, mitigando el consumo excesivo de tokens mediante procesamiento por lotes. Todo el sistema está orquestado y empaquetado en contenedores.",
         proj1_impact_tag: "Arquitectura //",
         proj1_impact: "Integración completa de flujos ETL automatizados, APIs de IA y desarrollo Full-Stack interactivo.",
         
@@ -649,7 +649,7 @@ $ n8n start --tunnel
         proj2_badge: "PdC",
         proj2_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.",
         proj2_impact_tag: "Impacto //",
-        proj2_impact: "Demostración técnica de que delegar código a los agentes permite enfocar 100% el esfuerzo humano en arquitectura.",
+        proj2_impact: "Demostración técnica de que delegar código a agentes de código abierto reduce costos de APIs en un alto porcentaje.",
         
         proj3_title: "SupplyAI",
         proj3_badge: "Plataforma",
@@ -691,6 +691,8 @@ $ n8n start --tunnel
         faq3_a: "Me interesan los desafíos donde pueda diseñar canales de datos escalables (ETL), optimizar flujos de trabajo mediante automatización e integrar soluciones de Inteligencia Artificial para reducir drásticamente los cuellos de botella operativos.",
         faq4_q: "¿Estás disponible para contratación?",
         faq4_a: "Sí, actualmente estoy explorando oportunidades tanto para roles internos a tiempo completo (posiciones Junior/Mid en Ingeniería de Datos o Automatización) como para consultorías de proyectos freelance.",
+        faq5_q: "¿Cómo manejas los costos y límites de cuota de la IA?",
+        faq5_a: "Diseñando arquitecturas con Prompt Routing (evaluando complejidad antes de llamar al modelo), utilizando de forma agresiva caché de contexto e implementando modelos eficientes de código abierto (SLMs) de manera local mediante Docker u Ollama para mitigar la dependencia absoluta de APIs comerciales costosas.",
 
         footer_tag: "Sistemas Agnósticos. Automatización Estructurada.",
         
@@ -706,9 +708,9 @@ $ n8n start --tunnel
         nav_exp: "Experience",
         nav_contact: "Contact",
         badge_status: "AVAILABLE",
-        badge_desc: "Open to Architecture, Data & Automation roles.",
+        badge_desc: "Open to Systems Architecture, Automation & Cost Efficiency (LLMOps) roles.",
         hero_title: "The AI-assisted systems and data architect.",
-        hero_desc: "Syntax is a solved problem. I build data infrastructure and automate complex business logic by orchestrating foundational models. My focus is eliminating operational bottlenecks and deploying robust ETL pipelines while remaining technology-agnostic.",
+        hero_desc: "Syntax is a solved problem. I build data infrastructure and automate complex business logic by orchestrating foundational models. My focus is eliminating operational bottlenecks, optimizing cloud compute costs, and deploying robust ETL pipelines using efficient orchestration strategies and local/hybrid models.",
         
         term_tab1: "contact",
         term_tab2: "stack",
@@ -716,9 +718,9 @@ $ n8n start --tunnel
         term_cmd_contact: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>npx</span> hire-robin --role='Data Architect'",
         term_cmd_tech: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
         
-        exp_h1: "AI-Assisted Architecture",
-        exp_p1: "Orchestration of foundational models and multi-agent systems to abstract complex logic and scale development.",
-        code_block1: "<span class='text-zinc-600'># AI Architecture Components</span>\n[x] Foundational Model Integration (LLMs)\n[x] Multi-Agent Systems Design\n[x] Structured Prompt Orchestration\n[x] Retrieval-Augmented Generation (RAG)\n\n<span class='text-zinc-600'># Approach</span>\n> Delegate syntax and repetitive tasks to the model.\n> Focus human effort on security and scalability.",
+        exp_h1: "AI Architecture & LLMOps",
+        exp_p1: "Orchestration of foundational and hybrid models (cloud/local) maximizing performance per token.",
+        code_block1: "<span class='text-zinc-600'># AI Architecture & LLMOps Components</span>\n[x] Foundational & Hybrid Model Integration (Cloud/Local)\n[x] Intelligent Prompt Routing for cost control\n[x] Advanced Prompt Caching & Vector Database Strategies\n[x] Autonomous Multi-Agent Systems with Loop Control\n\n<span class='text-zinc-600'># Approach</span>\n> Optimize every token and delegate repetitive tasks to the model.\n> Focus human effort on performance, security, and profitability.",
         
         exp_h2: "Data Engineering",
         exp_p2: "Extraction, transformation, and loading (ETL) of information for enterprise systems.",
@@ -726,13 +728,13 @@ $ n8n start --tunnel
         
         exp_h3: "Automation & Orchestration",
         exp_p3: "Asynchronous deployment and service containerization for efficient infrastructures.",
-        code_block3: "<span class='text-zinc-600'># Deployment Tools</span>\n$ docker-compose up -d\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual workflow automation (n8n).\n- Environment isolation via Docker.\n- Application connection via REST Webhooks.",
+        code_block3: "<span class='text-zinc-600'># Deployment & Efficiency Tools</span>\n$ docker-compose up -d --build\n$ ollama run llama3 <span class='text-zinc-600'># Local SLM orchestration</span>\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual workflow automation with efficient pipelines (n8n).\n- Environment isolation via Docker.\n- Connection via optimized REST Webhooks.",
         
         section_projects: "Architecture & Proofs of Concept",
         
         proj1_title: "Quaso",
         proj1_badge: "Platform",
-        proj1_desc: "Automated Data Intelligence Platform. Comprehensive solution designed for the automated collection, processing, and visualization of data. Allows users to track topics of interest (prices, market, performance) through intelligent workflows and AI-powered analysis. The entire system is orchestrated and containerized.",
+        proj1_desc: "Automated Data Intelligence Platform. Comprehensive solution designed for the automated collection, processing, and visualization of data. Allows users to track topics of interest through intelligent workflows and AI-powered analysis, mitigating token overconsumption via batch processing. The entire system is containerized.",
         proj1_impact_tag: "Architecture //",
         proj1_impact: "Complete integration of automated ETL pipelines, AI APIs, and interactive Full-Stack development.",
         
@@ -740,7 +742,7 @@ $ n8n start --tunnel
         proj2_badge: "PoC",
         proj2_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates foundational models via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation asynchronously without manual intervention.",
         proj2_impact_tag: "Impact //",
-        proj2_impact: "Technical demonstration that delegating code to agents allows human effort to focus entirely on architecture.",
+        proj2_impact: "Technical demonstration that delegating code to open-source agents reduces API fees by a massive percentage.",
         
         proj3_title: "SupplyAI",
         proj3_badge: "Platform",
@@ -782,6 +784,8 @@ $ n8n start --tunnel
         faq3_a: "I am interested in challenges where I can design scalable data pipelines (ETL), optimize workflows through automation, and integrate Artificial Intelligence solutions to drastically reduce operational bottlenecks.",
         faq4_q: "Are you available for hire?",
         faq4_a: "Yes, I am currently exploring opportunities for both full-time internal roles (Junior/Mid positions in Data Engineering or Automation) and freelance project consulting.",
+        faq5_q: "How do you handle AI token costs and rate limits?",
+        faq5_a: "By designing architectures that feature Prompt Routing (assessing complexity before model calls), aggressively using context caching, and deploying efficient open-source Small Language Models (SLMs) locally via Docker or Ollama to mitigate absolute reliance on pricey commercial APIs.",
 
         footer_tag: "Agnostic Systems. Structured Automation.",
         
@@ -812,6 +816,9 @@ $ n8n start --tunnel
       }
       document.documentElement.lang = lang;
     }
+
+    // Inicializar el idioma por defecto al cargar
+    setLanguage('es');
   </script>
 </body>
 </html>
