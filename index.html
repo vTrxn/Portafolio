@@ -4,7 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>robin | Arquitecto de Datos y Sistemas Eficientes</title>
+  <title>robin | Desarrollo de Software, Móvil y Sistemas</title>
+  <meta name="description" content="Portafolio de Robinson Aranda (robin). Estudiante de Ingeniería de Software en Uniempresarial: backends REST en Java/Python, apps nativas Android e iOS, sistemas Windows y automatización.">
+  <meta property="og:title" content="robin | Desarrollo de Software, Móvil y Sistemas">
+  <meta property="og:description" content="Backends REST, aplicaciones móviles nativas (Android e iOS), utilidades de sistema en Windows y automatizaciones conectadas a mensajería.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a' stroke='%2327272a'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' fill='%23f4f4f5' font-family='monospace' font-size='16' font-weight='bold'%3Er_%3C/text%3E%3C/svg%3E">
   
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -61,7 +66,8 @@
     }
 
     .terminal-tab {
-      padding: 12px 16px; 
+      padding: 10px 16px; 
+      min-height: 44px;
       color: var(--text-muted);
       font-size: 0.85rem; 
       cursor: pointer;
@@ -149,20 +155,23 @@
     .project-main {
       padding: 20px; 
       border-bottom: 1px solid var(--border-color);
+      min-width: 0;
     }
     .project-sidebar {
       padding: 20px; 
       background-color: #0a0a0a;
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
+      min-width: 0;
     }
     @media (min-width: 768px) {
       .project-main { padding: 32px; border-bottom: none; border-right: 1px solid var(--border-color); }
       .project-sidebar { padding: 32px; border-bottom-left-radius: 0; border-top-right-radius: 8px; }
     }
 
-    #contact-modal {
-      backdrop-filter: blur(4px);
+    :focus-visible {
+      outline: 2px solid #f4f4f5;
+      outline-offset: 2px;
     }
 
     /* FAQ Transición. */
@@ -182,65 +191,87 @@
 
 <body class="selection:bg-zinc-800 selection:text-white">
 
-  <div id="contact-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/80 flex items-center justify-center px-4">
+  <div id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-path" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300 bg-black/85 flex items-center justify-center px-4">
     <div class="terminal-block w-full max-w-xl relative transform scale-95 transition-transform duration-300" id="contact-modal-content">
-      <div class="terminal-header justify-between items-center px-4 md:px-6 py-3 font-mono">
-        <span class="text-xs md:text-base text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
-        <button onclick="closeModal()" class="text-zinc-500 hover:text-white transition-colors text-xl">×</button>
+      <div class="terminal-header justify-between items-center px-4 md:px-6 py-2 font-mono">
+        <span id="modal-title-path" class="text-xs md:text-base text-zinc-400" data-i18n="modal_path">~ /usr/bin/contacto</span>
+        <button type="button" onclick="closeModal()" aria-label="Cerrar" class="text-[#8e8e98] hover:text-white transition-colors text-xl min-w-[44px] min-h-[44px] inline-flex items-center justify-center">×</button>
       </div>
       
       <div class="p-6 md:p-8">
         <p class="text-zinc-400 mb-6 text-sm md:text-base" data-i18n="modal_desc">Edita el cuerpo del mensaje. Se ejecutará tu cliente de correo local al confirmar.</p>
         
         <div class="space-y-4">
-          <label class="block text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-widest" data-i18n="modal_body_label">CUERPO DEL MENSAJE</label>
-          <textarea id="modal-msg" rows="5" class="w-full bg-[#050505] border border-[#27272a] rounded-md p-3 md:p-4 text-zinc-300 text-sm md:text-base focus:outline-none focus:border-zinc-500 transition-colors font-mono"></textarea>
+          <label for="modal-msg" class="block text-xs md:text-sm font-bold text-[#8e8e98] uppercase tracking-widest" data-i18n="modal_body_label">CUERPO DEL MENSAJE</label>
+          <textarea id="modal-msg" rows="5" class="w-full bg-[#050505] border border-[#27272a] rounded-md p-3 md:p-4 text-zinc-300 text-sm md:text-base focus:border-zinc-400 transition-colors font-mono"></textarea>
           
-          <button onclick="sendTemplateMail()" class="w-full py-3 md:py-4 bg-white text-black font-bold text-base md:text-lg rounded-md hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mt-4">
-            <span data-i18n="modal_send_btn">Ejecutar mailto:</span>
-            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </button>
+          <div class="flex flex-col sm:flex-row gap-3 mt-4">
+            <button type="button" onclick="sendTemplateMail()" class="flex-1 py-3 md:py-3.5 min-h-[44px] bg-white text-black font-bold text-sm md:text-base rounded-md hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+              <span data-i18n="modal_send_btn">Ejecutar mailto:</span>
+              <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+            <button type="button" id="copy-email-btn" onclick="copyEmail()" class="py-3 md:py-3.5 px-4 min-h-[44px] border border-[#27272a] bg-[#0a0a0a] text-zinc-200 font-mono text-xs md:text-sm rounded-md hover:bg-[#141414] hover:border-zinc-500 transition-colors flex items-center justify-center">
+              <span data-i18n="modal_copy_btn">Copiar correo</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="max-w-[1280px] mx-auto md:border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative md:shadow-2xl shadow-black">
+  <div class="max-w-[1060px] mx-auto md:border-x border-[#27272a] min-h-screen bg-[#0a0a0a] flex flex-col relative md:shadow-2xl shadow-black">
 
     <nav class="border-b border-[#27272a] bg-[#0a0a0a] sticky top-0 z-50">
-      <div class="px-5 md:px-16 h-16 md:h-24 flex items-center justify-between">
+      <div class="px-5 md:px-12 lg:px-14 h-16 md:h-20 flex items-center justify-between gap-3">
         
         <div class="flex items-center gap-6 md:gap-10">
           <div class="font-bold text-lg md:text-2xl tracking-tighter text-white flex items-center font-mono">
             robin
           </div>
           
-          <div class="hidden md:flex items-center gap-8">
-            <a href="https://github.com/vTrxn" target="_blank" class="nav-link flex items-center gap-2 font-medium">
-              GitHub <span class="text-zinc-600 font-mono text-sm" data-i18n="nav_git">[Portafolio]</span>
+          <div class="hidden lg:flex items-center gap-7">
+            <a href="https://github.com/vTrxn" target="_blank" rel="noopener noreferrer" class="nav-link flex items-center gap-2 font-medium">
+              GitHub <span class="text-[#8e8e98] font-mono text-sm" data-i18n="nav_git">[Portafolio]</span>
             </a>
-            <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" class="nav-link font-medium">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" rel="noopener noreferrer" class="nav-link font-medium">LinkedIn</a>
             <a href="#proyectos" class="nav-link font-medium" data-i18n="nav_projects">Proyectos</a>
             <a href="#experiencia" class="nav-link font-medium" data-i18n="nav_exp">Experiencia</a>
           </div>
         </div>
 
-        <div class="flex items-center gap-4 md:gap-8">
-          <div class="flex gap-2 md:gap-3 text-xs md:text-base font-medium">
-            <span id="btn-es" onclick="setLanguage('es')" class="lang-toggle active">ES</span>
-            <span class="text-zinc-700">|</span>
-            <span id="btn-en" onclick="setLanguage('en')" class="lang-toggle">EN</span>
+        <div class="flex items-center gap-2.5 md:gap-5">
+          <div class="flex items-center gap-1 md:gap-2 text-xs md:text-base font-medium">
+            <span id="btn-es" role="button" tabindex="0" onclick="setLanguage('es')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setLanguage('es');}" class="lang-toggle active min-h-[44px] min-w-[32px] inline-flex items-center justify-center px-1">ES</span>
+            <span class="text-[#8e8e98]">|</span>
+            <span id="btn-en" role="button" tabindex="0" onclick="setLanguage('en')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setLanguage('en');}" class="lang-toggle min-h-[44px] min-w-[32px] inline-flex items-center justify-center px-1">EN</span>
           </div>
           
-          <button onclick="openModal()" class="bg-white text-black font-bold px-3 py-1.5 md:px-5 md:py-2.5 rounded-md hover:bg-zinc-200 transition-colors text-xs md:text-base flex items-center gap-1.5 md:gap-2">
+          <button type="button" onclick="openModal()" class="bg-white text-black font-bold px-3 py-2 md:px-5 md:py-2.5 min-h-[44px] rounded-md hover:bg-zinc-200 transition-colors text-xs md:text-base flex items-center gap-1.5 md:gap-2">
             <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             <span data-i18n="nav_contact">Contactar</span>
           </button>
+
+          <button type="button" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden border border-[#27272a] bg-[#0f0f0f] text-zinc-200 font-mono text-xs px-2.5 py-2 min-h-[44px] rounded-md hover:bg-[#141414] transition-colors flex items-center">
+            <span data-i18n="nav_menu">Menú</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-[#27272a] bg-[#0a0a0a] px-5 md:px-12 py-3">
+        <div class="flex flex-col gap-1 font-mono text-sm">
+          <a href="https://github.com/vTrxn" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="text-zinc-200 hover:text-white min-h-[44px] flex items-center justify-between border-b border-[#18181b]">
+            <span>GitHub</span><span class="text-[#8e8e98] text-xs" data-i18n="nav_git">[Portafolio]</span>
+          </a>
+          <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="text-zinc-200 hover:text-white min-h-[44px] flex items-center border-b border-[#18181b]">
+            LinkedIn
+          </a>
+          <a href="#proyectos" onclick="closeMobileMenu()" class="text-zinc-200 hover:text-white min-h-[44px] flex items-center border-b border-[#18181b]" data-i18n="nav_projects">Proyectos</a>
+          <a href="#experiencia" onclick="closeMobileMenu()" class="text-zinc-200 hover:text-white min-h-[44px] flex items-center" data-i18n="nav_exp">Experiencia</a>
         </div>
       </div>
     </nav>
 
-    <main class="flex-1 px-5 md:px-16 py-12 md:py-28">
+    <main class="flex-1 px-5 md:px-12 lg:px-14 py-12 md:py-24">
       
       <header class="mb-16 md:mb-24">
         <div class="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4 mb-6 md:mb-10 items-start">
@@ -251,41 +282,41 @@
             </span>
             <span data-i18n="badge_status">DISPONIBLE</span>
           </div>
-          <span class="text-zinc-400 text-sm md:text-base leading-tight" data-i18n="badge_desc">Abierto a roles de Arquitectura, Datos y Automatización de Sistemas.</span>
+          <span class="text-zinc-400 text-sm md:text-base leading-tight" data-i18n="badge_desc">Abierto a prácticas, proyectos freelance y desarrollo de software a medida.</span>
         </div>
 
         <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight md:leading-[1.1] mb-6 md:mb-8 tracking-tight" data-i18n="hero_title">
-          El arquitecto de sistemas y datos asistido por IA.
+          Desarrollo software multiplataforma, APIs y sistemas a medida.
         </h1>
         
         <p class="text-base md:text-xl text-zinc-400 mb-10 md:mb-14 max-w-4xl" data-i18n="hero_desc">
-          La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos y desplegar canales ETL robustos siendo completamente agnóstico a la tecnología.
+          Estudiante de Ingeniería de Software en Uniempresarial (Bogotá). Diseño e implemento backends REST, aplicaciones móviles nativas (Android e iOS), utilidades de bajo nivel en Windows y automatizaciones conectadas a mensajería, priorizando arquitectura limpia, control de costos y código mantenible.
         </p>
 
         <div class="terminal-block">
-          <div class="terminal-header">
-            <div class="terminal-tab active" onclick="switchTab('contacto')" id="tab-contacto" data-i18n="term_tab1">contacto</div>
-            <div class="terminal-tab" onclick="switchTab('tecnologias')" id="tab-tecnologias" data-i18n="term_tab2">tecnologías</div>
-            <div class="terminal-tab" onclick="switchTab('ubicacion')" id="tab-ubicacion" data-i18n="term_tab3">ubicación</div>
+          <div class="terminal-header" role="tablist">
+            <button type="button" role="tab" class="terminal-tab active" onclick="switchTab('contacto')" id="tab-contacto" data-i18n="term_tab1">contacto</button>
+            <button type="button" role="tab" class="terminal-tab" onclick="switchTab('tecnologias')" id="tab-tecnologias" data-i18n="term_tab2">tecnologías</button>
+            <button type="button" role="tab" class="terminal-tab" onclick="switchTab('ubicacion')" id="tab-ubicacion" data-i18n="term_tab3">ubicación</button>
           </div>
           
-          <div id="panel-contacto" class="terminal-content-panel font-mono active p-4 md:p-6 justify-between items-start md:items-center gap-4 text-xs md:text-lg cursor-pointer group hover:bg-[#141414] transition-colors" onclick="openModal()">
+          <div id="panel-contacto" role="button" tabindex="0" class="terminal-content-panel font-mono active p-4 md:p-6 justify-between items-center gap-4 text-xs md:text-lg cursor-pointer group hover:bg-[#141414] transition-colors" onclick="openModal()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal();}">
             <div class="text-zinc-300 overflow-x-auto whitespace-nowrap w-full" data-i18n="term_cmd_contact">
-              <span class="text-zinc-500 mr-2 md:mr-3">~</span><span class="text-white">npx</span> contactar-robin --rol="Arquitecto de Datos"
+              <span class="text-[#8e8e98] mr-2 md:mr-3">~</span><span class="text-white">contactar</span> robin --dev
             </div>
-            <svg class="w-4 h-4 md:w-6 md:h-6 text-zinc-500 group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            <svg class="w-4 h-4 md:w-6 md:h-6 text-[#8e8e98] group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
           </div>
 
-          <div id="panel-tecnologias" class="terminal-content-panel font-mono p-4 md:p-6 justify-between items-start md:items-center gap-4 text-xs md:text-lg cursor-pointer group hover:bg-[#141414] transition-colors" onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})">
+          <div id="panel-tecnologias" role="button" tabindex="0" class="terminal-content-panel font-mono p-4 md:p-6 justify-between items-center gap-4 text-xs md:text-lg cursor-pointer group hover:bg-[#141414] transition-colors" onclick="document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('core-expertise').scrollIntoView({behavior: 'smooth'});}">
             <div class="text-zinc-300 overflow-x-auto whitespace-nowrap w-full" data-i18n="term_cmd_tech">
-              <span class="text-zinc-500 mr-2 md:mr-3">~</span><span class="text-white">cat</span> package.json | grep "tecnologias"
+              <span class="text-[#8e8e98] mr-2 md:mr-3">~</span><span class="text-white">cat</span> stack.txt | grep "core"
             </div>
-            <svg class="w-4 h-4 md:w-6 md:h-6 text-zinc-500 group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-4 h-4 md:w-6 md:h-6 text-[#8e8e98] group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </div>
 
           <div id="panel-ubicacion" class="terminal-content-panel font-mono p-4 md:p-6 justify-between items-center text-xs md:text-lg">
             <div class="text-zinc-300 overflow-x-auto whitespace-nowrap w-full">
-              <span class="text-zinc-500 mr-2 md:mr-3">~</span><span class="text-white">curl</span> ipinfo.io/loc | echo "Bogotá, Colombia"
+              <span class="text-[#8e8e98] mr-2 md:mr-3">~</span><span class="text-white">echo</span> "Bogotá, Colombia"
             </div>
           </div>
         </div>
@@ -296,87 +327,77 @@
       <section id="core-expertise" class="mb-20 md:mb-24 scroll-mt-24 md:scroll-mt-32">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-2 md:mb-4 text-xl md:text-2xl" data-i18n="exp_h1">Arquitectura Asistida por IA</h3>
-            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p1">Orquestación de modelos fundacionales y sistemas multi-agente para abstraer la lógica compleja y escalar el desarrollo.</p>
+            <h3 class="text-white font-bold mb-2 md:mb-4 text-xl md:text-2xl" data-i18n="exp_h1">Backend, APIs y Datos</h3>
+            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p1">Diseño de servicios REST, modelado relacional y persistencia transaccional con foco en seguridad, control de acceso y despliegue reproducible.</p>
           </div>
-          <div class="md:col-span-2 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
-            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block1"># Componentes de Arquitectura IA
-[x] Integración de Modelos Fundacionales (LLMs)
-[x] Diseño de Sistemas Multi-Agente
-[x] Orquestación de Prompts Estructurados
-[x] Generación Aumentada por Recuperación (RAG)
-
-# Enfoque
-> Delegar la sintaxis y tareas repetitivas al modelo.
-> Enfocar el esfuerzo humano en seguridad y escalabilidad.</code></pre>
+          <div class="md:col-span-2 min-w-0 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
+            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block1"><span class="text-[#8e8e98]"># Backend y Persistencia</span>
+- Java 21 + Spring Boot 3 (Spring Data JPA, Security)
+- Python (FastAPI, SQLAlchemy) / Node.js (Express)
+- Autenticación JWT (HMAC-SHA256), BCrypt y Webhooks REST
+- PostgreSQL (Supabase), SQLite y documentación OpenAPI 3</code></pre>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mt-12 md:mt-16">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-2 md:mb-4 text-xl md:text-2xl" data-i18n="exp_h2">Ingeniería de Datos</h3>
-            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p2">Extracción, transformación y carga (ETL) de información para sistemas empresariales.</p>
+            <h3 class="text-white font-bold mb-2 md:mb-4 text-xl md:text-2xl" data-i18n="exp_h2">Móvil Nativo (iOS y Android)</h3>
+            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p2">Desarrollo nativo para ambas plataformas con arquitectura MVVM, almacenamiento local offline-first y manejo directo de hardware y multimedia.</p>
           </div>
-          <div class="md:col-span-2 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
-            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block2"># Infraestructura y Tecnologías Principales
-import pipeline_core
-from database import engine
-
-# Stack
-- PostgreSQL / Bases de Datos Relacionales
-- Desarrollo Backend (Python / Node.js / FastAPI)
-- Plataformas Cloud BaaS (Supabase)
-- Normalización estricta y seguridad (RLS)</code></pre>
+          <div class="md:col-span-2 min-w-0 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
+            <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block2"><span class="text-[#8e8e98]"># Plataformas Móviles</span>
+- Android: Kotlin, Room (SQLite), Coroutines/Flow, Volley, Retrofit
+- iOS: Swift, SwiftUI, AVAudioSession, MPNowPlayingInfoCenter
+- Hardware y Sistema: Cámara (FileProvider), Audio en segundo plano
+- CI/CD: Compilación automatizada (.ipa / APK) en GitHub Actions</code></pre>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mt-12 md:mt-16">
           <div class="md:col-span-1">
-            <h3 class="text-white font-bold mb-2 md:mb-4 text-xl md:text-2xl" data-i18n="exp_h3">Automatización & Orquestación</h3>
-            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p3">Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.</p>
+            <h3 class="text-white font-bold mb-2 md:mb-4 text-xl md:text-2xl" data-i18n="exp_h3">Sistemas, Automatización e IA Aplicada</h3>
+            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp_p3">Programación a nivel de sistema en Windows, lógica en tiempo real e integración controlada de modelos locales o APIs sin perder previsibilidad ni control de gasto.</p>
           </div>
-          <div class="md:col-span-2 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
-             <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block3"># Herramientas de Despliegue
-$ docker-compose up -d
-$ n8n start --tunnel
-
-# Integraciones
-- Automatización visual de flujos de trabajo (n8n).
-- Aislamiento de entornos mediante Docker.
-- Conexión de aplicaciones mediante Webhooks REST.</code></pre>
+          <div class="md:col-span-2 min-w-0 border border-[#27272a] rounded-lg p-5 md:p-8 bg-[#0f0f0f]">
+             <pre class="text-xs md:text-sm text-zinc-400 overflow-x-auto font-mono leading-relaxed"><code data-i18n="code_block3"><span class="text-[#8e8e98]"># Sistemas, Herramientas y Despliegue</span>
+- Win32 API (ctypes, SendInput, XInput) y Python CLI/Desktop
+- Godot Engine (GDScript) y modelado 3D en Blender
+- Modelos locales (Ollama / Qwen 2.5 1.5B) + monitoreo de tokens
+- Docker, n8n, Postman y APIs de mensajería (Meta / WhatsApp / IG)</code></pre>
           </div>
         </div>
       </section>
 
       <section id="proyectos" class="mb-20 md:mb-28 scroll-mt-24 md:scroll-mt-32">
-        <h2 class="text-sm md:text-base font-bold text-zinc-500 uppercase tracking-widest mb-8 md:mb-10 border-b border-[#27272a] pb-4 md:pb-6" data-i18n="section_projects">Arquitectura & Pruebas de Concepto</h2>
+        <h2 class="text-sm md:text-base font-bold text-[#8e8e98] uppercase tracking-widest mb-8 md:mb-10 border-b border-[#27272a] pb-4 md:pb-6" data-i18n="section_projects">Proyectos Seleccionados</h2>
 
         <div class="space-y-8 md:space-y-10">
           
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
-                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj1_title">Quaso</h3>
-                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">Plataforma</span>
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj1_title">Arrendo</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj1_badge">Backend & Android</span>
               </div>
               <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj1_desc">
-                Plataforma de Inteligencia de Datos Automatizada. Solución integral diseñada para la recopilación, procesamiento y visualización de datos. Permite realizar un seguimiento de temas de interés mediante flujos de trabajo inteligentes y análisis potenciados por IA, mitigando el consumo excesivo de tokens mediante procesamiento por lotes. Todo el sistema está orquestado y empaquetado en contenedores.
+                Sistema distribuido para la gestión de contratos de arrendamiento, inmuebles, inquilinos e incidencias de mantenimiento, desarrollado en Uniempresarial bajo especificación IEEE 830. Combina un microservicio REST en Spring Boot 3 conectado a PostgreSQL (Supabase) con una app Android nativa en Kotlin diseñada para operar sin conexión mediante Room (SQLite) y sincronizar al recuperar red.
               </p>
               <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
-                <span class="text-zinc-500 font-mono" data-i18n="proj1_impact_tag">Arquitectura //</span> <span data-i18n="proj1_impact">Integración completa de flujos ETL automatizados, APIs de IA y desarrollo Full-Stack interactivo.</span>
+                <span class="text-[#8e8e98] font-mono" data-i18n="proj1_impact_tag">Arquitectura //</span> <span data-i18n="proj1_impact">Seguridad JWT (HMAC-SHA256) y BCrypt, documentación OpenAPI 3 / Swagger, colección Postman, integración con cámara y contactos en Android y despliegue Docker multi-etapa.</span>
               </div>
             </div>
             <div class="project-sidebar">
               <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 md:space-y-3 font-mono">
-                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role1">Arquitecto & Full-Stack</span></li>
-                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type1">Plataforma SaaS</span></li>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 md:space-y-3 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role1">Backend & Android</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type1">Sistema Distribuido</span></li>
+                <li><span class="text-white" data-i18n="sidebar_repo">Repo:</span> <a href="https://github.com/vTrxn/Arrendo" target="_blank" rel="noopener noreferrer" class="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors">vTrxn/Arrendo</a></li>
               </ul>
               <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 font-mono">
-                <li><span class="text-green-500">•</span> FastAPI & React</li>
-                <li><span class="text-green-500">•</span> n8n & Docker</li>
-                <li><span class="text-green-500">•</span> Supabase (PgSQL)</li>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 font-mono">
+                <li><span class="text-green-500">•</span> Java 21 & Spring Boot 3</li>
+                <li><span class="text-green-500">•</span> Kotlin, Room & Volley</li>
+                <li><span class="text-green-500">•</span> PostgreSQL & Docker</li>
               </ul>
             </div>
           </div>
@@ -384,27 +405,28 @@ $ n8n start --tunnel
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
-                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj2_title">Sistema OmniAgent</h3>
-                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">PdC</span>
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj2_title">BitChord iOS</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj2_badge">Port Nativo iOS</span>
               </div>
               <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj2_desc">
-                Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.
+                Refactorización y adaptación nativa para iPhone y iPad de una aplicación open-source de streaming musical originalmente hecha para Android, manteniendo compatibilidad con las mismas APIs externas (instancias Invidious con verificación de estado y letras sincronizadas por milisegundo desde LRCLIB).
               </p>
               <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
-                <span class="text-zinc-500 font-mono" data-i18n="proj2_impact_tag">Impacto //</span> <span data-i18n="proj2_impact">Demostración técnica de que delegar código a agentes de código abierto reduce costos de APIs en un alto porcentaje.</span>
+                <span class="text-[#8e8e98] font-mono" data-i18n="proj2_impact_tag">Ingeniería //</span> <span data-i18n="proj2_impact">Arquitectura MVVM en Swift y SwiftUI, audio en segundo plano con AVAudioSession, controles en pantalla de bloqueo (MPNowPlayingInfoCenter), descargas .m4a offline y compilación automática de .ipa en GitHub Actions.</span>
               </div>
             </div>
             <div class="project-sidebar">
               <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 md:space-y-3 font-mono">
-                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role2">Arquitecto de Datos</span></li>
-                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type2">Sist. Multi-Agente</span></li>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 md:space-y-3 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role2">Desarrollador iOS</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type2">App Nativa</span></li>
+                <li><span class="text-white" data-i18n="sidebar_repo">Repo:</span> <a href="https://github.com/vTrxn/BitChord-iOS-Test-" target="_blank" rel="noopener noreferrer" class="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors">BitChord-iOS-Test-</a></li>
               </ul>
               <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 font-mono">
-                <li><span class="text-green-500">•</span> Python</li>
-                <li><span class="text-green-500">•</span> n8n</li>
-                <li><span class="text-green-500">•</span> Modelos de Lenguaje</li>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 font-mono">
+                <li><span class="text-green-500">•</span> Swift & SwiftUI</li>
+                <li><span class="text-green-500">•</span> AVAudioSession / AVPlayer</li>
+                <li><span class="text-green-500">•</span> GitHub Actions CI/CD</li>
               </ul>
             </div>
           </div>
@@ -412,27 +434,86 @@ $ n8n start --tunnel
           <div class="project-grid">
             <div class="project-main">
               <div class="flex justify-between items-start mb-4 md:mb-6">
-                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj3_title">SupplyAI</h3>
-                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj3_badge">Plataforma</span>
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj3_title">GameSirTools (BedAssistant)</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj3_badge">Sistemas Windows</span>
               </div>
               <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj3_desc">
-                Plataforma web impulsada por IA para optimizar cadenas de suministro corporativas. Integra modelos de Machine Learning (Prophet, XGBoost) para predicción de demanda, algoritmos de optimización de rutas logísticas y asistentes virtuales interactivos.
+                Herramienta de escritorio en Python que convierte en tiempo real las entradas de un mando XInput en movimiento de ratón, scroll y atajos de teclado sobre Windows. Opera directamente contra la API Win32 mediante ctypes sin depender de librerías de macros de terceros, e incluye un teclado flotante en pantalla diseñado para escribir sin quitar el foco a la ventana activa.
               </p>
               <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
-                <span class="text-zinc-500 font-mono" data-i18n="proj3_impact_tag">Arquitectura //</span> <span data-i18n="proj3_impact">Diseño full-stack que orquesta de forma escalable analítica predictiva, APIs de enrutamiento y procesamiento de lenguaje natural.</span>
+                <span class="text-[#8e8e98] font-mono" data-i18n="proj3_impact_tag">Bajo Nivel //</span> <span data-i18n="proj3_impact">Inyección nativa con user32.SendInput y estructuras C (MOUSEINPUT / KEYBDINPUT), polling de xinput1_4 con curva exponencial de aceleración, detección de cursor I-Beam y ventana Tkinter con bandera WS_EX_NOACTIVATE.</span>
               </div>
             </div>
             <div class="project-sidebar">
               <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 md:space-y-3 font-mono">
-                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role3">Ingeniero de IA & Datos</span></li>
-                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type3">Plataforma Web</span></li>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 md:space-y-3 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role3">Autor / Sistemas</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type3">Utilidad Desktop</span></li>
+                <li><span class="text-white" data-i18n="sidebar_env">Entorno:</span> <span data-i18n="sidebar_local3">Uso Local (PC)</span></li>
               </ul>
               <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs md:text-sm text-zinc-500 space-y-2 font-mono">
-                <li><span class="text-green-500">•</span> FastAPI & React</li>
-                <li><span class="text-green-500">•</span> Python (ML/IA)</li>
-                <li><span class="text-green-500">•</span> APIs de Enrutamiento</li>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 font-mono">
+                <li><span class="text-green-500">•</span> Python & ctypes</li>
+                <li><span class="text-green-500">•</span> Win32 API & XInput 1.4</li>
+                <li><span class="text-green-500">•</span> Tkinter & DWM</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-grid">
+            <div class="project-main">
+              <div class="flex justify-between items-start mb-4 md:mb-6">
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj4_title">MintGuard</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj4_badge">Seguridad Local</span>
+              </div>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj4_desc">
+                Pasarela de privacidad on-premise y cortafuegos contra inyecciones de prompt para aplicaciones que consultan APIs externas de lenguaje. Ejecuta un modelo compacto local (Qwen 2.5 1.5B cuantizado Q4_K_M en Ollama, menos de 1 GB de VRAM) que detecta ataques y enmascara PII, credenciales y datos bancarios en una bóveda efímera en RAM antes de enviar cualquier texto al exterior.
+              </p>
+              <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
+                <span class="text-[#8e8e98] font-mono" data-i18n="proj4_impact_tag">Evaluación //</span> <span data-i18n="proj4_impact">Probado sobre 75 casos fuera de muestra: 100% de JSON válido, 98.7% de conformidad de esquema, 97.4% de precisión en PII, 0% de falsos positivos y 96% de bloqueo de ataques. Incluye CLI, SDK y proxy HTTP.</span>
+              </div>
+            </div>
+            <div class="project-sidebar">
+              <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 md:space-y-3 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role4">Autor / Seguridad</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type4">Proxy HTTP & SDK</span></li>
+                <li><span class="text-white" data-i18n="sidebar_repo">Repo:</span> <a href="https://github.com/vTrxn/MintGuard" target="_blank" rel="noopener noreferrer" class="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors">vTrxn/MintGuard</a></li>
+              </ul>
+              <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 font-mono">
+                <li><span class="text-green-500">•</span> Python & Ollama (SLM)</li>
+                <li><span class="text-green-500">•</span> Token Vault en RAM</li>
+                <li><span class="text-green-500">•</span> HTTP Proxy / CLI / SDK</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-grid">
+            <div class="project-main">
+              <div class="flex justify-between items-start mb-4 md:mb-6">
+                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj5_title">SupplyAI</h3>
+                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj5_badge">Web Full-Stack</span>
+              </div>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj5_desc">
+                Plataforma web orientada a PYMES en Colombia para gestión de inventario en tiempo real, alertas tempranas de desabastecimiento y optimización de entregas. Combina un backend asíncrono en FastAPI con frontend tipado en React y TypeScript, pronóstico de demanda (Prophet y XGBoost ajustados con IPC del DANE) y optimización de rutas logísticas.
+              </p>
+              <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
+                <span class="text-[#8e8e98] font-mono" data-i18n="proj5_impact_tag">Arquitectura //</span> <span data-i18n="proj5_impact">API REST con SQLAlchemy asíncrono, modelos predictivos con scikit-learn y Prophet, cálculo de rutas con OR-Tools y Google Maps Routes API.</span>
+              </div>
+            </div>
+            <div class="project-sidebar">
+              <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 md:space-y-3 font-mono">
+                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role5">Full-Stack & Datos</span></li>
+                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type5">Plataforma Web</span></li>
+                <li><span class="text-white" data-i18n="sidebar_repo">Repo:</span> <a href="https://github.com/vTrxn/SupplyAI" target="_blank" rel="noopener noreferrer" class="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors">vTrxn/SupplyAI</a></li>
+              </ul>
+              <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
+              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 font-mono">
+                <li><span class="text-green-500">•</span> FastAPI & PostgreSQL</li>
+                <li><span class="text-green-500">•</span> React & TypeScript</li>
+                <li><span class="text-green-500">•</span> Prophet, XGBoost & OR-Tools</li>
               </ul>
             </div>
           </div>
@@ -441,39 +522,31 @@ $ n8n start --tunnel
       </section>
 
       <section id="experiencia" class="mb-16 md:mb-16 scroll-mt-24 md:scroll-mt-32">
-        <h2 class="text-sm md:text-base font-bold text-zinc-500 uppercase tracking-widest mb-8 md:mb-10 border-b border-[#27272a] pb-4 md:pb-6" data-i18n="section_logs">Experiencia & Educación</h2>
+        <h2 class="text-sm md:text-base font-bold text-[#8e8e98] uppercase tracking-widest mb-8 md:mb-10 border-b border-[#27272a] pb-4 md:pb-6" data-i18n="section_logs">Experiencia y Educación</h2>
         
         <div class="space-y-6 md:space-y-8 pl-1">
           
           <div class="border-l-2 border-[#27272a] pl-6 md:pl-8 py-2">
-            <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp1_sub">Consultor Externo / Remoto</span>
-            <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp1_title">Consultoría de Automatización y Sistemas</h4>
+            <span class="text-xs md:text-sm text-[#8e8e98] font-mono mb-2 block" data-i18n="exp1_sub">fUSoft (Fábrica de Soluciones, Uniempresarial) / Bogotá, Col.</span>
+            <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp1_title">Desarrollador Full-Stack (Practicante)</h4>
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp1_desc">
-              Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.
+              Participación en el desarrollo y mantenimiento de aplicaciones web orientadas a PYMES y proyectos institucionales dentro de la Fábrica de Soluciones. Trabajo colaborativo en módulos backend y frontend, modularización de rutas, control de seguridad en autenticación y corrección de fallos en equipo.
             </p>
           </div>
 
           <div class="border-l-2 border-[#27272a] pl-6 md:pl-8 py-2">
-            <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp2_sub">Arquitectura de Datos / eCommerce</span>
-            <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp2_title">Arquitecto de Extracción y Transformación de Datos (ETL)</h4>
+            <span class="text-xs md:text-sm text-[#8e8e98] font-mono mb-2 block" data-i18n="exp2_sub">Proyectos Independientes y Open Source / vTrxn</span>
+            <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp2_title">Desarrollo Multiplataforma, Herramientas y Automatización</h4>
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp2_desc">
-              Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información y su persistencia eficiente en bases de datos analíticas, habilitando la toma de decisiones.
-            </p>
-          </div>
-
-          <div class="border-l-2 border-[#27272a] pl-6 md:pl-8 py-2">
-            <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="exp3_sub">fUSoft / Bogotá, Col.</span>
-            <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="exp3_title">Ingeniero de Software y Datos (Practicante)</h4>
-            <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="exp3_desc">
-              Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.
+              Construcción de herramientas propias y repositorios públicos en GitHub: monitoreo local de consumo y costos por token con dashboard web (TokenTracker), flujos automatizados con n8n y Docker (QuasoAI), desarrollo 3D en Godot/GDScript (COREBREAKER) y arquitectura de asistentes conectados a APIs oficiales de mensajería (WhatsApp / Instagram) para responder dudas, registrar pedidos y derivar a asesores humanos.
             </p>
           </div>
 
           <div class="border-l-2 border-[#27272a] pl-6 md:pl-8 py-2 mt-10 md:mt-16">
-            <span class="text-xs md:text-sm text-zinc-500 font-mono mb-2 block" data-i18n="edu_sub">Educación / 3er Semestre (Actual)</span>
+            <span class="text-xs md:text-sm text-[#8e8e98] font-mono mb-2 block" data-i18n="edu_sub">Educación / En curso (Bogotá, Col.)</span>
             <h4 class="text-white font-bold mb-2 md:mb-3 text-lg md:text-xl" data-i18n="edu_title">Ingeniería de Software (Uniempresarial)</h4>
             <p class="text-sm md:text-base text-zinc-400 leading-relaxed" data-i18n="edu_desc">
-              Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.
+              Formación universitaria con modelo dual orientado a proyectos empresariales reales. Bases en estructuras de datos, matemática aplicada, diseño de software bajo estándar IEEE 830, arquitectura distribuida con Spring Boot, aplicaciones móviles nativas y despliegue en la nube.
             </p>
           </div>
 
@@ -486,52 +559,52 @@ $ n8n start --tunnel
         <div class="space-y-4 md:space-y-6">
           
           <div>
-            <button onclick="toggleFaq(1)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
-              <span id="faq-icon-1" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
-              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq1_q">¿Qué significa ser un "arquitecto agnóstico"?</span>
+            <button type="button" id="faq-btn-1" aria-expanded="false" aria-controls="faq-ans-1" onclick="toggleFaq(1)" class="w-full flex items-start gap-3 md:gap-4 text-left group min-h-[44px] py-1.5">
+              <span id="faq-icon-1" class="text-[#8e8e98] font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
+              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq1_q">¿Qué tecnologías utilizas principalmente para construir proyectos?</span>
             </button>
             <div id="faq-ans-1" class="faq-answer pl-6 md:pl-8">
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq1_a">Significa que mi enfoque está en resolver problemas de negocio mediante lógica y diseño de sistemas, sin depender de un lenguaje o framework específico. Utilizo las herramientas que mejor se adapten a la necesidad operativa.</p>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq1_a">Elijo el stack según el problema: Java (Spring Boot) o Python (FastAPI) para APIs REST y lógica de negocio, PostgreSQL o SQLite para persistencia, Kotlin o Swift para aplicaciones móviles nativas, React y TypeScript para web, y Docker para empaquetar y desplegar servicios.</p>
             </div>
           </div>
 
           <div>
-            <button onclick="toggleFaq(2)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
-              <span id="faq-icon-2" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
-              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq2_q">¿Por qué no listas nombres específicos de IAs en tu stack?</span>
+            <button type="button" id="faq-btn-2" aria-expanded="false" aria-controls="faq-ans-2" onclick="toggleFaq(2)" class="w-full flex items-start gap-3 md:gap-4 text-left group min-h-[44px] py-1.5">
+              <span id="faq-icon-2" class="text-[#8e8e98] font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
+              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq2_q">¿Cómo trabajas con Inteligencia Artificial en tus desarrollos?</span>
             </button>
             <div id="faq-ans-2" class="faq-answer pl-6 md:pl-8">
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq2_a">El ecosistema de modelos fundacionales evoluciona constantemente. Por ello, construyo infraestructuras modulares que permiten intercambiar modelos (LLMs) como si fueran piezas de un rompecabezas, asegurando que la arquitectura base nunca quede obsoleta.</p>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq2_a">Como un componente técnico específico cuando aporta valor real, por ejemplo en atención automatizada, clasificación o predicción, nunca como reemplazo de la arquitectura base. Al integrar un modelo (en la nube o ejecutado en local), diseño límites estrictos de consumo, validación de salidas y derivación a humanos ante casos fuera de catálogo.</p>
             </div>
           </div>
 
           <div>
-            <button onclick="toggleFaq(3)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
-              <span id="faq-icon-3" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
-              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq3_q">¿Qué tipo de proyectos buscas actualmente?</span>
+            <button type="button" id="faq-btn-3" aria-expanded="false" aria-controls="faq-ans-3" onclick="toggleFaq(3)" class="w-full flex items-start gap-3 md:gap-4 text-left group min-h-[44px] py-1.5">
+              <span id="faq-icon-3" class="text-[#8e8e98] font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
+              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq3_q">¿Qué tipo de proyectos o colaboraciones buscas actualmente?</span>
             </button>
             <div id="faq-ans-3" class="faq-answer pl-6 md:pl-8">
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq3_a">Me interesan los desafíos donde pueda diseñar canales de datos escalables (ETL), optimizar flujos de trabajo mediante automatización e integrar soluciones de Inteligencia Artificial para reducir drásticamente los cuellos de botella operativos.</p>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq3_a">Desarrollo de APIs y aplicaciones web o móviles a medida, automatización de flujos y toma de pedidos por mensajería (como WhatsApp o Instagram conectados a correo, hojas de cálculo o sistemas internos), y oportunidades de práctica o roles Junior en ingeniería de software.</p>
             </div>
           </div>
 
           <div>
-            <button onclick="toggleFaq(4)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
-              <span id="faq-icon-4" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
-              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq4_q">¿Estás disponible para contratación?</span>
+            <button type="button" id="faq-btn-4" aria-expanded="false" aria-controls="faq-ans-4" onclick="toggleFaq(4)" class="w-full flex items-start gap-3 md:gap-4 text-left group min-h-[44px] py-1.5">
+              <span id="faq-icon-4" class="text-[#8e8e98] font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
+              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq4_q">¿Qué experiencia tienes adaptando sistemas existentes o integrando APIs?</span>
             </button>
             <div id="faq-ans-4" class="faq-answer pl-6 md:pl-8">
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq4_a">Sí, actualmente estoy explorando oportunidades tanto para roles internos a tiempo completo (posiciones Junior/Mid en Ingeniería de Datos o Automatización) como para consultorías de proyectos freelance.</p>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq4_a">He migrado y refactorizado aplicaciones completas entre plataformas manteniendo compatibilidad con sus APIs originales (como la adaptación de BitChord a Swift/SwiftUI para iOS) y conectado clientes móviles y web con servicios REST propios y externos mediante autenticación JWT, webhooks y manejo de fallos.</p>
             </div>
           </div>
 
           <div>
-            <button onclick="toggleFaq(5)" class="w-full flex items-start gap-3 md:gap-4 text-left group">
-              <span id="faq-icon-5" class="text-zinc-500 font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
-              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq5_q">¿Cómo manejas los costos y límites de cuota de la IA?</span>
+            <button type="button" id="faq-btn-5" aria-expanded="false" aria-controls="faq-ans-5" onclick="toggleFaq(5)" class="w-full flex items-start gap-3 md:gap-4 text-left group min-h-[44px] py-1.5">
+              <span id="faq-icon-5" class="text-[#8e8e98] font-mono text-lg md:text-xl leading-none group-hover:text-white transition-colors mt-0.5 md:mt-0">+</span>
+              <span class="font-mono font-bold text-white text-sm md:text-base leading-snug" data-i18n="faq5_q">¿Cómo evitas que el costo operativo de un sistema con APIs o IA se dispare?</span>
             </button>
             <div id="faq-ans-5" class="faq-answer pl-6 md:pl-8">
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq5_a">Diseñando arquitecturas con Prompt Routing, caché avanzado e integrando modelos de código abierto locales dentro de contenedores eficientes.</p>
+              <p class="text-zinc-400 text-sm md:text-base leading-relaxed" data-i18n="faq5_a">Separando la lógica determinista (reglas, validaciones y consultas a base de datos) de las llamadas a modelos externos, implementando caché de contexto, límites de gasto mensual y auditoría de consumo por token (como en TokenTracker), o ejecutando modelos compactos en local cuando la privacidad y el presupuesto lo requieren.</p>
             </div>
           </div>
 
@@ -540,13 +613,18 @@ $ n8n start --tunnel
 
     </main>
 
-    <footer class="border-t border-[#27272a] px-5 md:px-14 py-8 md:py-10 mt-auto bg-[#0a0a0a]">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 text-sm md:text-base text-zinc-500">
-        <div class="font-mono text-white font-bold text-base md:text-lg">
+    <footer class="border-t border-[#27272a] px-5 md:px-12 lg:px-14 py-8 md:py-10 mt-auto bg-[#0a0a0a]">
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-6 text-sm md:text-base text-[#8e8e98]">
+        <div class="font-mono text-white font-bold text-base md:text-lg whitespace-nowrap shrink-0">
           robin © 2026
         </div>
-        <div class="font-mono text-xs md:text-sm text-center md:text-left">
-          <span data-i18n="footer_tag">Sistemas Agnósticos. Automatización Estructurada.</span>
+        <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 font-mono text-xs md:text-sm">
+          <a href="https://github.com/vTrxn" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors py-1">GitHub</a>
+          <a href="https://www.linkedin.com/in/robinson-aranda-gonz%C3%A1lez-37857a3a7/" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors py-1">LinkedIn</a>
+          <button type="button" onclick="openModal()" class="text-zinc-300 hover:text-white underline decoration-zinc-700 underline-offset-4 transition-colors py-1">robinsonaranda29@gmail.com</button>
+        </div>
+        <div class="font-mono text-xs md:text-sm text-center lg:text-right">
+          <span data-i18n="footer_tag">Ingeniería de Software. Código, Sistemas y Automatización.</span>
         </div>
       </div>
     </footer>
@@ -554,6 +632,25 @@ $ n8n start --tunnel
   </div>
 
   <script>
+    let currentLang = 'es';
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('mobile-menu-btn');
+      const isHidden = menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('mobile-menu-btn');
+      if (menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.terminal-tab').forEach(tab => tab.classList.remove('active'));
       document.getElementById(`tab-${tabId}`).classList.add('active');
@@ -564,27 +661,32 @@ $ n8n start --tunnel
     function toggleFaq(id) {
       const ans = document.getElementById(`faq-ans-${id}`);
       const icon = document.getElementById(`faq-icon-${id}`);
+      const btn = document.getElementById(`faq-btn-${id}`);
       
       if (ans.classList.contains('open')) {
         ans.classList.remove('open');
         icon.innerText = '+';
         icon.classList.remove('text-white');
-        icon.classList.add('text-zinc-500');
+        icon.classList.add('text-[#8e8e98]');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
       } else {
         ans.classList.add('open');
         icon.innerText = '-';
-        icon.classList.remove('text-zinc-500');
+        icon.classList.remove('text-[#8e8e98]');
         icon.classList.add('text-white');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
       }
     }
 
     function openModal() {
+      closeMobileMenu();
       const modal = document.getElementById('contact-modal');
       const content = document.getElementById('contact-modal-content');
       modal.classList.remove('hidden');
       setTimeout(() => {
         modal.classList.remove('opacity-0');
         content.classList.remove('scale-95');
+        document.getElementById('modal-msg').focus();
       }, 10);
     }
 
@@ -600,6 +702,48 @@ $ n8n start --tunnel
       if (e.target === this) closeModal();
     });
 
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('contact-modal');
+        if (!modal.classList.contains('hidden')) closeModal();
+        closeMobileMenu();
+      }
+    });
+
+    function copyEmail() {
+      const email = 'robinsonaranda29@gmail.com';
+      const btn = document.getElementById('copy-email-btn');
+      const label = btn.querySelector('span');
+      const showDone = () => {
+        label.textContent = translations[currentLang].modal_copied_btn;
+        setTimeout(() => {
+          label.textContent = translations[currentLang].modal_copy_btn;
+        }, 2000);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showDone).catch(() => {
+          fallbackCopy(email);
+          showDone();
+        });
+      } else {
+        fallbackCopy(email);
+        showDone();
+      }
+    }
+
+    function fallbackCopy(text) {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.setAttribute('readonly', '');
+      temp.style.position = 'absolute';
+      temp.style.left = '-9999px';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+    }
+
     function sendTemplateMail() {
       const text = document.getElementById('modal-msg').value;
       const subject = encodeURIComponent("Oportunidad de Colaboración - Visto en Portafolio");
@@ -610,198 +754,241 @@ $ n8n start --tunnel
 
     const translations = {
       es: {
+        page_title: "robin | Desarrollo de Software, Móvil y Sistemas",
         nav_git: "[Portafolio]",
         nav_projects: "Proyectos",
         nav_exp: "Experiencia",
         nav_contact: "Contactar",
+        nav_menu: "Menú",
         badge_status: "DISPONIBLE",
-        badge_desc: "Abierto a roles de Arquitectos de Sistemas, Automatización y Eficiencia de Costos (LLMOps).",
-        hero_title: "El arquitecto de sistemas y datos asistido por IA.",
-        hero_desc: "La sintaxis es un problema resuelto. Construyo infraestructura de datos y automatizo lógicas de negocio complejas orquestando modelos fundacionales. Mi enfoque es eliminar cuellos de botella operativos, optimizar costos de cómputo en la nube y desplegar canales ETL robustos mediante estrategias eficientes de orquestación y modelos locales/híbridos.",
+        badge_desc: "Abierto a prácticas, proyectos freelance y desarrollo de software a medida.",
+        hero_title: "Desarrollo software multiplataforma, APIs y sistemas a medida.",
+        hero_desc: "Estudiante de Ingeniería de Software en Uniempresarial (Bogotá). Diseño e implemento backends REST, aplicaciones móviles nativas (Android e iOS), utilidades de bajo nivel en Windows y automatizaciones conectadas a mensajería, priorizando arquitectura limpia, control de costos y código mantenible.",
         
         term_tab1: "contacto",
         term_tab2: "tecnologías",
         term_tab3: "ubicación",
-        term_cmd_contact: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>npx</span> contactar-robin --rol='Arquitecto de Datos'",
-        term_cmd_tech: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>cat</span> package.json | grep 'tecnologias'",
+        term_cmd_contact: "<span class='text-[#8e8e98] mr-2 md:mr-3'>~</span><span class='text-white'>contactar</span> robin --dev",
+        term_cmd_tech: "<span class='text-[#8e8e98] mr-2 md:mr-3'>~</span><span class='text-white'>cat</span> stack.txt | grep \"core\"",
         
-        exp_h1: "Arquitectura IA & LLMOps",
-        exp_p1: "Orquestación de modelos fundacionales e híbridos (nube/local) maximizando el rendimiento por token.",
-        code_block1: "<span class='text-zinc-600'># Componentes de Arquitectura IA & LLMOps</span>\n[x] Integración de Modelos Fundacionales e Híbridos (Nube/Local)\n[x] Enrutamiento Inteligente de Prompts (Prompt Routing) para control de costos\n[x] Estrategias Avanzadas de Caché de Prompts y Bases Vectoriales\n[x] Sistemas Multi-Agente Autónomos con Control de Bucles\n\n<span class='text-zinc-600'># Enfoque</span>\n> Optimizar cada token y delegar tareas repetitivas al modelo.\n> Enfocar el esfuerzo humano en rendimiento, seguridad y rentabilidad.",
+        exp_h1: "Backend, APIs y Datos",
+        exp_p1: "Diseño de servicios REST, modelado relacional y persistencia transaccional con foco en seguridad, control de acceso y despliegue reproducible.",
+        code_block1: "<span class='text-[#8e8e98]'># Backend y Persistencia</span>\n- Java 21 + Spring Boot 3 (Spring Data JPA, Security)\n- Python (FastAPI, SQLAlchemy) / Node.js (Express)\n- Autenticación JWT (HMAC-SHA256), BCrypt y Webhooks REST\n- PostgreSQL (Supabase), SQLite y documentación OpenAPI 3",
         
-        exp_h2: "Ingeniería de Datos",
-        exp_p2: "Extracción, transformación y carga (ETL) de información para sistemas empresariales.",
-        code_block2: "<span class='text-zinc-600'># Infraestructura y Tecnologías Principales</span>\nimport pipeline_core\nfrom database import engine\n\n<span class='text-zinc-600'># Stack</span>\n- PostgreSQL / Bases de Datos Relacionales\n- Desarrollo Backend (Python / Node.js / FastAPI)\n- Plataformas Cloud BaaS (Supabase)\n- Normalización estricta y seguridad (RLS)",
+        exp_h2: "Móvil Nativo (iOS y Android)",
+        exp_p2: "Desarrollo nativo para ambas plataformas con arquitectura MVVM, almacenamiento local offline-first y manejo directo de hardware y multimedia.",
+        code_block2: "<span class='text-[#8e8e98]'># Plataformas Móviles</span>\n- Android: Kotlin, Room (SQLite), Coroutines/Flow, Volley, Retrofit\n- iOS: Swift, SwiftUI, AVAudioSession, MPNowPlayingInfoCenter\n- Hardware y Sistema: Cámara (FileProvider), Audio en segundo plano\n- CI/CD: Compilación automatizada (.ipa / APK) en GitHub Actions",
         
-        exp_h3: "Automatización & Orquestación",
-        exp_p3: "Despliegue asíncrono y contenerización de servicios para infraestructuras eficientes.",
-        code_block3: "<span class='text-zinc-600'># Herramientas de Despliegue & Eficiencia</span>\n$ docker-compose up -d --build\n$ ollama run llama3 <span class='text-zinc-600'># Orquestación local de SLMs</span>\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integraciones</span>\n- Automatización visual de flujos eficientes (n8n).\n- Aislamiento de entornos mediante Docker.\n- Conexión mediante Webhooks REST optimizados.",
+        exp_h3: "Sistemas, Automatización e IA Aplicada",
+        exp_p3: "Programación a nivel de sistema en Windows, lógica en tiempo real e integración controlada de modelos locales o APIs sin perder previsibilidad ni control de gasto.",
+        code_block3: "<span class='text-[#8e8e98]'># Sistemas, Herramientas y Despliegue</span>\n- Win32 API (ctypes, SendInput, XInput) y Python CLI/Desktop\n- Godot Engine (GDScript) y modelado 3D en Blender\n- Modelos locales (Ollama / Qwen 2.5 1.5B) + monitoreo de tokens\n- Docker, n8n, Postman y APIs de mensajería (Meta / WhatsApp / IG)",
         
-        section_projects: "Arquitectura & Pruebas de Concepto",
+        section_projects: "Proyectos Seleccionados",
         
-        proj1_title: "Quaso",
-        proj1_badge: "Plataforma",
-        proj1_desc: "Plataforma de Inteligencia de Datos Automatizada. Solución integral diseñada para la recopilación, procesamiento y visualización de datos. Permite realizar un seguimiento de temas de interés mediante flujos de trabajo inteligentes y análisis potenciados por IA, mitigando el consumo excesivo de tokens mediante procesamiento por lotes. Todo el sistema está orquestado y empaquetado en contenedores.",
+        proj1_title: "Arrendo",
+        proj1_badge: "Backend & Android",
+        proj1_desc: "Sistema distribuido para la gestión de contratos de arrendamiento, inmuebles, inquilinos e incidencias de mantenimiento, desarrollado en Uniempresarial bajo especificación IEEE 830. Combina un microservicio REST en Spring Boot 3 conectado a PostgreSQL (Supabase) con una app Android nativa en Kotlin diseñada para operar sin conexión mediante Room (SQLite) y sincronizar al recuperar red.",
         proj1_impact_tag: "Arquitectura //",
-        proj1_impact: "Integración completa de flujos ETL automatizados, APIs de IA y desarrollo Full-Stack interactivo.",
+        proj1_impact: "Seguridad JWT (HMAC-SHA256) y BCrypt, documentación OpenAPI 3 / Swagger, colección Postman, integración con cámara y contactos en Android y despliegue Docker multi-etapa.",
         
-        proj2_title: "Sistema OmniAgent",
-        proj2_badge: "PdC",
-        proj2_desc: "Desarrollo de un ecosistema de agentes autónomos diseñado para automatizar flujos de trabajo técnicos. El sistema integra modelos fundacionales a través de la plataforma n8n para realizar extracción de datos web, limpieza de información, síntesis de reportes y generación de lógica de negocio, operando de forma asíncrona sin intervención manual.",
-        proj2_impact_tag: "Impacto //",
-        proj2_impact: "Demostración técnica de que delegar código a agentes de código abierto reduce costos de APIs en un alto porcentaje.",
+        proj2_title: "BitChord iOS",
+        proj2_badge: "Port Nativo iOS",
+        proj2_desc: "Refactorización y adaptación nativa para iPhone y iPad de una aplicación open-source de streaming musical originalmente hecha para Android, manteniendo compatibilidad con las mismas APIs externas (instancias Invidious con verificación de estado y letras sincronizadas por milisegundo desde LRCLIB).",
+        proj2_impact_tag: "Ingeniería //",
+        proj2_impact: "Arquitectura MVVM en Swift y SwiftUI, audio en segundo plano con AVAudioSession, controles en pantalla de bloqueo (MPNowPlayingInfoCenter), descargas .m4a offline y compilación automática de .ipa en GitHub Actions.",
         
-        proj3_title: "SupplyAI",
-        proj3_badge: "Plataforma",
-        proj3_desc: "Plataforma web impulsada por IA para optimizar cadenas de suministro corporativas. Integra modelos de Machine Learning (Prophet, XGBoost) para predicción de demanda, algoritmos de optimización de rutas logísticas y asistentes virtuales interactivos.",
-        proj3_impact_tag: "Arquitectura //",
-        proj3_impact: "Diseño full-stack que orquesta de forma escalable analítica predictiva, APIs de enrutamiento y procesamiento de lenguaje natural.",
+        proj3_title: "GameSirTools (BedAssistant)",
+        proj3_badge: "Sistemas Windows",
+        proj3_desc: "Herramienta de escritorio en Python que convierte en tiempo real las entradas de un mando XInput en movimiento de ratón, scroll y atajos de teclado sobre Windows. Opera directamente contra la API Win32 mediante ctypes sin depender de librerías de macros de terceros, e incluye un teclado flotante en pantalla diseñado para escribir sin quitar el foco a la ventana activa.",
+        proj3_impact_tag: "Bajo Nivel //",
+        proj3_impact: "Inyección nativa con user32.SendInput y estructuras C (MOUSEINPUT / KEYBDINPUT), polling de xinput1_4 con curva exponencial de aceleración, detección de cursor I-Beam y ventana Tkinter con bandera WS_EX_NOACTIVATE.",
+
+        proj4_title: "MintGuard",
+        proj4_badge: "Seguridad Local",
+        proj4_desc: "Pasarela de privacidad on-premise y cortafuegos contra inyecciones de prompt para aplicaciones que consultan APIs externas de lenguaje. Ejecuta un modelo compacto local (Qwen 2.5 1.5B cuantizado Q4_K_M en Ollama, menos de 1 GB de VRAM) que detecta ataques y enmascara PII, credenciales y datos bancarios en una bóveda efímera en RAM antes de enviar cualquier texto al exterior.",
+        proj4_impact_tag: "Evaluación //",
+        proj4_impact: "Probado sobre 75 casos fuera de muestra: 100% de JSON válido, 98.7% de conformidad de esquema, 97.4% de precisión en PII, 0% de falsos positivos y 96% de bloqueo de ataques. Incluye CLI, SDK y proxy HTTP.",
+
+        proj5_title: "SupplyAI",
+        proj5_badge: "Web Full-Stack",
+        proj5_desc: "Plataforma web orientada a PYMES en Colombia para gestión de inventario en tiempo real, alertas tempranas de desabastecimiento y optimización de entregas. Combina un backend asíncrono en FastAPI con frontend tipado en React y TypeScript, pronóstico de demanda (Prophet y XGBoost ajustados con IPC del DANE) y optimización de rutas logísticas.",
+        proj5_impact_tag: "Arquitectura //",
+        proj5_impact: "API REST con SQLAlchemy asíncrono, modelos predictivos con scikit-learn y Prophet, cálculo de rutas con OR-Tools y Google Maps Routes API.",
         
         sidebar_context: "Contexto",
         sidebar_tech: "Tecnologías",
         sidebar_role: "Rol:",
         sidebar_type: "Tipo:",
-        sidebar_role1: "Arquitecto & Full-Stack",
-        sidebar_role2: "Arquitecto de Datos",
-        sidebar_role3: "Ingeniero de IA & Datos",
-        sidebar_type1: "Plataforma SaaS",
-        sidebar_type2: "Sist. Multi-Agente",
-        sidebar_type3: "Plataforma Web",
+        sidebar_repo: "Repo:",
+        sidebar_env: "Entorno:",
+        sidebar_role1: "Backend & Android",
+        sidebar_role2: "Desarrollador iOS",
+        sidebar_role3: "Autor / Sistemas",
+        sidebar_role4: "Autor / Seguridad",
+        sidebar_role5: "Full-Stack & Datos",
+        sidebar_type1: "Sistema Distribuido",
+        sidebar_type2: "App Nativa",
+        sidebar_type3: "Utilidad Desktop",
+        sidebar_type4: "Proxy HTTP & SDK",
+        sidebar_type5: "Plataforma Web",
+        sidebar_local3: "Uso Local (PC)",
         
-        section_logs: "Experiencia & Educación",
-        exp1_sub: "Consultor Externo / Remoto",
-        exp1_title: "Consultoría de Automatización y Sistemas",
-        exp1_desc: "Auditoría de sistemas y desarrollo de soluciones de integración utilizando la plataforma n8n y Docker. Implementación de procesos automáticos que conectan bases de datos con módulos de análisis comercial, eliminando la dependencia de desarrollos a medida para tareas operativas repetitivas.",
-        exp2_sub: "Arquitectura de Datos / eCommerce",
-        exp2_title: "Arquitecto de Extracción y Transformación de Datos (ETL)",
-        exp2_desc: "Diseño lógico de un canal de procesamiento masivo para gestionar eventos transaccionales virtuales. Construcción del flujo central enfocado en la limpieza automática de información y su persistencia eficiente en bases de datos analíticas, habilitando la toma de decisiones.",
-        exp3_sub: "fUSoft / Bogotá, Col.",
-        exp3_title: "Ingeniero de Software y Datos (Practicante)",
-        exp3_desc: "Desarrollo de soluciones tecnológicas orientadas al negocio. Mantenimiento de arquitecturas de sistemas completos, mejora de la lógica algorítmica y creación de herramientas de uso interno mediante procesos automatizados. Participación directa en la orquestación de recursos en la nube.",
-        edu_sub: "Educación / 3er Semestre (Actual)",
+        section_logs: "Experiencia y Educación",
+        exp1_sub: "fUSoft (Fábrica de Soluciones, Uniempresarial) / Bogotá, Col.",
+        exp1_title: "Desarrollador Full-Stack (Practicante)",
+        exp1_desc: "Participación en el desarrollo y mantenimiento de aplicaciones web orientadas a PYMES y proyectos institucionales dentro de la Fábrica de Soluciones. Trabajo colaborativo en módulos backend y frontend, modularización de rutas, control de seguridad en autenticación y corrección de fallos en equipo.",
+        exp2_sub: "Proyectos Independientes y Open Source / vTrxn",
+        exp2_title: "Desarrollo Multiplataforma, Herramientas y Automatización",
+        exp2_desc: "Construcción de herramientas propias y repositorios públicos en GitHub: monitoreo local de consumo y costos por token con dashboard web (TokenTracker), flujos automatizados con n8n y Docker (QuasoAI), desarrollo 3D en Godot/GDScript (COREBREAKER) y arquitectura de asistentes conectados a APIs oficiales de mensajería (WhatsApp / Instagram) para responder dudas, registrar pedidos y derivar a asesores humanos.",
+        edu_sub: "Educación / En curso (Bogotá, Col.)",
         edu_title: "Ingeniería de Software (Uniempresarial)",
-        edu_desc: "Bases fundamentales en matemática aplicada, diseño de sistemas lógicos y estructuras de datos. Desarrollo de una mentalidad de ingeniería agnóstica a herramientas específicas, priorizando la arquitectura y la resolución eficiente de problemas complejos.",
+        edu_desc: "Formación universitaria con modelo dual orientado a proyectos empresariales reales. Bases en estructuras de datos, matemática aplicada, diseño de software bajo estándar IEEE 830, arquitectura distribuida con Spring Boot, aplicaciones móviles nativas y despliegue en la nube.",
         
         section_faq: "FAQ",
-        faq1_q: "¿Qué significa ser un 'arquitecto agnóstico'?",
-        faq1_a: "Significa que mi enfoque está en resolver problemas de negocio mediante lógica y diseño de sistemas, sin depender de un lenguaje o framework específico. Utilizo las herramientas que mejor se adapten a la necesidad operativa.",
-        faq2_q: "¿Por qué no listas nombres específicos de IAs en tu stack?",
-        faq2_a: "El ecosistema de modelos fundacionales evoluciona constantemente. Por ello, construyo infraestructuras modulares que permiten intercambiar modelos (LLMs) como si fueran piezas de un rompecabezas, asegurando que la arquitectura base nunca quede obsoleta.",
-        faq3_q: "¿Qué tipo de proyectos buscas actualmente?",
-        faq3_a: "Me interesan los desafíos donde pueda diseñar canales de datos escalables (ETL), optimizar flujos de trabajo mediante automatización e integrar soluciones de Inteligencia Artificial para reducir drásticamente los cuellos de botella operativos.",
-        faq4_q: "¿Estás disponible para contratación?",
-        faq4_a: "Sí, actualmente estoy explorando oportunidades tanto para roles internos a tiempo completo (posiciones Junior/Mid en Ingeniería de Datos o Automatización) como para consultorías de proyectos freelance.",
-        faq5_q: "¿Cómo manejas los costos y límites de cuota de la IA?",
-        faq5_a: "Diseñando arquitecturas con Prompt Routing (evaluando complejidad antes de llamar al modelo), utilizando de forma agresiva caché de contexto e implementando modelos eficientes de código abierto (SLMs) de manera local mediante Docker u Ollama para mitigar la dependencia absoluta de APIs comerciales costosas.",
+        faq1_q: "¿Qué tecnologías utilizas principalmente para construir proyectos?",
+        faq1_a: "Elijo el stack según el problema: Java (Spring Boot) o Python (FastAPI) para APIs REST y lógica de negocio, PostgreSQL o SQLite para persistencia, Kotlin o Swift para aplicaciones móviles nativas, React y TypeScript para web, y Docker para empaquetar y desplegar servicios.",
+        faq2_q: "¿Cómo trabajas con Inteligencia Artificial en tus desarrollos?",
+        faq2_a: "Como un componente técnico específico cuando aporta valor real, por ejemplo en atención automatizada, clasificación o predicción, nunca como reemplazo de la arquitectura base. Al integrar un modelo (en la nube o ejecutado en local), diseño límites estrictos de consumo, validación de salidas y derivación a humanos ante casos fuera de catálogo.",
+        faq3_q: "¿Qué tipo de proyectos o colaboraciones buscas actualmente?",
+        faq3_a: "Desarrollo de APIs y aplicaciones web o móviles a medida, automatización de flujos y toma de pedidos por mensajería (como WhatsApp o Instagram conectados a correo, hojas de cálculo o sistemas internos), y oportunidades de práctica o roles Junior en ingeniería de software.",
+        faq4_q: "¿Qué experiencia tienes adaptando sistemas existentes o integrando APIs?",
+        faq4_a: "He migrado y refactorizado aplicaciones completas entre plataformas manteniendo compatibilidad con sus APIs originales (como la adaptación de BitChord a Swift/SwiftUI para iOS) y conectado clientes móviles y web con servicios REST propios y externos mediante autenticación JWT, webhooks y manejo de fallos.",
+        faq5_q: "¿Cómo evitas que el costo operativo de un sistema con APIs o IA se dispare?",
+        faq5_a: "Separando la lógica determinista (reglas, validaciones y consultas a base de datos) de las llamadas a modelos externos, implementando caché de contexto, límites de gasto mensual y auditoría de consumo por token (como en TokenTracker), o ejecutando modelos compactos en local cuando la privacidad y el presupuesto lo requieren.",
 
-        footer_tag: "Sistemas Agnósticos. Automatización Estructurada.",
+        footer_tag: "Ingeniería de Software. Código, Sistemas y Automatización.",
         
         modal_path: "~ /usr/bin/contacto",
-        modal_title: "Iniciar Conversación",
         modal_desc: "Edita el cuerpo del mensaje. Se ejecutará tu cliente de correo local al confirmar.",
         modal_body_label: "CUERPO DEL MENSAJE",
-        modal_send_btn: "Ejecutar mailto:"
+        modal_send_btn: "Ejecutar mailto:",
+        modal_copy_btn: "Copiar correo",
+        modal_copied_btn: "Correo copiado"
       },
       en: {
+        page_title: "robin | Software, Mobile & Systems Developer",
         nav_git: "[Portfolio]",
         nav_projects: "Projects",
         nav_exp: "Experience",
         nav_contact: "Contact",
+        nav_menu: "Menu",
         badge_status: "AVAILABLE",
-        badge_desc: "Open to Systems Architecture, Automation & Cost Efficiency (LLMOps) roles.",
-        hero_title: "The AI-assisted systems and data architect.",
-        hero_desc: "Syntax is a solved problem. I build data infrastructure and automate complex business logic by orchestrating foundational models. My focus is eliminating operational bottlenecks, optimizing cloud compute costs, and deploying robust ETL pipelines using efficient orchestration strategies and local/hybrid models.",
+        badge_desc: "Open to internships, freelance projects, and custom software development.",
+        hero_title: "I build cross-platform software, APIs, and custom systems.",
+        hero_desc: "Software Engineering student at Uniempresarial (Bogotá). I design and build REST backends, native mobile apps (Android and iOS), low-level Windows utilities, and messaging automations focused on clean architecture, cost control, and maintainable code.",
         
         term_tab1: "contact",
         term_tab2: "stack",
         term_tab3: "location",
-        term_cmd_contact: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>npx</span> hire-robin --role='Data Architect'",
-        term_cmd_tech: "<span class='text-zinc-500 mr-2 md:mr-3'>~</span><span class='text-white'>cat</span> package.json | grep 'stack'",
+        term_cmd_contact: "<span class='text-[#8e8e98] mr-2 md:mr-3'>~</span><span class='text-white'>contact</span> robin --dev",
+        term_cmd_tech: "<span class='text-[#8e8e98] mr-2 md:mr-3'>~</span><span class='text-white'>cat</span> stack.txt | grep \"core\"",
         
-        exp_h1: "AI Architecture & LLMOps",
-        exp_p1: "Orchestration of foundational and hybrid models (cloud/local) maximizing performance per token.",
-        code_block1: "<span class='text-zinc-600'># AI Architecture & LLMOps Components</span>\n[x] Foundational & Hybrid Model Integration (Cloud/Local)\n[x] Intelligent Prompt Routing for cost control\n[x] Advanced Prompt Caching & Vector Database Strategies\n[x] Autonomous Multi-Agent Systems with Loop Control\n\n<span class='text-zinc-600'># Approach</span>\n> Optimize every token and delegate repetitive tasks to the model.\n> Focus human effort on performance, security, and profitability.",
+        exp_h1: "Backend, APIs & Data",
+        exp_p1: "REST service design, relational data modeling, and transactional persistence focused on security, access control, and reproducible deployments.",
+        code_block1: "<span class='text-[#8e8e98]'># Backend & Persistence</span>\n- Java 21 + Spring Boot 3 (Spring Data JPA, Security)\n- Python (FastAPI, SQLAlchemy) / Node.js (Express)\n- JWT auth (HMAC-SHA256), BCrypt, and REST Webhooks\n- PostgreSQL (Supabase), SQLite, and OpenAPI 3 / Swagger",
         
-        exp_h2: "Data Engineering",
-        exp_p2: "Extraction, transformation, and loading (ETL) of information for enterprise systems.",
-        code_block2: "<span class='text-zinc-600'># Core Infrastructure and Technologies</span>\nimport pipeline_core\nfrom database import engine\n\n<span class='text-zinc-600'># Stack</span>\n- PostgreSQL / Relational Databases\n- Backend Development (Python / Node.js / FastAPI)\n- Cloud BaaS Platforms (Supabase)\n- Strict Normalization and Security (RLS)",
+        exp_h2: "Native Mobile (iOS & Android)",
+        exp_p2: "Native development across both platforms using MVVM architecture, offline-first local storage, and direct hardware/media integration.",
+        code_block2: "<span class='text-[#8e8e98]'># Mobile Platforms</span>\n- Android: Kotlin, Room (SQLite), Coroutines/Flow, Volley, Retrofit\n- iOS: Swift, SwiftUI, AVAudioSession, MPNowPlayingInfoCenter\n- Hardware & OS: Camera (FileProvider), Background Audio\n- CI/CD: Automated (.ipa / APK) builds on GitHub Actions",
         
-        exp_h3: "Automation & Orchestration",
-        exp_p3: "Asynchronous deployment and service containerization for efficient infrastructures.",
-        code_block3: "<span class='text-zinc-600'># Deployment & Efficiency Tools</span>\n$ docker-compose up -d --build\n$ ollama run llama3 <span class='text-zinc-600'># Local SLM orchestration</span>\n$ n8n start --tunnel\n\n<span class='text-zinc-600'># Integrations</span>\n- Visual workflow automation with efficient pipelines (n8n).\n- Environment isolation via Docker.\n- Connection via optimized REST Webhooks.",
+        exp_h3: "Systems, Automation & Applied AI",
+        exp_p3: "Windows system-level programming, real-time logic, and controlled integration of local or cloud models without losing predictability or cost control.",
+        code_block3: "<span class='text-[#8e8e98]'># Systems, Tooling & Deployment</span>\n- Win32 API (ctypes, SendInput, XInput) & Python CLI/Desktop\n- Godot Engine (GDScript) and 3D assets with Blender\n- Local SLMs (Ollama / Qwen 2.5 1.5B) + token cost auditing\n- Docker, n8n, Postman, and messaging APIs (Meta / WhatsApp / IG)",
         
-        section_projects: "Architecture & Proofs of Concept",
+        section_projects: "Selected Projects",
         
-        proj1_title: "Quaso",
-        proj1_badge: "Platform",
-        proj1_desc: "Automated Data Intelligence Platform. Comprehensive solution designed for the automated collection, processing, and visualization of data. Allows users to track topics of interest through intelligent workflows and AI-powered analysis, mitigating token overconsumption via batch processing. The entire system is containerized.",
+        proj1_title: "Arrendo",
+        proj1_badge: "Backend & Android",
+        proj1_desc: "Distributed system for managing lease contracts, properties, tenants, and maintenance incidents, built at Uniempresarial under IEEE 830 specs. Combines a Spring Boot 3 REST microservice backed by PostgreSQL (Supabase) with a native Kotlin Android app built offline-first on Room (SQLite) with reactive sync.",
         proj1_impact_tag: "Architecture //",
-        proj1_impact: "Complete integration of automated ETL pipelines, AI APIs, and interactive Full-Stack development.",
+        proj1_impact: "JWT (HMAC-SHA256) and BCrypt security, OpenAPI 3 / Swagger docs, Postman collection, Android camera and contacts integration, and multi-stage Docker deployment.",
         
-        proj2_title: "OmniAgent System",
-        proj2_badge: "PoC",
-        proj2_desc: "Development of an autonomous multi-agent ecosystem designed to automate technical workflows. The system integrates foundational models via the n8n platform to perform web data extraction, information cleaning, report synthesis, and business logic generation asynchronously without manual intervention.",
-        proj2_impact_tag: "Impact //",
-        proj2_impact: "Technical demonstration that delegating code to open-source agents reduces API fees by a massive percentage.",
+        proj2_title: "BitChord iOS",
+        proj2_badge: "Native iOS Port",
+        proj2_desc: "Native iPhone and iPad adaptation of an open-source Android music streaming app, preserving compatibility with the original external APIs (Invidious instances with automatic health checks and millisecond-synced lyrics from LRCLIB).",
+        proj2_impact_tag: "Engineering //",
+        proj2_impact: "Swift and SwiftUI MVVM architecture, background audio via AVAudioSession, lock-screen controls (MPNowPlayingInfoCenter), offline .m4a downloads, and automated .ipa builds via GitHub Actions.",
         
-        proj3_title: "SupplyAI",
-        proj3_badge: "Platform",
-        proj3_desc: "AI-driven web platform to optimize corporate supply chains. Integrates Machine Learning models (Prophet, XGBoost) for demand forecasting, logistics routing optimization algorithms, and interactive virtual assistants.",
-        proj3_impact_tag: "Architecture //",
-        proj3_impact: "Full-stack design that scalably orchestrates predictive analytics, routing APIs, and natural language processing.",
+        proj3_title: "GameSirTools (BedAssistant)",
+        proj3_badge: "Windows Systems",
+        proj3_desc: "Desktop utility in Python that translates XInput controller events in real time into Windows mouse movement, scrolling, and keyboard shortcuts. Calls the Win32 API directly via ctypes with no third-party macro libraries, and includes an on-screen floating keyboard built not to steal focus from the active window.",
+        proj3_impact_tag: "Low-Level //",
+        proj3_impact: "Native event injection via user32.SendInput C-structs (MOUSEINPUT / KEYBDINPUT), xinput1_4 polling with exponential acceleration curves, I-Beam cursor detection, and a WS_EX_NOACTIVATE Tkinter overlay.",
+
+        proj4_title: "MintGuard",
+        proj4_badge: "Local Security",
+        proj4_desc: "On-premise privacy gateway and prompt-injection firewall for applications calling external language APIs. Runs a local quantized 1.5B model (Qwen 2.5 Q4_K_M on Ollama, under 1 GB VRAM) to detect attacks and mask PII, secrets, and financial data in an ephemeral RAM vault before outbound requests leave the host.",
+        proj4_impact_tag: "Benchmarks //",
+        proj4_impact: "Evaluated on 75 out-of-sample records: 100% valid JSON output, 98.7% schema compliance, 97.4% PII precision, 0% false positives, and 96% attack block rate. Ships as CLI, Python SDK, and HTTP proxy.",
+
+        proj5_title: "SupplyAI",
+        proj5_badge: "Full-Stack Web",
+        proj5_desc: "Web platform built for inventory tracking, demand forecasting, and delivery route optimization for SMBs in Colombia. Pairs an async FastAPI backend with a typed React + TypeScript frontend, statistical/ML forecasting (Prophet and XGBoost with DANE CPI), and logistics route optimization.",
+        proj5_impact_tag: "Architecture //",
+        proj5_impact: "Async SQLAlchemy REST API, predictive models with scikit-learn and Prophet, and route optimization using OR-Tools and Google Maps Routes API.",
         
         sidebar_context: "Context",
         sidebar_tech: "Stack",
         sidebar_role: "Role:",
         sidebar_type: "Type:",
-        sidebar_role1: "Architect & Full-Stack",
-        sidebar_role2: "Data Architect",
-        sidebar_role3: "AI & Data Engineer",
-        sidebar_type1: "SaaS Platform",
-        sidebar_type2: "Multi-Agent Sys",
-        sidebar_type3: "Web Platform",
+        sidebar_repo: "Repo:",
+        sidebar_env: "Target:",
+        sidebar_role1: "Backend & Android",
+        sidebar_role2: "iOS Developer",
+        sidebar_role3: "Author / Systems",
+        sidebar_role4: "Author / Security",
+        sidebar_role5: "Full-Stack & Data",
+        sidebar_type1: "Distributed System",
+        sidebar_type2: "Native App",
+        sidebar_type3: "Desktop Utility",
+        sidebar_type4: "HTTP Proxy & SDK",
+        sidebar_type5: "Web Platform",
+        sidebar_local3: "Local Tool (PC)",
 
         section_logs: "Experience & Education",
-        exp1_sub: "Independent Consultant / Remote",
-        exp1_title: "Systems & Automation Consulting",
-        exp1_desc: "Systems auditing and integration solutions development using the n8n platform and Docker. Implementation of automated processes connecting databases with commercial analysis modules, eliminating the dependency on custom developments for repetitive operational tasks.",
-        exp2_sub: "Data Architecture / eCommerce",
-        exp2_title: "Data Extraction & Transformation Architect (ETL)",
-        exp2_desc: "Logical design of a massive processing pipeline to manage virtual transactional events. Construction of the central flow focused on automatic information cleaning and efficient persistence in analytical databases, enabling rapid decision making.",
-        exp3_sub: "fUSoft / Bogota, Col.",
-        exp3_title: "Software & Data Engineer (Intern)",
-        exp3_desc: "Development of business-oriented technological solutions. Maintenance of complete system architectures, improvement of algorithmic logic, and creation of internal tools via automated processes. Direct participation in cloud resource orchestration.",
-        edu_sub: "Education / 3rd Semester (Current)",
+        exp1_sub: "fUSoft (Software Factory, Uniempresarial) / Bogotá, Col.",
+        exp1_title: "Full-Stack Developer (Intern)",
+        exp1_desc: "Contributed to building and maintaining web applications for SMBs and institutional projects within Uniempresarial's Software Factory. Collaborated on backend and frontend modules, route modularization, authentication security hardening, and team bug fixing.",
+        exp2_sub: "Independent & Open Source Projects / vTrxn",
+        exp2_title: "Cross-Platform Software, Tooling & Automation",
+        exp2_desc: "Built personal tools and public GitHub repositories including a local token and API cost auditor with web dashboard (TokenTracker), automated pipelines using n8n and Docker (QuasoAI), 3D game prototypes in Godot/GDScript (COREBREAKER), and messaging bot architectures (WhatsApp / Instagram APIs) for FAQ handling, order capture, and human handoff.",
+        edu_sub: "Education / In Progress (Bogotá, Col.)",
         edu_title: "Software Engineering (Uniempresarial)",
-        edu_desc: "Fundamental basis in applied mathematics, logical system design, and data structures. Development of a tool-agnostic engineering mindset, prioritizing architecture and the efficient resolution of complex problems.",
+        edu_desc: "University engineering program with a practical enterprise model. Coursework and projects covering data structures, applied mathematics, IEEE 830 software design, distributed Spring Boot architectures, native mobile development, and cloud deployment.",
 
         section_faq: "FAQ",
-        faq1_q: "What does it mean to be an 'agnostic architect'?",
-        faq1_a: "It means my focus is on solving business problems through logic and system design, without relying on a specific language or framework. I use the tools that best fit the operational need.",
-        faq2_q: "Why don't you list specific AI names in your stack?",
-        faq2_a: "The foundational model ecosystem is constantly evolving. Therefore, I build modular infrastructures that allow swapping models (LLMs) like puzzle pieces, ensuring the core architecture never becomes obsolete.",
-        faq3_q: "What kind of projects are you currently looking for?",
-        faq3_a: "I am interested in challenges where I can design scalable data pipelines (ETL), optimize workflows through automation, and integrate Artificial Intelligence solutions to drastically reduce operational bottlenecks.",
-        faq4_q: "Are you available for hire?",
-        faq4_a: "Yes, I am currently exploring opportunities for both full-time internal roles (Junior/Mid positions in Data Engineering or Automation) and freelance project consulting.",
-        faq5_q: "How do you handle AI token costs and rate limits?",
-        faq5_a: "By designing architectures that feature Prompt Routing (assessing complexity before model calls), aggressively using context caching, and deploying efficient open-source Small Language Models (SLMs) locally via Docker or Ollama to mitigate absolute reliance on pricey commercial APIs.",
+        faq1_q: "Which technologies do you primarily build with?",
+        faq1_a: "I pick the stack that fits the problem: Java (Spring Boot) or Python (FastAPI) for REST APIs and business logic, PostgreSQL or SQLite for persistence, Kotlin or Swift for native mobile apps, React and TypeScript for web interfaces, and Docker for reproducible deployments.",
+        faq2_q: "How do you use AI inside your software projects?",
+        faq2_a: "As a targeted engineering component when it solves a concrete problem, such as customer support automation, classification, or forecasting, never as a replacement for core software architecture. When integrating cloud or local models, I enforce strict usage caps, output validation, and human handoff.",
+        faq3_q: "What kind of projects or roles are you looking for?",
+        faq3_a: "Custom APIs, web or mobile applications, messaging workflow and order automation (such as WhatsApp or Instagram connected to email, spreadsheets, or internal systems), and internship or Junior software engineering opportunities.",
+        faq4_q: "What experience do you have adapting existing systems or integrating APIs?",
+        faq4_a: "I have refactored and ported full applications across platforms while keeping compatibility with their original external APIs (such as adapting BitChord to Swift/SwiftUI for iOS), and connected mobile and web clients to custom and third-party REST services with JWT auth, webhooks, and failover handling.",
+        faq5_q: "How do you keep API and AI operational costs predictable?",
+        faq5_a: "By separating deterministic logic (rules, validation, and database queries) from external model calls, applying context caching, setting monthly spend caps and token auditing (as in TokenTracker), or running compact local models when privacy and budget call for it.",
 
-        footer_tag: "Agnostic Systems. Structured Automation.",
+        footer_tag: "Software Engineering. Code, Systems & Automation.",
         
         modal_path: "~ /usr/bin/contact",
-        modal_title: "Start Conversation",
         modal_desc: "Edit the message body. Your local email client will execute upon confirmation.",
         modal_body_label: "MESSAGE BODY",
-        modal_send_btn: "Execute mailto:"
+        modal_send_btn: "Execute mailto:",
+        modal_copy_btn: "Copy email",
+        modal_copied_btn: "Email copied"
       }
       
     };
  
     function setLanguage(lang) {
+      currentLang = lang;
       document.getElementById('btn-es').classList.remove('active');
       document.getElementById('btn-en').classList.remove('active');
       document.getElementById(`btn-${lang}`).classList.add('active');
+
+      if (translations[lang].page_title) {
+        document.title = translations[lang].page_title;
+      }
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -810,9 +997,9 @@ $ n8n start --tunnel
 
       const msgArea = document.getElementById('modal-msg');
       if(lang === 'en') {
-        msgArea.value = "Hi robin, I reviewed your portfolio and found your language-agnostic approach and vision on data architecture very interesting. I would like to chat with you about a potential opportunity or collaboration.";
+        msgArea.value = "Hi Robin, I reviewed your portfolio and GitHub projects. I would like to discuss a project or collaboration opportunity with you.";
       } else {
-        msgArea.value = "Hola robin, revisé tu portafolio y me pareció muy interesante tu enfoque agnóstico al desarrollo y tu visión sobre arquitectura de datos. Me gustaría conversar contigo sobre una posible oportunidad o colaboración.";
+        msgArea.value = "Hola Robin, revisé tu portafolio y tus proyectos en GitHub. Me gustaría conversar contigo sobre un proyecto o una oportunidad de colaboración.";
       }
       document.documentElement.lang = lang;
     }
