@@ -489,35 +489,6 @@
             </div>
           </div>
 
-          <div class="project-grid">
-            <div class="project-main">
-              <div class="flex justify-between items-start mb-4 md:mb-6">
-                <h3 class="text-white font-bold text-xl md:text-2xl" data-i18n="proj5_title">SupplyAI</h3>
-                <span class="text-xs md:text-sm border border-[#333] px-2 md:px-3 py-1 md:py-1.5 rounded text-zinc-400 font-mono" data-i18n="proj5_badge">Web Full-Stack</span>
-              </div>
-              <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8" data-i18n="proj5_desc">
-                Plataforma web orientada a PYMES en Colombia para gestión de inventario en tiempo real, alertas tempranas de desabastecimiento y optimización de entregas. Combina un backend asíncrono en FastAPI con frontend tipado en React y TypeScript, pronóstico de demanda (Prophet y XGBoost ajustados con IPC del DANE) y optimización de rutas logísticas.
-              </p>
-              <div class="bg-[#050505] p-3 md:p-4 rounded border border-[#27272a] text-xs md:text-sm text-zinc-300">
-                <span class="text-[#8e8e98] font-mono" data-i18n="proj5_impact_tag">Arquitectura //</span> <span data-i18n="proj5_impact">API REST con SQLAlchemy asíncrono, modelos predictivos con scikit-learn y Prophet, cálculo de rutas con OR-Tools y Google Maps Routes API.</span>
-              </div>
-            </div>
-            <div class="project-sidebar">
-              <h4 class="text-xs md:text-sm font-bold text-white mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_context">Contexto</h4>
-              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 md:space-y-3 font-mono">
-                <li><span class="text-white" data-i18n="sidebar_role">Rol:</span> <span data-i18n="sidebar_role5">Full-Stack & Datos</span></li>
-                <li><span class="text-white" data-i18n="sidebar_type">Tipo:</span> <span data-i18n="sidebar_type5">Plataforma Web</span></li>
-                <li><span class="text-white" data-i18n="sidebar_repo">Repo:</span> <a href="https://github.com/vTrxn/SupplyAI" target="_blank" rel="noopener noreferrer" class="text-zinc-300 underline decoration-zinc-700 underline-offset-4 hover:text-white transition-colors">vTrxn/SupplyAI</a></li>
-              </ul>
-              <h4 class="text-xs md:text-sm font-bold text-white mt-6 md:mt-8 mb-3 md:mb-4 uppercase tracking-wider" data-i18n="sidebar_tech">Tecnologías</h4>
-              <ul class="text-xs md:text-sm text-[#8e8e98] space-y-2 font-mono">
-                <li><span class="text-green-500">•</span> FastAPI & PostgreSQL</li>
-                <li><span class="text-green-500">•</span> React & TypeScript</li>
-                <li><span class="text-green-500">•</span> Prophet, XGBoost & OR-Tools</li>
-              </ul>
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -808,12 +779,6 @@
         proj4_desc: "Pasarela de privacidad on-premise y cortafuegos contra inyecciones de prompt para aplicaciones que consultan APIs externas de lenguaje. Ejecuta un modelo compacto local (Qwen 2.5 1.5B cuantizado Q4_K_M en Ollama, menos de 1 GB de VRAM) que detecta ataques y enmascara PII, credenciales y datos bancarios en una bóveda efímera en RAM antes de enviar cualquier texto al exterior.",
         proj4_impact_tag: "Evaluación //",
         proj4_impact: "Probado sobre 75 casos fuera de muestra: 100% de JSON válido, 98.7% de conformidad de esquema, 97.4% de precisión en PII, 0% de falsos positivos y 96% de bloqueo de ataques. Incluye CLI, SDK y proxy HTTP.",
-
-        proj5_title: "SupplyAI",
-        proj5_badge: "Web Full-Stack",
-        proj5_desc: "Plataforma web orientada a PYMES en Colombia para gestión de inventario en tiempo real, alertas tempranas de desabastecimiento y optimización de entregas. Combina un backend asíncrono en FastAPI con frontend tipado en React y TypeScript, pronóstico de demanda (Prophet y XGBoost ajustados con IPC del DANE) y optimización de rutas logísticas.",
-        proj5_impact_tag: "Arquitectura //",
-        proj5_impact: "API REST con SQLAlchemy asíncrono, modelos predictivos con scikit-learn y Prophet, cálculo de rutas con OR-Tools y Google Maps Routes API.",
         
         sidebar_context: "Contexto",
         sidebar_tech: "Tecnologías",
@@ -825,12 +790,10 @@
         sidebar_role2: "Desarrollador iOS",
         sidebar_role3: "Autor / Sistemas",
         sidebar_role4: "Autor / Seguridad",
-        sidebar_role5: "Full-Stack & Datos",
         sidebar_type1: "Sistema Distribuido",
         sidebar_type2: "App Nativa",
         sidebar_type3: "Utilidad Desktop",
         sidebar_type4: "Proxy HTTP & SDK",
-        sidebar_type5: "Plataforma Web",
         sidebar_local3: "Uso Local (PC)",
         
         section_logs: "Experiencia y Educación",
@@ -920,12 +883,6 @@
         proj4_desc: "On-premise privacy gateway and prompt-injection firewall for applications calling external language APIs. Runs a local quantized 1.5B model (Qwen 2.5 Q4_K_M on Ollama, under 1 GB VRAM) to detect attacks and mask PII, secrets, and financial data in an ephemeral RAM vault before outbound requests leave the host.",
         proj4_impact_tag: "Benchmarks //",
         proj4_impact: "Evaluated on 75 out-of-sample records: 100% valid JSON output, 98.7% schema compliance, 97.4% PII precision, 0% false positives, and 96% attack block rate. Ships as CLI, Python SDK, and HTTP proxy.",
-
-        proj5_title: "SupplyAI",
-        proj5_badge: "Full-Stack Web",
-        proj5_desc: "Web platform built for inventory tracking, demand forecasting, and delivery route optimization for SMBs in Colombia. Pairs an async FastAPI backend with a typed React + TypeScript frontend, statistical/ML forecasting (Prophet and XGBoost with DANE CPI), and logistics route optimization.",
-        proj5_impact_tag: "Architecture //",
-        proj5_impact: "Async SQLAlchemy REST API, predictive models with scikit-learn and Prophet, and route optimization using OR-Tools and Google Maps Routes API.",
         
         sidebar_context: "Context",
         sidebar_tech: "Stack",
@@ -937,12 +894,10 @@
         sidebar_role2: "iOS Developer",
         sidebar_role3: "Author / Systems",
         sidebar_role4: "Author / Security",
-        sidebar_role5: "Full-Stack & Data",
         sidebar_type1: "Distributed System",
         sidebar_type2: "Native App",
         sidebar_type3: "Desktop Utility",
         sidebar_type4: "HTTP Proxy & SDK",
-        sidebar_type5: "Web Platform",
         sidebar_local3: "Local Tool (PC)",
 
         section_logs: "Experience & Education",
